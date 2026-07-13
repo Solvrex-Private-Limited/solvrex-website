@@ -39,10 +39,10 @@ Everyone does two things this week: (a) read your assigned module closely enough
 
 | You | Module | What to look at | What a good PR looks like |
 |---|---|---|---|
-| _[frontend intern name]_ | `packages/ui/src/components/Navbar.tsx` (~341 lines) | State handling for the mega-menu, mobile scroll-lock, ARIA attributes | Extract the mega-menu into its own sub-component; add keyboard navigation (arrow keys, Escape to close) |
-| _[fullstack intern #1 name]_ | `packages/ui/src/components/Home.tsx` + `PricingPage.tsx` (~273 + 274 lines) | Repeated inline styles, section composition | Break large sections into sub-components; pull repeated grid breakpoints into `lib/theme.ts` |
-| _[fullstack intern #2 name]_ | `packages/ui/src/components/ConsultationForm.tsx` (~189 lines) | Async submit flow, error handling, the honeypot spam field | Add a retry UI when the submit request fails; fix the bare `catch (Error)` so real errors surface |
-| _[fullstack intern #3 name]_ | Repo-wide: there is currently **no test runner and no linter configured** | `package.json`, existing component patterns | Add Vitest (or Jest) + one real test for `Reveal.tsx` or `ConsultationForm.tsx`; add an ESLint config and fix whatever it flags |
+| _Naincy | `packages/ui/src/components/Navbar.tsx` (~341 lines) | State handling for the mega-menu, mobile scroll-lock, ARIA attributes | Extract the mega-menu into its own sub-component; add keyboard navigation (arrow keys, Escape to close) |
+| _Kunal_ | `packages/ui/src/components/Home.tsx` + `PricingPage.tsx` (~273 + 274 lines) | Repeated inline styles, section composition | Break large sections into sub-components; pull repeated grid breakpoints into `lib/theme.ts` |
+| _Om_ | `packages/ui/src/components/ConsultationForm.tsx` (~189 lines) | Async submit flow, error handling, the honeypot spam field | Add a retry UI when the submit request fails; fix the bare `catch (Error)` so real errors surface |
+| _Joyjeet_ | Repo-wide: there is currently **no test runner and no linter configured** | `package.json`, existing component patterns |add an ESLint config and fix whatever it flags |
 
 If you finish early: read someone else's assigned module and leave review comments on their PR — that's genuinely useful, not busywork.
 
