@@ -1,5 +1,5 @@
-import { ResourcesIndex } from "@solvrex/ui";
-import { pageMetadata } from "@solvrex/ui";
+import { ResourcesIndex , pageMetadata} from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Career Resources | Resume, LinkedIn, Referrals & Interview Guides",

@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { RESOURCES, getArticle } from "@solvrex/ui";
-import { ArticlePage } from "@solvrex/ui";
-import { JsonLd } from "@solvrex/ui";
-import { pageMetadata, articleLd } from "@solvrex/ui";
+import { RESOURCES, getArticle, ArticlePage, JsonLd, pageMetadata, articleLd } from "@solvrex/ui";
+
 
 export function generateStaticParams() {
   return RESOURCES.map((a) => ({ slug: a.slug }));

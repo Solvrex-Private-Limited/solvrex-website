@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ROLES, getRole } from "@solvrex/ui";
-import { RoleDetailPage } from "@solvrex/ui";
+import { ROLES, getRole, RoleDetailPage } from "@solvrex/ui";
+
 
 export function generateStaticParams() {
   return ROLES.map((r) => ({ id: r.id }));

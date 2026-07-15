@@ -1,5 +1,4 @@
-import { CategoryPage } from "@solvrex/ui";
-import { getLevelBySlug } from "@solvrex/ui";
+import { CategoryPage, getLevelBySlug } from "@solvrex/ui";
 
 export const metadata = { title: "Lateral Roles" };
 

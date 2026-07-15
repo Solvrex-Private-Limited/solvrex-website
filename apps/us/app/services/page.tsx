@@ -1,5 +1,5 @@
-import { ServicesPage } from "@solvrex/ui";
-import { pageMetadata } from "@solvrex/ui";
+import { ServicesPage, pageMetadata } from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Services | Career, Technology Consulting & Business Enablement",
