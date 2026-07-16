@@ -28,12 +28,17 @@ const fieldLabelStyle: CSSProperties = {
   textTransform: "uppercase",
 };
 
+// Added a media query for responsive grid layout
 const formStyles = `
   .sx-input { appearance: none; }
   .sx-input::placeholder { color: ${C.textSubtle}; }
   .sx-input:focus { border-color: ${C.blue} !important; }
   .sx-submit:hover { background-color: ${C.blueHover} !important; }
   .sx-submit:disabled { opacity: 0.6; cursor: default; }
+  .sx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) {
+    .sx-grid { grid-template-columns: 1fr; }
+  }
 `;
 
 /**
@@ -48,15 +53,16 @@ export function ConsultationForm({
   defaultSubject?: string;
   successText?: string;
 }) {
-  const [form, setForm] = useState({
+  const initialState = {
     name: "",
     email: "",
     organization: "",
     subject: defaultSubject,
     message: "",
-    // honeypot — must stay empty for real users
-    company_website: "",
-  });
+    company_website: "", // honeypot
+  };
+  
+  const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,17 +76,28 @@ export function ConsultationForm({
     if (sending) return;
     setSending(true);
     setError(null);
+
+    // Apply input trimming before submission
+    const payload = {
+      ...form,
+      name: form.name.trim(),
+      email: form.email.trim(),
+      organization: form.organization.trim(),
+      message: form.message.trim(),
+    };
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => null);
         throw new Error((data && data.error) || "Something went wrong. Please try again.");
       }
       setSubmitted(true);
+      setForm(initialState); // Reset form fields
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
@@ -90,9 +107,9 @@ export function ConsultationForm({
 
   if (submitted) {
     return (
-      <div style={{ paddingTop: "4px" }}>
+      <div role="status" aria-live="polite" style={{ paddingTop: "4px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "rgba(77,124,255,0.12)", marginBottom: "20px" }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ color: C.blue }}>
+          <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ color: C.blue }}>
             <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
@@ -106,7 +123,8 @@ export function ConsultationForm({
     <>
       <style>{formStyles}</style>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+        {/* Applied responsive grid class */}
+        <div className="sx-grid">
           <div>
             <label htmlFor="name" style={fieldLabelStyle}>Name</label>
             <input id="name" name="name" type="text" required autoComplete="name" value={form.name} onChange={handleChange} className="sx-input" style={inputStyle} placeholder="Your name" />
@@ -130,6 +148,7 @@ export function ConsultationForm({
             id="subject"
             name="subject"
             required
+            aria-label="Select a subject"
             value={form.subject}
             onChange={handleChange}
             className="sx-input"
@@ -156,6 +175,7 @@ export function ConsultationForm({
             id="message"
             name="message"
             required
+            maxLength={1000}
             rows={5}
             value={form.message}
             onChange={handleChange}
@@ -165,19 +185,20 @@ export function ConsultationForm({
           />
         </div>
 
-        {/* Honeypot field — hidden from real users */}
         <div style={{ position: "absolute", left: "-9999px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }} aria-hidden="true">
           <label htmlFor="company_website">Company website</label>
           <input id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" value={form.company_website} onChange={handleChange} />
         </div>
 
-        {error && <p style={{ fontSize: "13px", color: "#ff6b6b", lineHeight: 1.5, margin: 0 }}>{error}</p>}
+        {/* Added accessibility attributes to error message */}
+        {error && <p role="alert" aria-live="assertive" style={{ fontSize: "13px", color: "#ff6b6b", lineHeight: 1.5, margin: 0 }}>{error}</p>}
 
         <div style={{ paddingTop: "4px" }}>
-          <button type="submit" className="sx-submit" disabled={sending} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 26px", backgroundColor: C.blue, color: "#ffffff", border: "none", borderRadius: "2px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.01em", cursor: "pointer", transition: "background-color 0.15s" }}>
+          {/* Added aria-busy to the submit button */}
+          <button type="submit" className="sx-submit" disabled={sending} aria-busy={sending} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 26px", backgroundColor: C.blue, color: "#ffffff", border: "none", borderRadius: "2px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.01em", cursor: "pointer", transition: "background-color 0.15s" }}>
             {sending ? "Sending…" : submitLabel}
             {!sending && (
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none">
                 <path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             )}
