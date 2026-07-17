@@ -22,6 +22,11 @@ const styles = `
   .sx-cmp td.cell { text-align: center; color: ${C.textMuted}; white-space: nowrap; }
   .sx-cmp td.feat { color: ${C.textBody}; }
   @media (max-width: 860px) { .sx-tier-grid { grid-template-columns: 1fr; } .sx-faq-grid { grid-template-columns: 1fr; } }
+
+    
+  .sx-tier-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .sx-tier-card:hover { transform: translateY(-15px); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25); }
+
 `;
 
 function Check() {
@@ -56,7 +61,7 @@ export function PricingPage() {
         <div className="sx-container">
           <div className="sx-tier-grid">
             {PRICING_TIERS.map((tier) => (
-              <div key={tier.slug} style={{ display: "flex", flexDirection: "column", padding: "28px 24px", borderRadius: "12px", background: tier.highlighted ? C.bgSurface : "transparent" }}>
+              <div className="sx-tier-card" key={tier.slug} style={{ display: "flex", flexDirection: "column", padding: "28px 24px", borderRadius: "12px", background: tier.highlighted ? C.bgSurface : "transparent" }}>
                 {tier.highlighted && (
                   <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.blueLight, marginBottom: "12px" }}>Most popular</span>
                 )}
