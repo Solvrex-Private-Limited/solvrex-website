@@ -1,5 +1,5 @@
-import { ContactPage } from "@solvrex/ui";
-import { pageMetadata } from "@solvrex/ui";
+import { ContactPage, pageMetadata } from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Contact Solvrex | Career Services & Consulting",

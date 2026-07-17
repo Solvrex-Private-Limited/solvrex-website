@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { SERVICES, getService } from "@solvrex/ui";
-import { ServiceDetailPage } from "@solvrex/ui";
-import { JsonLd } from "@solvrex/ui";
-import { pageMetadata, serviceLd } from "@solvrex/ui";
+import { SERVICES, getService, ServiceDetailPage, JsonLd, pageMetadata, serviceLd } from "@solvrex/ui";
+
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));

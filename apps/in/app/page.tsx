@@ -1,6 +1,5 @@
-import { HomeBusiness } from "@solvrex/ui";
-import { JsonLd } from "@solvrex/ui";
-import { organizationLd } from "@solvrex/ui";
+import { HomeBusiness ,JsonLd, organizationLd} from "@solvrex/ui";
+
 
 export default function Page() {
   return (

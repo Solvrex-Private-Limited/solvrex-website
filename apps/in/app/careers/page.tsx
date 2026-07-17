@@ -1,5 +1,5 @@
-import { CareersPage } from "@solvrex/ui";
-import { pageMetadata } from "@solvrex/ui";
+import { CareersPage , pageMetadata} from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Careers at Solvrex | Join Our Team",

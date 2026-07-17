@@ -1,6 +1,5 @@
-import { PricingPage } from "@solvrex/ui";
-import { JsonLd } from "@solvrex/ui";
-import { pageMetadata, serviceLd } from "@solvrex/ui";
+import { PricingPage, JsonLd, pageMetadata, serviceLd } from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Career Services Pricing | Solvrex",

@@ -1,6 +1,10 @@
-import { BookPage } from "@solvrex/ui";
-import { JsonLd } from "@solvrex/ui";
-import { pageMetadata, professionalServiceLd } from "@solvrex/ui";
+import { 
+  BookPage,
+  JsonLd,
+  pageMetadata,
+  professionalServiceLd 
+} from "@solvrex/ui";
+
 
 export const metadata = pageMetadata({
   title: "Book a Free Career Consultation | Solvrex",

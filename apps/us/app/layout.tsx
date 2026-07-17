@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@solvrex/ui/styles/globals.css";
-import { Navbar } from "@solvrex/ui";
-import { Footer } from "@solvrex/ui";
-import { siteConfig } from "@solvrex/ui";
+import { Navbar, Footer, siteConfig } from "@solvrex/ui";
+
 
 const inter = Inter({
   subsets: ["latin"],
