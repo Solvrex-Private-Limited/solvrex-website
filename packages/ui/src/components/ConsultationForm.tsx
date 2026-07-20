@@ -35,6 +35,7 @@ const formStyles = `
   .sx-input:focus { border-color: ${C.blue} !important; }
   .sx-submit:hover { background-color: ${C.blueHover} !important; }
   .sx-submit:disabled { opacity: 0.6; cursor: default; }
+  .sx-secondary:hover { background-color: ${C.bgSurface} !important; }
   .sx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 600px) {
     .sx-grid { grid-template-columns: 1fr; }
@@ -108,13 +109,33 @@ export function ConsultationForm({
   if (submitted) {
     return (
       <div role="status" aria-live="polite" style={{ paddingTop: "4px" }}>
+        <style>{formStyles}</style>
         <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "rgba(77,124,255,0.12)", marginBottom: "20px" }}>
           <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ color: C.blue }}>
             <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
         <h2 style={{ fontSize: "20px", fontWeight: 400, color: C.text, marginBottom: "12px", letterSpacing: "-0.01em" }}>Thank you.</h2>
-        <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.65 }}>{successText}</p>
+        <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.65, marginBottom: "28px" }}>{successText}</p>
+        
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <button
+            type="button"
+            onClick={() => setSubmitted(false)}
+            className="sx-submit"
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "10px 20px", backgroundColor: C.blue, color: "#ffffff", border: "1px solid transparent", borderRadius: "2px", fontSize: "14px", fontWeight: 500, cursor: "pointer", transition: "background-color 0.15s" }}
+          >
+            Resubmit form
+          </button>
+
+          <a
+            href="/"
+            className="sx-secondary"
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "10px 20px", backgroundColor: "transparent", color: C.text, border: `1px solid ${C.borderStrong}`, borderRadius: "2px", fontSize: "14px", fontWeight: 500, cursor: "pointer", textDecoration: "none", transition: "background-color 0.15s" }}
+          >
+            Go to homepage
+          </a>
+        </div>
       </div>
     );
   }
@@ -137,7 +158,7 @@ export function ConsultationForm({
 
         <div>
           <label htmlFor="organization" style={fieldLabelStyle}>
-            Organization <span style={{ color: C.border, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span>
+            Organization <span style={{ color: C.textMuted, fontWeight: 500, textTransform: "none", letterSpacing: 0, opacity: 0.9 }}>(optional)</span>
           </label>
           <input id="organization" name="organization" type="text" autoComplete="organization" value={form.organization} onChange={handleChange} className="sx-input" style={inputStyle} placeholder="Company or institution" />
         </div>
