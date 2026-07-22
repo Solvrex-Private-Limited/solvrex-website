@@ -105,17 +105,32 @@ export async function handleContact(req: Request) {
     });
 
     if (error) {
+      const errorMessage =
+        typeof error === "object" && error !== null && "message" in error
+          ? String((error as { message?: unknown }).message ?? "")
+          : String(error ?? "");
+      const isInvalidKey = /api key is invalid|invalid api key|unauthorized|401|403/i.test(errorMessage);
+      const isSandboxIssue = /testing emails|verify a domain|sandbox/i.test(errorMessage);
+      const userMessage = isInvalidKey
+        ? "The Resend API key is invalid or expired. Please update RESEND_API_KEY to a valid Resend key."
+        : isSandboxIssue
+          ? "Resend is rejecting this message because the recipient or sender is not verified in the current account setup."
+          : `Could not send your message. Please try again or email ${TO_EMAIL}.`;
+
       console.error("Resend error:", error);
-      return NextResponse.json(
-        { error: `Could not send your message. Please try again or email ${TO_EMAIL}.` },
-        { status: 502 }
-      );
+      return NextResponse.json({ error: userMessage }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
   } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err ?? "");
+    const isInvalidKey = /api key is invalid|invalid api key|unauthorized|401|403/i.test(errorMessage);
     console.error("Contact route error:", err);
     return NextResponse.json(
-      { error: `Could not send your message. Please try again or email ${TO_EMAIL}.` },
+      {
+        error: isInvalidKey
+          ? "The Resend API key is invalid or expired. Please update RESEND_API_KEY to a valid Resend key."
+          : `Could not send your message. Please try again or email ${TO_EMAIL}.`,
+      },
       { status: 500 }
     );
   }
