@@ -8,19 +8,19 @@ import { SERVICES } from "../data/services";
 const displayDomain = siteConfig.url.replace(/^https?:\/\//, "");
 
 const columnLabel = {
-  fontSize: "10.5px",
+  fontSize: "11px",
   fontWeight: 600,
-  letterSpacing: "0.1em",
+  letterSpacing: "0.12em",
   textTransform: "uppercase" as const,
   color: C.textSubtle,
-  marginBottom: "14px",
+  marginBottom: "16px",
 };
 
 const linkStyle = {
   display: "block",
-  fontSize: "13px",
+  fontSize: "13.5px",
   color: C.textMuted,
-  marginBottom: "9px",
+  marginBottom: "10px",
   transition: "color 0.15s",
 };
 
@@ -29,7 +29,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <Link
       href={href}
       style={linkStyle}
-      onMouseEnter={(e) => { e.currentTarget.style.color = C.text; }}
+      onMouseEnter={(e) => { e.currentTarget.style.color = C.blue; }}
       onMouseLeave={(e) => { e.currentTarget.style.color = C.textMuted; }}
     >
       {children}
@@ -47,7 +47,7 @@ export function Footer() {
   ] as const;
 
   return (
-    <footer style={{ backgroundColor: C.bgFooter, borderTop: `1px solid ${C.border}` }}>
+    <footer style={{ backgroundColor: "transparent", borderTop: `1px solid ${C.border}` }}>
       <div className="sx-container">
         {/* Main grid */}
         <div

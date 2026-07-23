@@ -80,10 +80,10 @@ export function HomeBusiness() {
       {/* Hero */}
       <section style={{ padding: "104px 0 96px", position: "relative", overflow: "hidden", borderBottom: `1px solid ${C.border}` }}>
         <Aurora variant="business" />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(77,124,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(195,157,83,0.05) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
         <div className="sx-container" style={{ position: "relative", zIndex: 1, maxWidth: "820px" }}>
           <p style={eyebrow}>Business Enablement</p>
-          <h1 style={{ fontSize: "clamp(38px, 5.6vw, 66px)", fontWeight: 300, color: C.text, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: "26px" }}>
+          <h1 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(38px, 5.6vw, 66px)", fontWeight: 400, color: C.text, lineHeight: 1.08, letterSpacing: "-0.02em", marginBottom: "26px" }}>
             Practical support to help your business operate and grow.
           </h1>
           <p style={{ fontSize: "18px", color: C.textMuted, lineHeight: 1.6, marginBottom: "40px", maxWidth: "640px" }}>
@@ -189,7 +189,7 @@ export function HomeBusiness() {
         <div className="sx-container">
           <Reveal>
             <div style={{ maxWidth: "640px" }}>
-              <h2 style={{ fontSize: "clamp(26px, 3.4vw, 40px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: "18px" }}>
+              <h2 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(26px, 3.4vw, 40px)", fontWeight: 400, color: C.text, letterSpacing: "-0.015em", lineHeight: 1.15, marginBottom: "18px" }}>
                 Let&apos;s build what your business needs.
               </h2>
               <p style={{ fontSize: "16px", color: C.textMuted, lineHeight: 1.7, marginBottom: "32px" }}>

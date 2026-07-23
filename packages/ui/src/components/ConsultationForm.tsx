@@ -6,33 +6,35 @@ import { C } from "../lib/theme";
 const inputStyle: CSSProperties = {
   width: "100%",
   display: "block",
-  padding: "11px 14px",
-  backgroundColor: C.bgSurface,
-  border: `1px solid ${C.borderStrong}`,
+  padding: "14px 18px",
+  backgroundColor: "var(--sx-bg-surface)",
+  border: `1px solid ${C.border}`,
   color: C.text,
-  fontSize: "14px",
+  fontSize: "14.5px",
   outline: "none",
-  borderRadius: "2px",
+  borderRadius: "10px",
   fontFamily: "inherit",
   lineHeight: "1.5",
-  transition: "border-color 0.15s",
+  boxShadow: "0 2px 8px rgba(28,25,23,0.03)",
+  transition: "border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease",
 };
 
 const fieldLabelStyle: CSSProperties = {
   display: "block",
-  fontSize: "11.5px",
-  fontWeight: 500,
+  fontSize: "11px",
+  fontWeight: 600,
   color: C.textSubtle,
-  marginBottom: "7px",
-  letterSpacing: "0.04em",
+  marginBottom: "8px",
+  letterSpacing: "0.09em",
   textTransform: "uppercase",
 };
 
 const formStyles = `
   .sx-input { appearance: none; }
-  .sx-input::placeholder { color: ${C.textSubtle}; }
-  .sx-input:focus { border-color: ${C.blue} !important; }
-  .sx-submit:hover { background-color: ${C.blueHover} !important; }
+  .sx-input::placeholder { color: ${C.textSubtle}; opacity: 0.65; }
+  .sx-input:focus { border-color: ${C.blue} !important; box-shadow: 0 0 0 3.5px rgba(195,157,83,0.18), 0 4px 12px rgba(28,25,23,0.04) !important; background-color: var(--sx-bg-raised) !important; }
+  .sx-submit { border-radius: 100px !important; padding: 14px 34px !important; font-weight: 600 !important; letter-spacing: 0.02em !important; }
+  .sx-submit:hover { background-color: ${C.blueHover} !important; transform: translateY(-1px); boxShadow: 0 6px 20px rgba(195,157,83,0.35) !important; }
   .sx-submit:disabled { opacity: 0.6; cursor: default; }
 `;
 

@@ -1,4 +1,4 @@
-import { C } from "../lib/theme";
+import { C, eyebrow, pageH1 } from "../lib/theme";
 import { siteConfig } from "../lib/site";
 import { Breadcrumbs } from "./ui/Breadcrumbs";
 import { ConsultationForm } from "./ConsultationForm";
@@ -10,10 +10,8 @@ export function ContactPage() {
       <section style={{ padding: "80px 0 64px", borderBottom: `1px solid ${C.border}` }}>
         <div className="sx-container">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: C.blue, marginBottom: "22px" }}>
-            Contact
-          </p>
-          <h1 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.12, maxWidth: "480px" }}>
+          <p style={eyebrow}>Contact</p>
+          <h1 style={{ ...pageH1, maxWidth: "480px" }}>
             Start a conversation.
           </h1>
         </div>

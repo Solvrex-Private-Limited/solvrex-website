@@ -18,26 +18,38 @@ const base: CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
   gap: "8px",
-  padding: "12px 24px",
-  borderRadius: "3px",
+  padding: "12px 28px",
+  borderRadius: "100px",
   fontSize: "14px",
-  fontWeight: 500,
+  fontWeight: 600,
   letterSpacing: "0.01em",
-  transition: "background-color 0.15s, border-color 0.15s",
+  transition: "background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease",
 };
 
 const variants: Record<Variant, CSSProperties> = {
-  solid: { backgroundColor: C.blue, border: `1px solid ${C.blue}`, color: "#ffffff" },
-  outline: { backgroundColor: "transparent", border: `1px solid ${C.borderStrong}`, color: C.text },
+  solid: {
+    backgroundColor: C.blue,
+    border: `1px solid ${C.blue}`,
+    color: "#ffffff",
+    boxShadow: "0 4px 16px rgba(195,157,83,0.25)",
+  },
+  outline: {
+    backgroundColor: "transparent",
+    border: `1px solid ${C.borderStrong}`,
+    color: C.text,
+  },
 };
 
 function applyHover(el: HTMLElement, variant: Variant, on: boolean) {
   if (variant === "solid") {
     el.style.backgroundColor = on ? C.blueHover : C.blue;
     el.style.borderColor = on ? C.blueHover : C.blue;
+    el.style.transform = on ? "translateY(-1px)" : "none";
+    el.style.boxShadow = on ? "0 6px 20px rgba(195,157,83,0.35)" : "0 4px 16px rgba(195,157,83,0.25)";
   } else {
     el.style.borderColor = on ? C.blue : C.borderStrong;
     el.style.backgroundColor = on ? accent.hoverFill : "transparent";
+    el.style.transform = on ? "translateY(-1px)" : "none";
   }
 }
 

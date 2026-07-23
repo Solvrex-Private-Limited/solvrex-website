@@ -130,7 +130,7 @@ export function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 200,
-        backgroundColor: C.bg,
+        backgroundColor: "transparent",
         borderBottom: `1px solid ${C.border}`,
         overflow: "visible",
       }}

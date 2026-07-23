@@ -78,10 +78,10 @@ const VARIANTS: Record<AuroraVariant, VariantConfig> = {
 };
 
 const GRADIENTS: { id: Blob["grad"]; color: string }[] = [
-  { id: "blue", color: "#3B82F6" },
-  { id: "blueDeep", color: "#2563EB" },
-  { id: "indigo", color: "#4F46E5" },
-  { id: "sky", color: "#0EA5E9" },
+  { id: "blue", color: "var(--aurora-blue, #3B82F6)" },
+  { id: "blueDeep", color: "var(--aurora-blue-deep, #2563EB)" },
+  { id: "indigo", color: "var(--aurora-indigo, #4F46E5)" },
+  { id: "sky", color: "var(--aurora-sky, #0EA5E9)" },
 ];
 
 export function Aurora({ variant = "homepage" }: { variant?: AuroraVariant }) {
@@ -99,7 +99,7 @@ export function Aurora({ variant = "homepage" }: { variant?: AuroraVariant }) {
         </defs>
 
         {cfg.geometric && (
-          <g stroke="#4F46E5" strokeWidth="1" fill="none" opacity="0.12">
+          <g stroke="var(--aurora-indigo, #4F46E5)" strokeWidth="1" fill="none" opacity="0.12">
             <path d="M620 120 L900 120 L900 400" />
             <path d="M700 60 L700 460 L1000 460" />
             <rect x="780" y="200" width="150" height="150" transform="rotate(12 855 275)" />

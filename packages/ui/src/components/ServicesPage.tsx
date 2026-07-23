@@ -20,15 +20,14 @@ export function ServicesPage() {
       </section>
 
       {/* Service tiles */}
-      <section style={{ padding: '72px 0' }}>
+      <section style={{ padding: '64px 0 96px' }}>
         <div className="sx-container">
           <div
             className="sx-grid-3"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '1px',
-              backgroundColor: C.border,
+              gap: '24px',
             }}
           >
             {SERVICES.map((service) => (
@@ -36,35 +35,45 @@ export function ServicesPage() {
                 key={service.slug}
                 href={`/services/${service.slug}`}
                 style={{
-                  backgroundColor: C.bg,
-                  padding: '36px 32px 40px',
+                  backgroundColor: 'var(--sx-bg-surface)',
+                  border: `1px solid ${C.border}`,
+                  borderRadius: '20px',
+                  padding: '40px 36px 44px',
                   display: 'flex',
                   flexDirection: 'column',
-                  transition: 'background-color 0.15s',
+                  transition: 'transform 0.2s ease, shadow 0.2s ease, border-color 0.2s ease',
                   textDecoration: 'none',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = C.bgSurface; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = C.bg; }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = C.blue;
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = C.border;
+                  e.currentTarget.style.transform = 'none';
+                }}
               >
                 <span
                   style={{
                     display: 'block',
-                    fontSize: '11px',
+                    fontSize: '13px',
                     fontWeight: 600,
-                    color: C.blue,
+                    color: C.textSubtle,
                     fontVariantNumeric: 'tabular-nums',
                     letterSpacing: '0.04em',
-                    marginBottom: '20px',
+                    marginBottom: '24px',
                   }}
                 >
                   {service.number}
                 </span>
                 <h2
                   style={{
-                    fontSize: '19px',
-                    fontWeight: 500,
-                    color: C.text,
-                    marginBottom: '14px',
+                    fontFamily: 'var(--sx-font-sans)',
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    color: C.blue,
+                    marginBottom: '16px',
                     letterSpacing: '-0.01em',
                     lineHeight: 1.3,
                   }}
@@ -73,9 +82,9 @@ export function ServicesPage() {
                 </h2>
                 <p
                   style={{
-                    fontSize: '14px',
-                    color: C.textMuted,
-                    lineHeight: 1.72,
+                    fontSize: '15px',
+                    color: C.textBody,
+                    lineHeight: 1.65,
                     flex: 1,
                   }}
                 >

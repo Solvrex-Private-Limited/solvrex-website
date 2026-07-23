@@ -1,4 +1,4 @@
-import { C } from "../lib/theme";
+import { C, eyebrow as eyebrowStyle } from "../lib/theme";
 import { PrimaryLink, ArrowRight } from "./ui/PrimaryLink";
 import { DetailList } from "./ui/DetailList";
 import { Breadcrumbs } from "./ui/Breadcrumbs";
@@ -24,10 +24,10 @@ export function RoleDetailPage({ role }: { role: Role }) {
         <div className="sx-container" style={{ padding: "32px 0 40px" }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers" }, { label: role.title }]} />
 
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: C.blue, marginBottom: "16px" }}>
+          <p style={eyebrowStyle}>
             {role.track}
           </p>
-          <h1 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: "16px", maxWidth: "720px" }}>
+          <h1 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, color: C.text, letterSpacing: "-0.015em", lineHeight: 1.15, marginBottom: "16px", maxWidth: "720px" }}>
             {role.title}
           </h1>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", fontSize: "13.5px", color: C.textMuted, marginBottom: "28px" }}>
@@ -70,8 +70,12 @@ export function RoleDetailPage({ role }: { role: Role }) {
             {/* Right: facts */}
             <aside
               style={{
-                borderTop: `2px solid ${C.blue}`,
-                paddingTop: "24px",
+                backgroundColor: C.bgSurface,
+                border: `1px solid ${C.border}`,
+                borderTop: `3px solid ${C.blue}`,
+                borderRadius: "20px",
+                padding: "32px 28px",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.02)",
               }}
             >
               <Fact label="Role" value={role.title} />
@@ -80,7 +84,7 @@ export function RoleDetailPage({ role }: { role: Role }) {
               <Fact label="Location" value={role.location} />
               <Fact label="Openings" value={role.openings} />
 
-              <div style={{ marginTop: "8px" }}>
+              <div style={{ marginTop: "16px" }}>
                 <PrimaryLink href={siteConfig.applyFormUrl} external style={{ width: "100%", justifyContent: "center" }}>
                   Apply now
                   <ArrowRight />

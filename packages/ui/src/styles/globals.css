@@ -1,29 +1,42 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
 
 /* ── Theme palettes (light = default; dark via [data-theme="dark"]) ── */
 :root {
   color-scheme: light;
-  --sx-base: #ffffff;
-  --sx-bg: #ffffff;
-  --sx-bg-surface: #f5f6f8;
-  --sx-bg-raised: #eef0f4;
-  --sx-bg-footer: #f5f6f8;
-  --sx-border: #e6e8ec;
-  --sx-border-strong: #d3d7de;
-  --sx-text: #0b0d12;
-  --sx-text-body: #2c313b;
-  --sx-text-muted: #565d6b;
-  --sx-text-subtle: #7b8290;
-  --sx-blue: #2563eb;
-  --sx-blue-hover: #1d4ed8;
-  --sx-blue-light: #2563eb;
-  --sx-glow: 0.06;
-  --sx-aurora-mult: 0.2;
-  --sx-nav-bg: rgba(255, 255, 255, 0.72);
-  --sx-selection: rgba(37, 99, 235, 0.18);
+  --sx-font-serif: "Cormorant Garamond", Georgia, serif;
+  --sx-font-sans:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --sx-base: #faf6f0;
+  --sx-bg: #faf6f0;
+  --sx-bg-surface: rgba(244, 239, 230, 0.65);
+  --sx-bg-raised: rgba(236, 230, 218, 0.6);
+  --sx-bg-footer: rgba(242, 237, 227, 0.5);
+  --sx-border: rgba(210, 200, 180, 0.35);
+  --sx-border-strong: rgba(195, 185, 160, 0.45);
+  --sx-text: #1c1917;
+  --sx-text-body: #3c3834;
+  --sx-text-muted: #686259;
+  --sx-text-subtle: #8c857b;
+  --sx-blue: #c39d53;
+  --sx-blue-hover: #b08a42;
+  --sx-blue-light: #d8b872;
+  --sx-glow: 0.12;
+  --sx-aurora-mult: 0.3;
+  --sx-nav-bg: rgba(250, 246, 240, 0.88);
+  --sx-selection: rgba(195, 157, 83, 0.22);
+  --aurora-blue: #ebd4a8;
+  --aurora-blue-deep: #dfbe81;
+  --aurora-indigo: #c39d53;
+  --aurora-sky: #f5eedc;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
+  --sx-font-serif: "Cormorant Garamond", Georgia, serif;
+  --sx-font-sans:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   --sx-base: #0a0a0a;
   --sx-bg: #0d0e14;
   --sx-bg-surface: #13151e;
@@ -42,17 +55,29 @@
   --sx-aurora-mult: 0.2;
   --sx-nav-bg: rgba(13, 14, 20, 0.72);
   --sx-selection: rgba(77, 124, 255, 0.25);
+  --aurora-blue: #3b82f6;
+  --aurora-blue-deep: #2563eb;
+  --aurora-indigo: #4f46e5;
+  --aurora-sky: #0ea5e9;
 }
 
 /* Logo: black-on-white art shows as-is on light; invert + screen on dark. */
-.sx-logo { filter: none; mix-blend-mode: normal; }
-:root[data-theme="dark"] .sx-logo { filter: invert(1); mix-blend-mode: screen; }
+.sx-logo {
+  filter: none;
+  mix-blend-mode: normal;
+}
+:root[data-theme="dark"] .sx-logo {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
 
 /* ── Motion + navbar blur (subtle; reduced-motion safe) ───────── */
 .sx-reveal {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 .sx-reveal.in {
   opacity: 1;
@@ -61,57 +86,184 @@
 
 /* Hero animated gradient drift */
 @keyframes sx-gradient {
-  0% { transform: translate3d(-8%, -6%, 0); }
-  50% { transform: translate3d(8%, 6%, 0); }
-  100% { transform: translate3d(-8%, -6%, 0); }
+  0% {
+    transform: translate3d(-8%, -6%, 0);
+  }
+  50% {
+    transform: translate3d(8%, 6%, 0);
+  }
+  100% {
+    transform: translate3d(-8%, -6%, 0);
+  }
 }
 .sx-gradient-drift {
   animation: sx-gradient 26s ease-in-out infinite;
 }
 
-/* Ambient site background — fixed, GPU-only, barely-there depth.
-   Deep charcoal base with two very soft, slowly drifting radial gradients. */
+/* Ambient site background — silk wave image + layered gradient overlays */
 .sx-bg {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background-color: var(--sx-base);
+  background: transparent;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
+/* Soft top-left ambient lighting glow (pseudo-element for extra depth) */
 .sx-bg::before,
 .sx-bg::after {
   content: "";
   position: absolute;
+  pointer-events: none;
+}
+.sx-bg::before {
+  top: -8vw;
+  left: 5%;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 253, 248, 0.75),
+    rgba(250, 246, 240, 0.2) 60%,
+    transparent 85%
+  );
+}
+/* Secondary subtle gold glow reinforcing the wave region */
+.sx-bg::after {
+  bottom: 5vh;
+  right: 5vw;
+  width: 45vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.4;
+  background: radial-gradient(
+    circle at center,
+    rgba(210, 185, 120, 0.35),
+    transparent 70%
+  );
+}
+
+@media (max-width: 1024px) {
+  body {
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      90% auto,
+      100% 100% !important;
+    background-position:
+      center,
+      center,
+      center,
+      right -10vw top 4vh,
+      center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image:
+      linear-gradient(
+        to right,
+        #faf6f0 0%,
+        #faf6f0 100%
+      ),
+      radial-gradient(
+        ellipse at 8% 0%,
+        rgba(255, 255, 255, 0.95) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 50% 100%,
+        rgba(240, 232, 215, 0.35) 0%,
+        transparent 60%
+      ),
+      none,
+      linear-gradient(180deg, #fcfaf5 0%, #f9f5ed 50%, #f5f0e6 100%) !important;
+  }
+  .sx-bg::after {
+    display: none;
+  }
+}
+
+/* Dark mode ambient background glow (original cool blue & indigo) */
+:root[data-theme="dark"] .sx-bg {
+  position: fixed;
+  inset: 0;
+  background-image: none;
+  background-color: var(--sx-base);
+}
+:root[data-theme="dark"] body {
+  background-image: none !important;
+  background-color: var(--sx-base) !important;
+}
+:root[data-theme="dark"] .sx-bg::before {
+  top: -18vw;
+  left: 50%;
+  width: 75vw;
+  height: 75vw;
+  margin-left: -37vw;
+  border-radius: 50%;
+  filter: blur(60px);
+  background: radial-gradient(
+    circle at center,
+    rgb(37 99 235 / var(--sx-glow)),
+    transparent 64%
+  );
+}
+:root[data-theme="dark"] .sx-bg::after {
+  top: auto;
+  bottom: -22vw;
+  right: -12vw;
   width: 75vw;
   height: 75vw;
   border-radius: 50%;
-  filter: blur(40px);
-  will-change: transform;
-  backface-visibility: hidden;
+  filter: blur(60px);
+  transform: none;
+  background: radial-gradient(
+    circle at center,
+    rgb(67 56 202 / var(--sx-glow)),
+    transparent 64%
+  );
 }
-.sx-bg::before {
-  top: -18vw;
-  left: 50%;
-  margin-left: -37vw;
-  background: radial-gradient(circle at center, rgb(37 99 235 / var(--sx-glow)), transparent 64%);
-  animation: sx-bg-drift-a 42s ease-in-out infinite;
+:root[data-theme="dark"] .sx-mega {
+  background-image: none !important;
 }
-.sx-bg::after {
-  bottom: -22vw;
-  right: -12vw;
-  background: radial-gradient(circle at center, rgb(67 56 202 / var(--sx-glow)), transparent 64%);
-  animation: sx-bg-drift-b 54s ease-in-out infinite;
+/* Dark mode: restore opaque footer (light mode is transparent for silk wave continuity) */
+:root[data-theme="dark"] footer {
+  background-color: var(--sx-bg-footer) !important;
 }
 @keyframes sx-bg-drift-a {
-  0% { transform: translate3d(-7vw, -3vw, 0) scale(1); }
-  50% { transform: translate3d(7vw, 5vw, 0) scale(1.12); }
-  100% { transform: translate3d(-7vw, -3vw, 0) scale(1); }
+  0% {
+    transform: translate3d(-7vw, -3vw, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(7vw, 5vw, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-7vw, -3vw, 0) scale(1);
+  }
 }
 @keyframes sx-bg-drift-b {
-  0% { transform: translate3d(6vw, 4vw, 0) scale(1.06); }
-  50% { transform: translate3d(-7vw, -5vw, 0) scale(1); }
-  100% { transform: translate3d(6vw, 4vw, 0) scale(1.06); }
+  0% {
+    transform: translate3d(6vw, 4vw, 0) scale(1.06);
+  }
+  50% {
+    transform: translate3d(-7vw, -5vw, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(6vw, 4vw, 0) scale(1.06);
+  }
 }
 
 /* Timeline line-draw */
@@ -133,14 +285,32 @@
 }
 
 /* ── Responsive navbar visibility (media-query driven, deterministic) ── */
-.sx-desktop-nav { display: none; align-items: center; gap: 2px; }
-.sx-mobile-nav { display: flex; align-items: center; gap: 10px; }
-.sx-mega { display: none; }
+.sx-desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2px;
+}
+.sx-mobile-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sx-mega {
+  display: none;
+}
 @media (min-width: 1024px) {
-  .sx-desktop-nav { display: flex; }
-  .sx-mobile-nav { display: none; }
-  .sx-mega { display: block; }
-  .sx-drawer-wrap { display: none; }
+  .sx-desktop-nav {
+    display: flex;
+  }
+  .sx-mobile-nav {
+    display: none;
+  }
+  .sx-mega {
+    display: block;
+  }
+  .sx-drawer-wrap {
+    display: none;
+  }
 }
 
 /* ── Mobile / tablet nav drawer (slides from the right) ───────── */
@@ -178,7 +348,10 @@
   transform: translateX(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .sx-drawer, .sx-drawer-overlay { transition: none !important; }
+  .sx-drawer,
+  .sx-drawer-overlay {
+    transition: none !important;
+  }
 }
 
 /* ── Aurora hero system (SVG soft light, transform/opacity only) ── */
@@ -201,28 +374,71 @@
   transform-origin: center;
   will-change: transform, opacity;
 }
-.aurora-a { animation: aurora-a 32s ease-in-out infinite; }
-.aurora-b { animation: aurora-b 38s ease-in-out infinite; }
-.aurora-c { animation: aurora-c 27s ease-in-out infinite; }
+.aurora-a {
+  animation: aurora-a 32s ease-in-out infinite;
+}
+.aurora-b {
+  animation: aurora-b 38s ease-in-out infinite;
+}
+.aurora-c {
+  animation: aurora-c 27s ease-in-out infinite;
+}
 @keyframes aurora-a {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.85; }
-  50% { transform: translate(34px, 26px) rotate(6deg); opacity: 1; }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(34px, 26px) rotate(6deg);
+    opacity: 1;
+  }
 }
 @keyframes aurora-b {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  50% { transform: translate(-30px, 20px) rotate(-5deg); opacity: 0.78; }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-30px, 20px) rotate(-5deg);
+    opacity: 0.78;
+  }
 }
 @keyframes aurora-c {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
-  50% { transform: translate(22px, -24px) rotate(4deg); opacity: 0.95; }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(22px, -24px) rotate(4deg);
+    opacity: 0.95;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sx-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .sx-gradient-drift { animation: none !important; }
-  .sx-line { transform: none !important; transition: none !important; }
-  .sx-bg::before, .sx-bg::after { animation: none !important; }
-  .aurora-a, .aurora-b, .aurora-c { animation: none !important; }
+  .sx-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .sx-gradient-drift {
+    animation: none !important;
+  }
+  .sx-line {
+    transform: none !important;
+    transition: none !important;
+  }
+  .sx-bg::before,
+  .sx-bg::after {
+    animation: none !important;
+  }
+  .aurora-a,
+  .aurora-b,
+  .aurora-c {
+    animation: none !important;
+  }
 }
 
 *,
@@ -239,12 +455,50 @@ html {
 }
 
 body {
-  background-color: var(--sx-base);
+  position: relative;
+  background-color: #faf6f0;
+  background-image:
+    linear-gradient(
+      to right,
+      #faf6f0 0%,
+      #faf6f0 22%,
+      rgba(250, 246, 240, 0.85) 38%,
+      rgba(250, 246, 240, 0) 58%
+    ),
+    radial-gradient(
+      ellipse at 8% 0%,
+      rgba(255, 255, 255, 0.95) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(240, 232, 215, 0.35) 0%,
+      transparent 60%
+    ),
+    url("/silk-wave.png"),
+    linear-gradient(180deg, #fcfaf5 0%, #f9f5ed 50%, #f5f0e6 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    70% auto,
+    100% 100%;
+  background-position:
+    center,
+    center,
+    center,
+    right -3vw top 2vh,
+    center;
+  background-attachment: scroll, scroll, scroll, fixed, scroll;
   color: var(--sx-text);
+  font-family: var(--sx-font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 ::selection {
@@ -278,6 +532,11 @@ a {
 h1,
 h2,
 h3,
+.font-serif,
+.sx-serif {
+  font-family: var(--sx-font-serif);
+  font-weight: 400;
+}
 h4,
 h5,
 h6 {

@@ -12,32 +12,41 @@ export function BookPage() {
   return (
     <div style={{ backgroundColor: "transparent" }}>
       {/* Header */}
-      <section style={{ padding: "80px 0 64px", borderBottom: `1px solid ${C.border}` }}>
+      <section style={{ padding: "64px 0 40px", borderBottom: `1px solid rgba(230,223,211,0.6)` }}>
         <div className="sx-container">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Book Consultation" }]} />
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: C.blue, marginBottom: "22px" }}>
-            Book a consultation
-          </p>
-          <h1 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.12, maxWidth: "560px" }}>
+          <div style={{ marginTop: "24px", marginBottom: "28px" }}>
+            <span style={{ display: "inline-block", padding: "8px 20px", borderRadius: "100px", backgroundColor: C.blue, color: "#ffffff", fontSize: "13px", fontWeight: 600, letterSpacing: "0.02em" }}>
+              Book Consultation
+            </span>
+          </div>
+          <h1 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(42px, 5.5vw, 68px)", fontWeight: 400, color: C.text, letterSpacing: "-0.015em", lineHeight: 1.1, maxWidth: "680px" }}>
             Let&apos;s find your next step.
           </h1>
         </div>
       </section>
 
       {/* Body */}
-      <section style={{ padding: "72px 0" }}>
+      <section style={{ padding: "48px 0 96px" }}>
         <div className="sx-container">
-          <div className="sx-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "88px", alignItems: "start" }}>
+          <div className="sx-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: "80px", alignItems: "start" }}>
             <div>
-              <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.72, marginBottom: "32px" }}>
-                Share a little about your goals and we&apos;ll review your profile and recommend
-                practical next steps. Tell us what you&apos;re working toward in the message.
+              <p style={{ fontSize: "16px", color: C.textMuted, lineHeight: 1.75, marginBottom: "36px" }}>
+                Share a little about your goals and <strong>we&apos;ll review your profile and recommend</strong> practical next steps. Tell us what you&apos;re working toward in the message.
               </p>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
                 {points.map((p) => (
-                  <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: "12px", fontSize: "14.5px", color: C.textBody, lineHeight: 1.6 }}>
-                    <span style={{ color: C.blue, flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
-                    {p}
+                  <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: "14px", fontSize: "15px", color: C.textBody, lineHeight: 1.65 }}>
+                    <span style={{ color: C.textSubtle, flexShrink: 0, marginTop: "1px", fontWeight: 600 }}>—</span>
+                    <span>
+                      {p.includes("your situation") ? (
+                        <>A real human reviews <strong>your situation</strong> before we talk.</>
+                      ) : p.includes("no pressure") ? (
+                        <>Honest, practical next steps — <strong>no pressure, no obligation</strong>.</>
+                      ) : (
+                        <><strong>Tailored to your goals</strong>, experience, and where you are in your search.</>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>
