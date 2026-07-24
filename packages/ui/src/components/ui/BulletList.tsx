@@ -12,7 +12,7 @@ export function BulletList({ items }: { items: string[] }) {
           key={item}
           style={{ display: "flex", alignItems: "flex-start", gap: "12px", fontSize: "15px", color: C.textBody, lineHeight: 1.6 }}
         >
-          <span style={{ color: C.blue, flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
+          <span style={{ color: "var(--sx-gold, #e5c07b)", flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
           {item}
         </li>
       ))}

@@ -62,8 +62,7 @@ export function Home() {
 
       {/* ── 1. Hero ── */}
       <section style={{ padding: "104px 0 64px", position: "relative", overflow: "hidden", borderBottom: `1px solid ${C.border}` }}>
-        <Aurora variant="homepage" />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(77,124,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(212,175,55,0.08) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
         <div className="sx-container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: "760px" }}>
           <p style={eyebrow}>Career Services</p>
@@ -118,7 +117,7 @@ export function Home() {
               <div className="hx-stepline sx-line" aria-hidden="true" style={{ position: "absolute", top: "15px", left: "10%", right: "10%", height: "1px", background: C.borderStrong }} />
               {STEPS.map((step, i) => (
                 <div key={step} style={{ position: "relative" }}>
-                  <div style={{ width: "30px", height: "30px", borderRadius: "50%", border: `1px solid ${C.blue}`, background: C.bg, color: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 600, marginBottom: "16px", position: "relative", zIndex: 1 }}>
+                  <div style={{ width: "30px", height: "30px", borderRadius: "50%", border: `1px solid ${C.blue}`, background: "transparent", color: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 600, marginBottom: "16px", position: "relative", zIndex: 1 }}>
                     {i + 1}
                   </div>
                   <p style={{ fontSize: "14.5px", fontWeight: 600, color: C.text, lineHeight: 1.4 }}>{step}</p>

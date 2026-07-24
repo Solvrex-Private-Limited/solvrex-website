@@ -15,11 +15,11 @@ export function BookPage() {
       <section style={{ padding: "80px 0 64px", borderBottom: `1px solid ${C.border}` }}>
         <div className="sx-container">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Book Consultation" }]} />
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: C.blue, marginBottom: "22px" }}>
+          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sx-gold, #e5c07b)", marginBottom: "22px" }}>
             Book a consultation
           </p>
           <h1 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.12, maxWidth: "560px" }}>
-            Let&apos;s find your next step.
+            Let&apos;s find your next step<span style={{ color: "var(--sx-gold, #e5c07b)" }}>.</span>
           </h1>
         </div>
       </section>
@@ -36,14 +36,14 @@ export function BookPage() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
                 {points.map((p) => (
                   <li key={p} style={{ display: "flex", alignItems: "flex-start", gap: "12px", fontSize: "14.5px", color: C.textBody, lineHeight: 1.6 }}>
-                    <span style={{ color: C.blue, flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
+                    <span style={{ color: "var(--sx-gold, #e5c07b)", flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
                     {p}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <ConsultationForm submitLabel="Request consultation" defaultSubject="career-services" successText="We'll review your profile and follow up with next steps." />
+              <ConsultationForm submitLabel="Send Message" defaultSubject="career-services" successText="We'll review your profile and follow up with next steps." />
             </div>
           </div>
         </div>

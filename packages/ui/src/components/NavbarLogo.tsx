@@ -16,7 +16,7 @@ export function NavbarLogo({ onClick }: NavbarLogoProps) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "9px",
+        gap: "10px",
       }}
       onClick={onClick}
     >
@@ -25,10 +25,10 @@ export function NavbarLogo({ onClick }: NavbarLogoProps) {
         className="sx-logo"
         src="/mark.png"
         alt=""
-        width={29}
-        height={24}
+        width={32}
+        height={26}
         style={{
-          height: "24px",
+          height: "26px",
           width: "auto",
           display: "block",
         }}
@@ -36,10 +36,10 @@ export function NavbarLogo({ onClick }: NavbarLogoProps) {
 
       <span
         style={{
-          fontSize: "15px",
-          fontWeight: 600,
+          fontSize: "16.5px",
+          fontWeight: 650,
           color: C.text,
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.015em",
         }}
       >
         {siteConfig.name}

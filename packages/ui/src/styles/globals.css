@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 /* ── Theme palettes (light = default; dark via [data-theme="dark"]) ── */
+/* ── Theme palettes (light = default; dark via [data-theme="dark"]) ── */
 :root {
   color-scheme: light;
-  --sx-base: #ffffff;
-  --sx-bg: #ffffff;
-  --sx-bg-surface: #f5f6f8;
-  --sx-bg-raised: #eef0f4;
-  --sx-bg-footer: #f5f6f8;
-  --sx-border: #e6e8ec;
-  --sx-border-strong: #d3d7de;
+  --sx-base: #f9f6f0;
+  --sx-bg: #f9f6f0;
+  --sx-bg-surface: rgba(243, 238, 227, 0.75);
+  --sx-bg-raised: rgba(236, 229, 215, 0.85);
+  --sx-bg-footer: transparent;
+  --sx-border: rgba(212, 175, 55, 0.18);
+  --sx-border-strong: rgba(212, 175, 55, 0.35);
   --sx-text: #0b0d12;
   --sx-text-body: #2c313b;
   --sx-text-muted: #565d6b;
@@ -19,18 +20,23 @@
   --sx-blue-light: #2563eb;
   --sx-glow: 0.06;
   --sx-aurora-mult: 0.2;
-  --sx-nav-bg: rgba(255, 255, 255, 0.72);
+  --sx-nav-bg: rgba(249, 246, 240, 0.82);
   --sx-selection: rgba(37, 99, 235, 0.18);
+  --sx-gold: #c5a059;
+  --sx-gold-hover: #b38f48;
+  --sx-gold-glow: rgba(197, 160, 89, 0.2);
+  --sx-form-border: rgba(197, 160, 89, 0.3);
+  --sx-mega-bg: #ffffff;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --sx-base: #0a0a0a;
-  --sx-bg: #0d0e14;
-  --sx-bg-surface: #13151e;
-  --sx-bg-raised: #171a26;
-  --sx-bg-footer: #0a0b11;
-  --sx-border: #1e2235;
-  --sx-border-strong: #2a2f4a;
+  --sx-base: #060913;
+  --sx-bg: #060913;
+  --sx-bg-surface: rgba(13, 21, 38, 0.65);
+  --sx-bg-raised: rgba(18, 30, 54, 0.75);
+  --sx-bg-footer: transparent;
+  --sx-border: rgba(40, 65, 110, 0.5);
+  --sx-border-strong: rgba(60, 95, 160, 0.7);
   --sx-text: #f5f5f7;
   --sx-text-body: #c4c7d6;
   --sx-text-muted: #a0a3b8;
@@ -40,13 +46,18 @@
   --sx-blue-light: #7a9dff;
   --sx-glow: 0.4;
   --sx-aurora-mult: 0.2;
-  --sx-nav-bg: rgba(13, 14, 20, 0.72);
+  --sx-nav-bg: rgba(6, 9, 19, 0.82);
   --sx-selection: rgba(77, 124, 255, 0.25);
+  --sx-gold: #e5c07b;
+  --sx-gold-hover: #f5dfb0;
+  --sx-gold-glow: rgba(229, 192, 123, 0.25);
+  --sx-form-border: rgba(229, 192, 123, 0.35);
+  --sx-mega-bg: #060914;
 }
 
-/* Logo: black-on-white art shows as-is on light; invert + screen on dark. */
+/* Logo: black-on-white art shows as-is on light; golden hue on dark mode matching reference. */
 .sx-logo { filter: none; mix-blend-mode: normal; }
-:root[data-theme="dark"] .sx-logo { filter: invert(1); mix-blend-mode: screen; }
+:root[data-theme="dark"] .sx-logo { filter: invert(80%) sepia(60%) saturate(600%) hue-rotate(5deg) brightness(110%); mix-blend-mode: normal; }
 
 /* ── Motion + navbar blur (subtle; reduced-motion safe) ───────── */
 .sx-reveal {
@@ -69,40 +80,36 @@
   animation: sx-gradient 26s ease-in-out infinite;
 }
 
-/* Ambient site background — fixed, GPU-only, barely-there depth.
-   Deep charcoal base with two very soft, slowly drifting radial gradients. */
+/* ─── Ambient fixed background — 100% stationary right-side graphic ─── */
+/* Positioned ONLY on the right half of the screen (50vw) so the left content area stays clean & spacious */
 .sx-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background-color: var(--sx-base);
+  background-color: #040711;
 }
-.sx-bg::before,
-.sx-bg::after {
-  content: "";
-  position: absolute;
-  width: 75vw;
-  height: 75vw;
-  border-radius: 50%;
-  filter: blur(40px);
-  will-change: transform;
-  backface-visibility: hidden;
-}
+
 .sx-bg::before {
-  top: -18vw;
-  left: 50%;
-  margin-left: -37vw;
-  background: radial-gradient(circle at center, rgb(37 99 235 / var(--sx-glow)), transparent 64%);
-  animation: sx-bg-drift-a 42s ease-in-out infinite;
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52vw;
+  height: 100vh;
+  background: url('/gold_bg.jpg') no-repeat right top / cover;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 12%, #000 35%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 12%, #000 35%);
+  will-change: transform;
 }
+
 .sx-bg::after {
-  bottom: -22vw;
-  right: -12vw;
-  background: radial-gradient(circle at center, rgb(67 56 202 / var(--sx-glow)), transparent 64%);
-  animation: sx-bg-drift-b 54s ease-in-out infinite;
+  display: none !important;
 }
+
+
 @keyframes sx-bg-drift-a {
   0% { transform: translate3d(-7vw, -3vw, 0) scale(1); }
   50% { transform: translate3d(7vw, 5vw, 0) scale(1.12); }
@@ -136,10 +143,12 @@
 .sx-desktop-nav { display: none; align-items: center; gap: 2px; }
 .sx-mobile-nav { display: flex; align-items: center; gap: 10px; }
 .sx-mega { display: none; }
+.sx-mega-backdrop { display: none; }
 @media (min-width: 1024px) {
   .sx-desktop-nav { display: flex; }
   .sx-mobile-nav { display: none; }
   .sx-mega { display: block; }
+  .sx-mega-backdrop { display: block; }
   .sx-drawer-wrap { display: none; }
 }
 
@@ -268,11 +277,12 @@ a {
 }
 
 .sx-crumb-link {
-  color: var(--sx-text-muted);
+  color: var(--sx-gold, #e5c07b);
   transition: color 0.15s;
 }
 .sx-crumb-link:hover {
-  color: var(--sx-text);
+  color: var(--sx-gold-hover, #f5dfb0);
+  text-decoration: underline;
 }
 
 h1,

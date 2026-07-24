@@ -47,7 +47,7 @@ export function Footer() {
   ] as const;
 
   return (
-    <footer style={{ backgroundColor: C.bgFooter, borderTop: `1px solid ${C.border}` }}>
+    <footer style={{ backgroundColor: "transparent", borderTop: `1px solid ${C.border}` }}>
       <div className="sx-container">
         {/* Main grid */}
         <div

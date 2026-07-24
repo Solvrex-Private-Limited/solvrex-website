@@ -49,10 +49,10 @@ export function DesktopNav({ menus, simpleLinks, pathname, openMenu, setOpenMenu
             style={{
               display: "inline-flex", alignItems: "center", gap: "5px",
               padding: "6px 12px",
-              background: isOpen ? "rgba(77,124,255,0.1)" : "transparent",
+              background: isOpen ? "rgba(229, 192, 123, 0.12)" : "transparent",
               borderRadius: "3px",
               fontSize: "14px", fontWeight: 400,
-              color: isOpen || isActive ? C.text : C.textMuted,
+              color: isOpen ? "var(--sx-gold, #e5c07b)" : isActive ? C.text : C.textMuted,
               transition: "color 0.15s, background 0.15s",
             }}
             onMouseEnter={() => setOpenMenu(menu.key)}
