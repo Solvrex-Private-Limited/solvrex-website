@@ -15,7 +15,7 @@ const styles = `
     padding: 22px; border-radius: 10px;
   }
   .cx-level-card:hover .cx-level-cta { text-decoration: underline; }
-  .cx-level-card:focus-visible, .cx-btn:focus-visible { outline: 2px solid ${C.blueLight}; outline-offset: 2px; }
+  .cx-level-card:focus-visible, .cx-btn:focus-visible { outline: 2px solid var(--sx-gold, #e5c07b); outline-offset: 2px; }
   @media (max-width: 620px) { .cx-level-grid { grid-template-columns: 1fr; grid-auto-rows: auto; } }
 `;
 
@@ -30,12 +30,12 @@ export function CareersPage() {
         <div
           style={{
             position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(rgba(77,124,255,0.07) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(rgba(229, 192, 123, 0.08) 1px, transparent 1px)",
             backgroundSize: "28px 28px", pointerEvents: "none",
           }}
           aria-hidden="true"
         />
-        <div style={{ position: "absolute", left: 0, top: 0, width: "3px", height: "100%", background: `linear-gradient(to bottom, ${C.blue} 0%, transparent 100%)` }} aria-hidden="true" />
+        <div style={{ position: "absolute", left: 0, top: 0, width: "3px", height: "100%", background: `linear-gradient(to bottom, var(--sx-gold, #e5c07b) 0%, transparent 100%)` }} aria-hidden="true" />
         <div className="sx-container" style={{ position: "relative", zIndex: 1 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers" }]} />
           <p style={eyebrow}>Careers at Solvrex</p>
@@ -50,12 +50,23 @@ export function CareersPage() {
             href="#open-roles"
             style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "13px 26px", backgroundColor: C.blue, color: "#fff",
-              borderRadius: "3px", fontSize: "14px", fontWeight: 500, border: `1px solid ${C.blue}`,
-              transition: "background-color 0.15s, border-color 0.15s",
+              padding: "13px 26px", 
+              background: "linear-gradient(135deg, var(--sx-gold-hover, #f5dfb0) 0%, var(--sx-gold, #e5c07b) 100%)", 
+              color: "#0b0d12",
+              borderRadius: "4px", fontSize: "14px", fontWeight: 600, border: "none",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+              transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = C.blueHover; e.currentTarget.style.borderColor = C.blueHover; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = C.blue; e.currentTarget.style.borderColor = C.blue; }}
+            onMouseEnter={(e) => { 
+              e.currentTarget.style.background = "linear-gradient(135deg, #ffffff 0%, var(--sx-gold-hover, #f5dfb0) 100%)";
+              e.currentTarget.style.boxShadow = "0 4px 14px var(--sx-gold-glow, rgba(229, 192, 123, 0.35))";
+              e.currentTarget.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => { 
+              e.currentTarget.style.background = "linear-gradient(135deg, var(--sx-gold-hover, #f5dfb0) 0%, var(--sx-gold, #e5c07b) 100%)";
+              e.currentTarget.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.2)";
+              e.currentTarget.style.transform = "none";
+            }}
           >
             View open roles
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
@@ -78,7 +89,7 @@ export function CareersPage() {
                 <Link key={lvl.id} href={`/careers/${lvl.slug}`} className="cx-level-card">
                   <h3 style={{ fontSize: "19px", fontWeight: 600, color: C.text, letterSpacing: "-0.015em", lineHeight: 1.3, marginBottom: "10px" }}>{lvl.name}</h3>
                   <p style={{ fontSize: "14px", color: C.textMuted, lineHeight: 1.6, marginBottom: "20px", flex: 1 }}>{lvl.description}</p>
-                  <span className="cx-level-cta" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: C.blueLight }}>
+                  <span className="cx-level-cta" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: "var(--sx-gold, #e5c07b)" }}>
                     {count} open {count === 1 ? "role" : "roles"}
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
                       <path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -111,7 +122,7 @@ export function CareersPage() {
                 padding: "12px 24px", border: `1px solid ${C.borderStrong}`, color: C.text,
                 borderRadius: "3px", fontSize: "14px", fontWeight: 500, transition: "border-color 0.15s, background 0.15s",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.blue; e.currentTarget.style.background = "rgba(77,124,255,0.06)"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--sx-gold, #e5c07b)"; e.currentTarget.style.background = "var(--sx-gold-glow, rgba(229, 192, 123, 0.15))"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.borderStrong; e.currentTarget.style.background = "transparent"; }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

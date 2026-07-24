@@ -66,7 +66,7 @@ export function AboutPage() {
           </p>
           <Link
             href="/contact"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: C.blueLight, fontWeight: 500 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: "var(--sx-gold, #e5c07b)", fontWeight: 500 }}
           >
             Get in touch →
           </Link>

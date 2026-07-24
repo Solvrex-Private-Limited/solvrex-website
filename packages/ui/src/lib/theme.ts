@@ -42,7 +42,7 @@ export const eyebrow: CSSProperties = {
   fontWeight: 600,
   letterSpacing: "0.12em",
   textTransform: "uppercase",
-  color: C.blue,
+  color: "var(--sx-gold, #e5c07b)",
   marginBottom: "22px",
 };
 

@@ -24,7 +24,7 @@ export function RoleDetailPage({ role }: { role: Role }) {
         <div className="sx-container" style={{ padding: "32px 0 40px" }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers" }, { label: role.title }]} />
 
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: C.blue, marginBottom: "16px" }}>
+          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sx-gold, #e5c07b)", marginBottom: "16px" }}>
             {role.track}
           </p>
           <h1 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300, color: C.text, letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: "16px", maxWidth: "720px" }}>
@@ -70,7 +70,7 @@ export function RoleDetailPage({ role }: { role: Role }) {
             {/* Right: facts */}
             <aside
               style={{
-                borderTop: `2px solid ${C.blue}`,
+                borderTop: `2px solid var(--sx-gold, #e5c07b)`,
                 paddingTop: "24px",
               }}
             >

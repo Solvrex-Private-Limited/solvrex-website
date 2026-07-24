@@ -27,17 +27,30 @@ const base: CSSProperties = {
 };
 
 const variants: Record<Variant, CSSProperties> = {
-  solid: { backgroundColor: C.blue, border: `1px solid ${C.blue}`, color: "#ffffff" },
-  outline: { backgroundColor: "transparent", border: `1px solid ${C.borderStrong}`, color: C.text },
+  solid: { 
+    background: "linear-gradient(135deg, var(--sx-gold-hover, #f5dfb0) 0%, var(--sx-gold, #e5c07b) 100%)", 
+    border: "none", 
+    color: "#0b0d12",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)"
+  },
+  outline: { 
+    backgroundColor: "transparent", 
+    border: `1px solid var(--sx-form-border, ${C.borderStrong})`, 
+    color: C.text 
+  },
 };
 
 function applyHover(el: HTMLElement, variant: Variant, on: boolean) {
   if (variant === "solid") {
-    el.style.backgroundColor = on ? C.blueHover : C.blue;
-    el.style.borderColor = on ? C.blueHover : C.blue;
+    el.style.background = on 
+      ? "linear-gradient(135deg, #ffffff 0%, var(--sx-gold-hover, #f5dfb0) 100%)" 
+      : "linear-gradient(135deg, var(--sx-gold-hover, #f5dfb0) 0%, var(--sx-gold, #e5c07b) 100%)";
+    el.style.boxShadow = on 
+      ? "0 4px 14px var(--sx-gold-glow, rgba(229, 192, 123, 0.35))" 
+      : "0 2px 8px rgba(0, 0, 0, 0.2)";
   } else {
-    el.style.borderColor = on ? C.blue : C.borderStrong;
-    el.style.backgroundColor = on ? accent.hoverFill : "transparent";
+    el.style.borderColor = on ? "var(--sx-gold, #e5c07b)" : "var(--sx-form-border, rgba(229, 192, 123, 0.35))";
+    el.style.backgroundColor = on ? "var(--sx-gold-glow, rgba(229, 192, 123, 0.15))" : "transparent";
   }
 }
 
