@@ -26,7 +26,7 @@ const styles = `
 
 function Check() {
   return (
-    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-label="Included" style={{ display: "inline-block", verticalAlign: "middle", color: C.blue }}>
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-label="Included" style={{ display: "inline-block", verticalAlign: "middle", color: "var(--sx-gold, #e5c07b)" }}>
       <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -58,7 +58,7 @@ export function PricingPage() {
             {PRICING_TIERS.map((tier) => (
               <div key={tier.slug} style={{ display: "flex", flexDirection: "column", padding: "28px 24px", borderRadius: "12px", background: tier.highlighted ? C.bgSurface : "transparent" }}>
                 {tier.highlighted && (
-                  <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.blueLight, marginBottom: "12px" }}>Most popular</span>
+                  <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--sx-gold, #e5c07b)", marginBottom: "12px" }}>Most popular</span>
                 )}
                 <h2 style={{ fontSize: "20px", fontWeight: 600, color: C.text, letterSpacing: "-0.015em", marginBottom: "8px" }}>{tier.name}</h2>
                 <p style={{ fontSize: "14px", color: C.textMuted, lineHeight: 1.6, marginBottom: "20px" }}>{tier.blurb}</p>

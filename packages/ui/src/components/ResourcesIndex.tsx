@@ -8,7 +8,7 @@ const styles = `
   .sx-res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; grid-auto-rows: 1fr; }
   .sx-res-card { display: flex; flex-direction: column; padding: 24px; border-radius: 10px; }
   .sx-res-card:hover .sx-detail { text-decoration: underline; }
-  .sx-res-card:focus-visible { outline: 2px solid ${C.blueLight}; outline-offset: 2px; }
+  .sx-res-card:focus-visible { outline: 2px solid var(--sx-gold, #e5c07b); outline-offset: 2px; }
   @media (max-width: 620px) { .sx-res-grid { grid-template-columns: 1fr; grid-auto-rows: auto; } }
 `;
 
@@ -40,7 +40,7 @@ export function ResourcesIndex() {
                 </p>
                 <h2 style={{ fontSize: "18px", fontWeight: 600, color: C.text, marginBottom: "10px", letterSpacing: "-0.015em", lineHeight: 1.3 }}>{a.title}</h2>
                 <p style={{ fontSize: "14px", color: C.textMuted, lineHeight: 1.6, marginBottom: "20px", flex: 1 }}>{a.summary}</p>
-                <span className="sx-detail" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: C.blueLight }}>
+                <span className="sx-detail" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: "var(--sx-gold, #e5c07b)" }}>
                   Read guide
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                     <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />

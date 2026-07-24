@@ -32,11 +32,17 @@ export function ThemeToggle() {
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center",
         width: "34px", height: "34px", borderRadius: "4px",
-        background: "none", border: "none", color: C.textMuted, cursor: "pointer",
+        background: "none", border: "none",
+        color: theme === "dark" ? "var(--sx-gold, #e5c07b)" : C.textMuted,
+        cursor: "pointer",
         transition: "color 0.15s", flexShrink: 0,
       }}
-      onMouseEnter={(e) => { e.currentTarget.style.color = C.text; }}
-      onMouseLeave={(e) => { e.currentTarget.style.color = C.textMuted; }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = theme === "dark" ? "var(--sx-gold-hover, #f5dfb0)" : C.text;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = theme === "dark" ? "var(--sx-gold, #e5c07b)" : C.textMuted;
+      }}
     >
       {theme === "dark" ? (
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">

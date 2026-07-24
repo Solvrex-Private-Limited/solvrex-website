@@ -55,8 +55,8 @@ export function ArticlePage({ article }: { article: Article }) {
           {/* Inline CTAs */}
           <div style={{ marginTop: "8px", paddingTop: "32px", borderTop: `1px solid ${C.border}`, display: "flex", flexWrap: "wrap", gap: "22px", alignItems: "center" }}>
             <PrimaryLink href="/services/career-services">Explore Career Services<ArrowRight /></PrimaryLink>
-            <Link href="/pricing" style={{ fontSize: "14px", color: C.blueLight, fontWeight: 500 }}>View pricing →</Link>
-            <Link href="/book" style={{ fontSize: "14px", color: C.blueLight, fontWeight: 500 }}>Book a consultation →</Link>
+            <Link href="/pricing" style={{ fontSize: "14px", color: "var(--sx-gold, #e5c07b)", fontWeight: 500 }}>View pricing →</Link>
+            <Link href="/book" style={{ fontSize: "14px", color: "var(--sx-gold, #e5c07b)", fontWeight: 500 }}>Book a consultation →</Link>
           </div>
         </div>
       </section>
@@ -73,7 +73,7 @@ export function ArticlePage({ article }: { article: Article }) {
                   <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.textSubtle, marginBottom: "12px" }}>{r.category} · {r.readingTime}</p>
                   <h3 style={{ fontSize: "17px", fontWeight: 600, color: C.text, marginBottom: "10px", letterSpacing: "-0.015em", lineHeight: 1.3 }}>{r.title}</h3>
                   <p style={{ fontSize: "14px", color: C.textMuted, lineHeight: 1.6, marginBottom: "18px", flex: 1 }}>{r.summary}</p>
-                  <span className="ar-more" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: C.blueLight }}>
+                  <span className="ar-more" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13.5px", fontWeight: 500, color: "var(--sx-gold, #e5c07b)" }}>
                     Read guide
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>

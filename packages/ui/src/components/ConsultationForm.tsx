@@ -8,7 +8,7 @@ const inputStyle: CSSProperties = {
   display: "block",
   padding: "11px 14px",
   backgroundColor: C.bgSurface,
-  border: `1px solid ${C.borderStrong}`,
+  border: `1px solid var(--sx-form-border, ${C.borderStrong})`,
   color: C.text,
   fontSize: "14px",
   outline: "none",
@@ -29,18 +29,39 @@ const fieldLabelStyle: CSSProperties = {
 };
 
 const formStyles = `
-  .sx-input { appearance: none; }
+  .sx-input { 
+    appearance: none; 
+    border: 1px solid var(--sx-form-border, ${C.borderStrong}) !important;
+  }
   .sx-input::placeholder { color: ${C.textSubtle}; }
-  .sx-input:focus { border-color: ${C.blue} !important; }
-  .sx-submit:hover { background-color: ${C.blueHover} !important; }
-  .sx-submit:disabled { opacity: 0.6; cursor: default; }
+  .sx-input:focus { 
+    border-color: var(--sx-gold, #e5c07b) !important;
+    box-shadow: 0 0 0 2px var(--sx-gold-glow, rgba(229, 192, 123, 0.15)) !important;
+  }
+  .sx-submit {
+    background: linear-gradient(135deg, var(--sx-gold-hover, #f5dfb0) 0%, var(--sx-gold, #e5c07b) 100%);
+    color: #0b0d12;
+    font-weight: 500;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .sx-submit:hover { 
+    background: linear-gradient(135deg, #ffffff 0%, var(--sx-gold-hover, #f5dfb0) 100%);
+    box-shadow: 0 4px 14px var(--sx-gold-glow, rgba(229, 192, 123, 0.35));
+    transform: translateY(-1px);
+  }
+  .sx-submit:active {
+    transform: translateY(0);
+  }
+  .sx-submit:disabled { opacity: 0.6; cursor: default; transform: none !important; box-shadow: none !important; }
 `;
 
 /**
  * Shared inquiry/consultation form. Posts to /api/contact. Used by /contact and /book.
  */
 export function ConsultationForm({
-  submitLabel = "Send inquiry",
+  submitLabel = "Send Message",
   defaultSubject = "",
   successText = "We will respond as soon as possible.",
 }: {
@@ -119,7 +140,7 @@ export function ConsultationForm({
 
         <div>
           <label htmlFor="organization" style={fieldLabelStyle}>
-            Organization <span style={{ color: C.border, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span>
+            Organization <span style={{ color: "var(--sx-gold, #e5c07b)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span>
           </label>
           <input id="organization" name="organization" type="text" autoComplete="organization" value={form.organization} onChange={handleChange} className="sx-input" style={inputStyle} placeholder="Company or institution" />
         </div>
@@ -174,7 +195,7 @@ export function ConsultationForm({
         {error && <p style={{ fontSize: "13px", color: "#ff6b6b", lineHeight: 1.5, margin: 0 }}>{error}</p>}
 
         <div style={{ paddingTop: "4px" }}>
-          <button type="submit" className="sx-submit" disabled={sending} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 26px", backgroundColor: C.blue, color: "#ffffff", border: "none", borderRadius: "2px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.01em", cursor: "pointer", transition: "background-color 0.15s" }}>
+          <button type="submit" className="sx-submit" disabled={sending} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 26px", border: "none", fontSize: "14px", letterSpacing: "0.01em", cursor: "pointer" }}>
             {sending ? "Sending…" : submitLabel}
             {!sending && (
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
