@@ -40,9 +40,13 @@ const MENUS: MegaMenu[] = [
       title: s.title,
       href: `/services/${s.slug}`,
       description: s.navDescription,
-      items: s.megaLinks.map((l) => ({ label: l, href: `/services/${s.slug}` })),
+      items: s.megaLinks.map((l) => ({
+        label: l,
+        href: `/services/${s.slug}`,
+      })),
     })),
-    footerNote: "All services are delivered independently — no vendor affiliations.",
+    footerNote:
+      "All services are delivered independently — no vendor affiliations.",
     footerCta: { label: "View all services", href: "/services" },
   },
   {
@@ -112,7 +116,9 @@ export function Navbar() {
   // Lock body scroll while the drawer is open.
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   // Close everything on navigation.
@@ -130,19 +136,30 @@ export function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 200,
-        backgroundColor: C.bg,
+        backgroundColor: "transparent",
         borderBottom: `1px solid ${C.border}`,
         overflow: "visible",
       }}
       onMouseLeave={() => setOpenMenu(null)}
     >
       {/* Main bar */}
-      <div className="sx-container" style={{ height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div
+        className="sx-container"
+        style={{
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Link
           href="/"
           aria-label={siteConfig.name}
           style={{ display: "inline-flex", alignItems: "center", gap: "9px" }}
-          onClick={() => { setOpenMenu(null); setMobileOpen(false); }}
+          onClick={() => {
+            setOpenMenu(null);
+            setMobileOpen(false);
+          }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -153,7 +170,14 @@ export function Navbar() {
             height={24}
             style={{ height: "24px", width: "auto", display: "block" }}
           />
-          <span style={{ fontSize: "15px", fontWeight: 600, color: C.text, letterSpacing: "-0.01em" }}>
+          <span
+            style={{
+              fontSize: "15px",
+              fontWeight: 600,
+              color: C.text,
+              letterSpacing: "-0.01em",
+            }}
+          >
             {siteConfig.name}
           </span>
         </Link>
@@ -168,11 +192,14 @@ export function Navbar() {
                 key={menu.key}
                 href={menu.basePath}
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "5px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "5px",
                   padding: "6px 12px",
                   background: isOpen ? "rgba(77,124,255,0.1)" : "transparent",
                   borderRadius: "3px",
-                  fontSize: "14px", fontWeight: 400,
+                  fontSize: "14px",
+                  fontWeight: 400,
                   color: isOpen || isActive ? C.text : C.textMuted,
                   transition: "color 0.15s, background 0.15s",
                 }}
@@ -180,8 +207,23 @@ export function Navbar() {
                 onClick={() => setOpenMenu(null)}
               >
                 {menu.label}
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>
-                  <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  style={{
+                    transform: isOpen ? "rotate(180deg)" : "none",
+                    transition: "transform 0.2s",
+                  }}
+                >
+                  <path
+                    d="M2 4.5L6 8L10 4.5"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </Link>
             );
@@ -192,9 +234,12 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               style={{
-                padding: "6px 12px", fontSize: "14px", fontWeight: 400,
+                padding: "6px 12px",
+                fontSize: "14px",
+                fontWeight: 400,
                 color: pathname.startsWith(link.href) ? C.text : C.textMuted,
-                borderRadius: "3px", transition: "color 0.15s",
+                borderRadius: "3px",
+                transition: "color 0.15s",
               }}
               onMouseEnter={() => setOpenMenu(null)}
             >
@@ -202,7 +247,13 @@ export function Navbar() {
             </Link>
           ))}
 
-          <span style={{ marginLeft: "6px", display: "inline-flex", alignItems: "center" }}>
+          <span
+            style={{
+              marginLeft: "6px",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
             <ThemeToggle />
           </span>
         </nav>
@@ -214,11 +265,43 @@ export function Navbar() {
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation"
             aria-expanded={mobileOpen}
-            style={{ background: "none", border: "none", padding: "8px", display: "flex", flexDirection: "column", gap: "5px", cursor: "pointer" }}
+            style={{
+              background: "none",
+              border: "none",
+              padding: "8px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              cursor: "pointer",
+            }}
           >
-            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: C.textMuted, borderRadius: "1px" }} />
-            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: C.textMuted, borderRadius: "1px" }} />
-            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: C.textMuted, borderRadius: "1px" }} />
+            <span
+              style={{
+                display: "block",
+                width: "20px",
+                height: "1.5px",
+                backgroundColor: C.textMuted,
+                borderRadius: "1px",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "20px",
+                height: "1.5px",
+                backgroundColor: C.textMuted,
+                borderRadius: "1px",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "20px",
+                height: "1.5px",
+                backgroundColor: C.textMuted,
+                borderRadius: "1px",
+              }}
+            />
           </button>
         </div>
       </div>
@@ -228,38 +311,97 @@ export function Navbar() {
         <div
           className="sx-mega"
           style={{
-            position: "absolute", top: "64px", left: 0, right: 0,
-            backgroundColor: C.bgSurface, borderTop: `2px solid ${C.blue}`,
-            borderBottom: `1px solid ${C.border}`, boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
+            position: "absolute",
+            top: "64px",
+            left: 0,
+            right: 0,
+            backgroundColor: C.bgSurface,
+            borderTop: `2px solid ${C.blue}`,
+            borderBottom: `1px solid ${C.border}`,
+            boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
           }}
         >
           <div className="sx-container" style={{ padding: "40px 48px 44px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(activeMenu.columns.length, 3)}, 1fr)`, gap: "40px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${Math.min(activeMenu.columns.length, 3)}, 1fr)`,
+                gap: "40px",
+              }}
+            >
               {activeMenu.columns.map((col) => (
                 <div key={col.title}>
-                  <Link href={col.href} style={{ display: "block", marginBottom: "8px" }} onClick={() => setOpenMenu(null)}>
-                    <span style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em", color: C.text }}>{col.title}</span>
+                  <Link
+                    href={col.href}
+                    style={{ display: "block", marginBottom: "8px" }}
+                    onClick={() => setOpenMenu(null)}
+                  >
+                    <span
+                      style={{
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        letterSpacing: "0.04em",
+                        color: C.text,
+                      }}
+                    >
+                      {col.title}
+                    </span>
                   </Link>
                   {col.description && (
-                    <p style={{ fontSize: "12px", color: C.textSubtle, marginBottom: col.items?.length ? "16px" : 0, lineHeight: 1.5 }}>{col.description}</p>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        color: C.textSubtle,
+                        marginBottom: col.items?.length ? "16px" : 0,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {col.description}
+                    </p>
                   )}
                   {col.items && col.items.length > 0 && (
-                    <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: "14px" }}>
+                    <div
+                      style={{
+                        borderTop: `1px solid ${C.border}`,
+                        paddingTop: "14px",
+                      }}
+                    >
                       {col.items.map((item) =>
                         item.href ? (
                           <Link
                             key={item.label}
                             href={item.href}
                             onClick={() => setOpenMenu(null)}
-                            style={{ display: "block", fontSize: "13.5px", color: C.textMuted, padding: "6px 0", lineHeight: 1.4, transition: "color 0.12s" }}
-                            onMouseEnter={(e) => { e.currentTarget.style.color = C.text; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.color = C.textMuted; }}
+                            style={{
+                              display: "block",
+                              fontSize: "13.5px",
+                              color: C.textMuted,
+                              padding: "6px 0",
+                              lineHeight: 1.4,
+                              transition: "color 0.12s",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = C.text;
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = C.textMuted;
+                            }}
                           >
                             {item.label}
                           </Link>
                         ) : (
-                          <p key={item.label} style={{ fontSize: "13.5px", color: C.textMuted, padding: "6px 0", lineHeight: 1.4 }}>{item.label}</p>
-                        )
+                          <p
+                            key={item.label}
+                            style={{
+                              fontSize: "13.5px",
+                              color: C.textMuted,
+                              padding: "6px 0",
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {item.label}
+                          </p>
+                        ),
                       )}
                     </div>
                   )}
@@ -267,12 +409,42 @@ export function Navbar() {
               ))}
             </div>
 
-            <div style={{ marginTop: "32px", paddingTop: "22px", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
-              <p style={{ fontSize: "12px", color: C.textSubtle }}>{activeMenu.footerNote ?? ""}</p>
-              <Link href={activeMenu.footerCta.href} onClick={() => setOpenMenu(null)} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: C.blueLight, fontWeight: 500, whiteSpace: "nowrap" }}>
+            <div
+              style={{
+                marginTop: "32px",
+                paddingTop: "22px",
+                borderTop: `1px solid ${C.border}`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "16px",
+              }}
+            >
+              <p style={{ fontSize: "12px", color: C.textSubtle }}>
+                {activeMenu.footerNote ?? ""}
+              </p>
+              <Link
+                href={activeMenu.footerCta.href}
+                onClick={() => setOpenMenu(null)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "13px",
+                  color: C.blueLight,
+                  fontWeight: 500,
+                  whiteSpace: "nowrap",
+                }}
+              >
                 {activeMenu.footerCta.label}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M2 6h8M7 3l3 3-3 3"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </Link>
             </div>
@@ -287,15 +459,53 @@ export function Navbar() {
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />
-        <aside className={`sx-drawer${mobileOpen ? " open" : ""}`} role="dialog" aria-modal="true" aria-label="Navigation">
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "64px", padding: "0 20px", borderBottom: `1px solid ${C.border}` }}>
-            <span style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: C.textSubtle }}>Menu</span>
+        <aside
+          className={`sx-drawer${mobileOpen ? " open" : ""}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation"
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: "64px",
+              padding: "0 20px",
+              borderBottom: `1px solid ${C.border}`,
+            }}
+          >
+            <span
+              style={{
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: C.textSubtle,
+              }}
+            >
+              Menu
+            </span>
             <button
               onClick={() => setMobileOpen(false)}
               aria-label="Close navigation"
-              style={{ background: "none", border: "none", color: C.textMuted, cursor: "pointer", padding: "6px", display: "inline-flex" }}
+              style={{
+                background: "none",
+                border: "none",
+                color: C.textMuted,
+                cursor: "pointer",
+                padding: "6px",
+                display: "inline-flex",
+              }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 3l10 10M13 3L3 13"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
             </button>
           </div>
           <nav style={{ padding: "8px 0", flex: 1 }}>
@@ -305,7 +515,9 @@ export function Navbar() {
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 style={{
-                  display: "block", padding: "15px 20px", fontSize: "16px",
+                  display: "block",
+                  padding: "15px 20px",
+                  fontSize: "16px",
                   color: pathname.startsWith(link.href) ? C.text : C.textMuted,
                   borderBottom: `1px solid ${C.border}`,
                 }}

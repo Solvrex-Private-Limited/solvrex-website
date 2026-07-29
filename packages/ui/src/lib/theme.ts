@@ -28,47 +28,51 @@ export const C = {
 
 // Translucent accent helpers (used for badges, glows, hover fills).
 export const accent = {
-  fill: "rgba(77,124,255,0.1)",
-  fillStrong: "rgba(77,124,255,0.12)",
-  border: "rgba(77,124,255,0.2)",
-  hoverFill: "rgba(77,124,255,0.06)",
+  fill: "rgba(195,157,83,0.12)",
+  fillStrong: "rgba(195,157,83,0.18)",
+  border: "rgba(195,157,83,0.28)",
+  hoverFill: "rgba(195,157,83,0.08)",
 } as const;
 
 /* ── Shared style fragments (reused across pages) ───────────── */
 
 // Small uppercase section eyebrow above a page/section heading.
 export const eyebrow: CSSProperties = {
-  fontSize: "11px",
+  fontSize: "11.5px",
   fontWeight: 600,
-  letterSpacing: "0.12em",
+  letterSpacing: "0.14em",
   textTransform: "uppercase",
   color: C.blue,
-  marginBottom: "22px",
+  marginBottom: "20px",
+  fontFamily: "var(--sx-font-sans)",
 };
 
 // Standard page-header H1 (services, about, contact, service detail).
 export const pageH1: CSSProperties = {
-  fontSize: "clamp(32px, 4vw, 48px)",
-  fontWeight: 300,
+  fontFamily: "var(--sx-font-serif)",
+  fontSize: "clamp(36px, 4.5vw, 56px)",
+  fontWeight: 400,
   color: C.text,
-  letterSpacing: "-0.025em",
-  lineHeight: 1.12,
+  letterSpacing: "-0.015em",
+  lineHeight: 1.15,
 };
 
 // Mid-size section heading (used on the careers page).
 export const sectionHeading: CSSProperties = {
-  fontSize: "clamp(26px, 3.4vw, 38px)",
-  fontWeight: 300,
+  fontFamily: "var(--sx-font-serif)",
+  fontSize: "clamp(28px, 3.8vw, 42px)",
+  fontWeight: 400,
   color: C.text,
-  letterSpacing: "-0.025em",
-  lineHeight: 1.15,
+  letterSpacing: "-0.015em",
+  lineHeight: 1.18,
 };
 
 // Tiny uppercase label (footer columns, contact info, service sections).
 export const metaLabel: CSSProperties = {
-  fontSize: "10.5px",
+  fontSize: "11px",
   fontWeight: 600,
-  letterSpacing: "0.1em",
+  letterSpacing: "0.12em",
   textTransform: "uppercase",
   color: C.textSubtle,
+  fontFamily: "var(--sx-font-sans)",
 };

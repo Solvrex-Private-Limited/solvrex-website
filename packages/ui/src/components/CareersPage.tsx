@@ -30,7 +30,7 @@ export function CareersPage() {
         <div
           style={{
             position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(rgba(77,124,255,0.07) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(rgba(195,157,83,0.05) 1px, transparent 1px)",
             backgroundSize: "28px 28px", pointerEvents: "none",
           }}
           aria-hidden="true"
@@ -39,7 +39,7 @@ export function CareersPage() {
         <div className="sx-container" style={{ position: "relative", zIndex: 1 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers" }]} />
           <p style={eyebrow}>Careers at Solvrex</p>
-          <h1 style={{ fontSize: "clamp(38px, 5.5vw, 64px)", fontWeight: 300, color: C.text, lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: "26px", maxWidth: "760px" }}>
+          <h1 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(38px, 5.5vw, 64px)", fontWeight: 400, color: C.text, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "26px", maxWidth: "760px" }}>
             Build something from the ground up — as part of our founding team.
           </h1>
           <p style={{ fontSize: "18px", color: C.textMuted, lineHeight: 1.6, marginBottom: "44px", maxWidth: "560px" }}>
@@ -94,8 +94,8 @@ export function CareersPage() {
       {/* Closing CTA */}
       <section style={{ padding: "84px 0" }}>
         <div className="sx-container">
-          <div style={{ background: C.bgSurface, border: `1px solid ${C.border}`, borderRadius: "14px", padding: "48px 44px", textAlign: "center" }}>
-            <h2 style={{ fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 300, color: C.text, letterSpacing: "-0.02em", marginBottom: "14px" }}>
+          <div style={{ background: C.bgSurface, border: `1px solid ${C.border}`, borderRadius: "20px", padding: "48px 44px", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "var(--sx-font-serif)", fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 400, color: C.text, letterSpacing: "-0.015em", marginBottom: "14px" }}>
               Don&apos;t see the right role? Stay connected.
             </h2>
             <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.65, maxWidth: "520px", margin: "0 auto 28px" }}>
@@ -111,7 +111,7 @@ export function CareersPage() {
                 padding: "12px 24px", border: `1px solid ${C.borderStrong}`, color: C.text,
                 borderRadius: "3px", fontSize: "14px", fontWeight: 500, transition: "border-color 0.15s, background 0.15s",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.blue; e.currentTarget.style.background = "rgba(77,124,255,0.06)"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.blue; e.currentTarget.style.background = "rgba(195,157,83,0.06)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.borderStrong; e.currentTarget.style.background = "transparent"; }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
