@@ -62,7 +62,6 @@ export function ConsultationForm({
     message: "",
     company_website: "", // honeypot
   };
-
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
