@@ -62,7 +62,7 @@ export function ConsultationForm({
     message: "",
     company_website: "", // honeypot
   };
-  
+
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -117,7 +117,6 @@ export function ConsultationForm({
         </div>
         <h2 style={{ fontSize: "20px", fontWeight: 400, color: C.text, marginBottom: "12px", letterSpacing: "-0.01em" }}>Thank you.</h2>
         <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.65, marginBottom: "28px" }}>{successText}</p>
-        
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
           <button
             type="button"
