@@ -67,7 +67,7 @@ export default function RootLayout({
             backgroundColor: "transparent",
           }}
         >
-          <Navbar />
+          <Navbar variant="business" />
           <div style={{ flex: 1 }}>{children}</div>
           <Footer />
         </div>

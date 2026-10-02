@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { C } from "../lib/theme";
 import { siteConfig } from "../lib/site";
 import { SERVICES } from "../data/services";
-import { PRICING_TIERS } from "../lib/pricing";
+import { PRICING_TIERS, BUSINESS_ENGAGEMENTS } from "../lib/pricing";
 import { RESOURCES } from "../data/resources";
 import { LEVELS } from "../data/roles";
 import { ThemeToggle } from "./ui/ThemeToggle";
@@ -31,55 +31,74 @@ interface MegaMenu {
 }
 
 // All four mega-menus derive from the existing data sources (no duplicate copy).
-const MENUS: MegaMenu[] = [
-  {
-    key: "services",
-    label: "Services",
-    basePath: "/services",
-    columns: SERVICES.map((s) => ({
-      title: s.title,
-      href: `/services/${s.slug}`,
-      description: s.navDescription,
-      items: s.megaLinks.map((l) => ({ label: l, href: `/services/${s.slug}` })),
-    })),
-    footerNote: "All services are delivered independently — no vendor affiliations.",
-    footerCta: { label: "View all services", href: "/services" },
-  },
-  {
-    key: "pricing",
-    label: "Pricing",
-    basePath: "/pricing",
-    columns: PRICING_TIERS.map((t) => ({
-      title: t.name,
-      href: "/pricing",
-      description: t.blurb,
-      items: t.features.map((f) => ({ label: f })),
-    })),
-    footerCta: { label: "View full pricing", href: "/pricing" },
-  },
-  {
-    key: "resources",
-    label: "Resources",
-    basePath: "/resources",
-    columns: RESOURCES.map((a) => ({
-      title: a.title,
-      href: `/resources/${a.slug}`,
-      description: a.summary,
-    })),
-    footerCta: { label: "Browse all resources", href: "/resources" },
-  },
-  {
-    key: "careers",
-    label: "Careers",
-    basePath: "/careers",
-    columns: LEVELS.map((l) => ({
-      title: l.name,
-      href: `/careers/${l.slug}`,
-      description: l.description,
-    })),
-    footerCta: { label: "View all roles", href: "/careers" },
-  },
-];
+// The Pricing menu and Services ordering differ per app via `variant`.
+function buildMenus(variant: "career" | "business"): MegaMenu[] {
+  // Business site leads with business services; career services stays last.
+  const services =
+    variant === "business"
+      ? [...SERVICES].sort((a, b) => Number(a.slug === "career-services") - Number(b.slug === "career-services"))
+      : SERVICES;
+
+  const pricingColumns: MegaColumn[] =
+    variant === "business"
+      ? BUSINESS_ENGAGEMENTS.map((m) => ({
+          title: m.name,
+          href: "/pricing",
+          description: m.blurb,
+          items: m.features.map((f) => ({ label: f })),
+        }))
+      : PRICING_TIERS.map((t) => ({
+          title: t.name,
+          href: "/pricing",
+          description: t.blurb,
+          items: t.features.map((f) => ({ label: f })),
+        }));
+
+  return [
+    {
+      key: "services",
+      label: "Services",
+      basePath: "/services",
+      columns: services.map((s) => ({
+        title: s.title,
+        href: `/services/${s.slug}`,
+        description: s.navDescription,
+        items: s.megaLinks.map((l) => ({ label: l, href: `/services/${s.slug}` })),
+      })),
+      footerNote: "All services are delivered independently — no vendor affiliations.",
+      footerCta: { label: "View all services", href: "/services" },
+    },
+    {
+      key: "pricing",
+      label: "Pricing",
+      basePath: "/pricing",
+      columns: pricingColumns,
+      footerCta: { label: "View full pricing", href: "/pricing" },
+    },
+    {
+      key: "resources",
+      label: "Resources",
+      basePath: "/resources",
+      columns: RESOURCES.map((a) => ({
+        title: a.title,
+        href: `/resources/${a.slug}`,
+        description: a.summary,
+      })),
+      footerCta: { label: "Browse all resources", href: "/resources" },
+    },
+    {
+      key: "careers",
+      label: "Careers",
+      basePath: "/careers",
+      columns: LEVELS.map((l) => ({
+        title: l.name,
+        href: `/careers/${l.slug}`,
+        description: l.description,
+      })),
+      footerCta: { label: "View all roles", href: "/careers" },
+    },
+  ];
+}
 
 const SIMPLE_LINKS = [
   { label: "About", href: "/about" },
@@ -96,8 +115,9 @@ const DRAWER_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-export function Navbar() {
+export function Navbar({ variant = "career" }: { variant?: "career" | "business" }) {
   const pathname = usePathname();
+  const menus = useMemo(() => buildMenus(variant), [variant]);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -121,7 +141,7 @@ export function Navbar() {
     setOpenMenu(null);
   }, [pathname]);
 
-  const activeMenu = MENUS.find((m) => m.key === openMenu);
+  const activeMenu = menus.find((m) => m.key === openMenu);
 
   return (
     <header
@@ -160,7 +180,7 @@ export function Navbar() {
 
         {/* Desktop nav (>= 1024px) */}
         <nav className="sx-desktop-nav">
-          {MENUS.map((menu) => {
+          {menus.map((menu) => {
             const isOpen = openMenu === menu.key;
             const isActive = pathname.startsWith(menu.basePath);
             return (

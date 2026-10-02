@@ -14,7 +14,7 @@ dist/
 .DS_Store
 *.pem
 *.local
-
+.claude
 # debug logs
 npm-debug.log*
 npm-error.log
