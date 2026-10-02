@@ -18,11 +18,11 @@ export interface PricingTier {
 
 export const PRICING_TIERS: PricingTier[] = [
   {
-    slug: "essential",
-    name: "Essential",
+    slug: "quarterly",
+    name: "Quarterly",
     blurb: "Managed applications and a tailored resume to get moving.",
-    priceFrom: "$199",
-    billing: "per cycle",
+    priceFrom: "999",
+    billing: "quarterly",
     features: [
       "Managed applications (up to your cycle cap)",
       "Resume tailoring",
@@ -32,26 +32,26 @@ export const PRICING_TIERS: PricingTier[] = [
     ],
   },
   {
-    slug: "professional",
-    name: "Professional",
+    slug: "half-yearly",
+    name: "Half Yearly",
     blurb: "Higher volume, plus profile and interview prep.",
-    priceFrom: "$299",
-    billing: "per cycle",
+    priceFrom: "1499",
+    billing: "half yearly",
     features: [
-      "Everything in Essential, at higher volume",
+      "Everything in Quarterly, at higher volume",
       "LinkedIn optimization",
       "2 mock interviews",
     ],
     highlighted: true,
   },
   {
-    slug: "premium",
-    name: "Premium",
+    slug: "yearly",
+    name: "Yearly",
     blurb: "Our most hands-on tier, with coaching and priority support.",
-    priceFrom: "$399",
-    billing: "per cycle",
+    priceFrom: "2199",
+    billing: "yearly",
     features: [
-      "Everything in Professional",
+      "Everything in Half Yearly",
       "AI-assisted resume / JD matching",
       "Interview coaching",
       "Priority handling",
@@ -96,6 +96,89 @@ export const BUSINESS_PRICING = {
   blurb:
     "Websites, digital marketing, and operational support are scoped to your needs — project-based or as a monthly retainer. Request a quote and we'll tailor it.",
 };
+
+// ── Business enablement pricing (solvrex.in primary) ──
+// Business work is quoted per engagement — no fixed list price.
+export const BUSINESS_HEADER = {
+  h1: "Pricing built around your scope.",
+  blurb:
+    "Business work is scoped per engagement — a fixed-quote project, an ongoing monthly retainer, or senior advisory. Tell us what you need and we'll send a tailored quote.",
+};
+
+export interface EngagementModel {
+  slug: string;
+  name: string;
+  billing: string; // short label shown in place of a price, e.g. "Fixed quote"
+  blurb: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+export const BUSINESS_ENGAGEMENTS: EngagementModel[] = [
+  {
+    slug: "project",
+    name: "Project-based",
+    billing: "Fixed quote",
+    blurb: "A defined build with a clear scope and a single fixed price.",
+    features: [
+      "Websites & digital enablement",
+      "One-off technology builds & integrations",
+      "Defined scope, timeline, and deliverables",
+      "Fixed quote agreed up front",
+    ],
+  },
+  {
+    slug: "retainer",
+    name: "Monthly retainer",
+    billing: "Monthly",
+    blurb: "Ongoing support across the areas your business needs most.",
+    features: [
+      "Sales & marketing support",
+      "Operational support",
+      "Technology maintenance & iteration",
+      "Flexible monthly scope — no long lock-in",
+    ],
+    highlighted: true,
+  },
+  {
+    slug: "advisory",
+    name: "Advisory / fractional",
+    billing: "On request",
+    blurb: "Senior-led guidance and oversight without a full-time hire.",
+    features: [
+      "Strategy & roadmap input",
+      "Vendor-independent advice",
+      "Fractional leadership / oversight",
+      "Scoped to your cadence",
+    ],
+  },
+];
+
+export const BUSINESS_PRICING_NOTE =
+  "Every business engagement is quoted after a short consultation, so the scope and price match what you actually need.";
+
+export const BUSINESS_FAQ: PricingFaq[] = [
+  {
+    q: "How is business work priced?",
+    a: "Per engagement. A defined build is a fixed-quote project; ongoing work is a monthly retainer; senior guidance is scoped as advisory. We confirm scope and price before any commitment.",
+  },
+  {
+    q: "Project or monthly retainer — which do I need?",
+    a: "Use a project when the scope is well-defined (a website, an integration). Use a retainer when you need ongoing sales, marketing, operational, or technology support. We'll recommend the right fit on a call.",
+  },
+  {
+    q: "Is there a minimum commitment?",
+    a: "No long lock-in. Projects are scoped to deliverables; retainers run month to month so you can adjust as your needs change.",
+  },
+  {
+    q: "Do you also offer career services?",
+    a: "Yes — career services are available as a secondary offering, priced per application cycle. See the Career Services plans below.",
+  },
+  {
+    q: "How do I get started?",
+    a: "Book a free consultation. We'll discuss your needs, recommend project or retainer, and send a tailored quote.",
+  },
+];
 
 export interface PricingFaq {
   q: string;
