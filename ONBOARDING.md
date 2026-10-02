@@ -1,13 +1,13 @@
 # Welcome to Solvrex — Intern Onboarding (Week 1)
 
-This is your first week. The goal isn't to ship a big feature — it's to learn this codebase by reading it closely and fixing something real in it, and to get comfortable with the actual Git/GitHub workflow we use here. Everything below is specific to this repo (`solvrexpvt/solvrex-website`), the Solvrex marketing site.
+This is your first week. The goal isn't to ship a big feature — it's to learn this codebase by reading it closely and fixing something real in it, and to get comfortable with the actual Git/GitHub workflow we use here. Everything below is specific to this repo (`Solvrex-Private-Limited/solvrex-website`), the Solvrex marketing site.
 
 ## 1. Get access
 
 1. Accept the GitHub invite email (check spam if it doesn't show up). You've been added as a collaborator on this one repo only — you won't see any other Solvrex repos, and that's intentional.
 2. Once accepted, clone the repo:
    ```bash
-   git clone https://github.com/solvrexpvt/solvrex-website.git
+   git clone https://github.com/Solvrex-Private-Limited/solvrex-website.git
    cd solvrex-website
    ```
 
@@ -27,11 +27,11 @@ Full details: [README.md](./README.md) and [DEPLOYMENT.md](./DEPLOYMENT.md).
 ## 3. Git workflow — how we actually work here
 
 - **Never commit directly to `main`.** It's protected — you can't push to it even by accident.
-- **Branch naming:** `intern/<your-name>/<short-description>`, e.g. `intern/asha/navbar-keyboard-nav`.
+- **Branch naming:** `intern/<your-name>/<short-description>`, e.g. `intern/naincy/navbar-keyboard-nav`.
 - **Commits:** small, descriptive messages. No need for a strict format, but "fix stuff" isn't enough — say what changed.
-- **Opening a PR:** push your branch, open a PR against `main`, fill out the PR template (it auto-loads), and request a review from the tech lead.
-- **Review:** the tech lead reviews within ~24h. Expect comments — that's normal, not a sign something's wrong. Push follow-up commits to the same branch; don't open a new PR.
-- **Merging:** the tech lead merges once approved. You don't need — and won't have — permission to merge to `main` yourself.
+- **Opening a PR:** push your branch, open a PR against `main`, fill out the PR template (it auto-loads), and request review from **one other intern and the tech lead** — both have to approve before it can merge.
+- **Review:** expect comments — that's normal, not a sign something's wrong. Push follow-up commits to the same branch (don't open a new PR); if you push after someone already approved, their approval resets and they need to look again.
+- **Merging:** once both approvals are in and every comment thread is marked resolved, the PR can merge. Full detail is in [CONTRIBUTING.md](./CONTRIBUTING.md) — read it once before your first PR.
 
 ## 4. Your Week 1 assignment
 
@@ -39,10 +39,10 @@ Everyone does two things this week: (a) read your assigned module closely enough
 
 | You | Module | What to look at | What a good PR looks like |
 |---|---|---|---|
-| _Naincy | `packages/ui/src/components/Navbar.tsx` (~341 lines) | State handling for the mega-menu, mobile scroll-lock, ARIA attributes | Extract the mega-menu into its own sub-component; add keyboard navigation (arrow keys, Escape to close) |
-| _Kunal_ | `packages/ui/src/components/Home.tsx` + `PricingPage.tsx` (~273 + 274 lines) | Repeated inline styles, section composition | Break large sections into sub-components; pull repeated grid breakpoints into `lib/theme.ts` |
-| _Om_ | `packages/ui/src/components/ConsultationForm.tsx` (~189 lines) | Async submit flow, error handling, the honeypot spam field | Add a retry UI when the submit request fails; fix the bare `catch (Error)` so real errors surface |
-| _Joyjeet_ | Repo-wide: there is currently **no test runner and no linter configured** | `package.json`, existing component patterns |add an ESLint config and fix whatever it flags |
+| **Naincy** (Frontend) | `packages/ui/src/components/Navbar.tsx` (~341 lines) | State handling for the mega-menu, mobile scroll-lock, ARIA attributes | Extract the mega-menu into its own sub-component; add keyboard navigation (arrow keys, Escape to close) |
+| **Kunal** | `packages/ui/src/components/Home.tsx` + `PricingPage.tsx` (~273 + 274 lines) | Repeated inline styles, section composition | Break large sections into sub-components; pull repeated grid breakpoints into `lib/theme.ts` |
+| **Om** | `packages/ui/src/components/ConsultationForm.tsx` (~189 lines) | Async submit flow, error handling, the honeypot spam field | Add a retry UI when the submit request fails; fix the bare `catch (Error)` so real errors surface |
+| **Joyjeet** | Repo-wide: there is currently **no test runner and no linter configured** | `package.json`, existing component patterns | Add Vitest (or Jest) + one real test for `Reveal.tsx` or `ConsultationForm.tsx`; add an ESLint config and fix whatever it flags |
 
 If you finish early: read someone else's assigned module and leave review comments on their PR — that's genuinely useful, not busywork.
 
@@ -50,7 +50,7 @@ If you finish early: read someone else's assigned module and leave review commen
 
 - [ ] You can explain, out loud, what your module does and one thing you'd improve about it
 - [ ] At least 1 PR opened against `main`, using the PR template, with a clear description and (for anything visual) a before/after screenshot
-- [ ] PR has been through at least one round of review from the tech lead
+- [ ] PR has both required approvals (one peer intern + the tech lead) and all comment threads resolved
 
 ## 6. Daily standup
 

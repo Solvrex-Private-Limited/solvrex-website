@@ -10,6 +10,10 @@ import {
   ADD_ONS,
   BUSINESS_PRICING,
   PRICING_FAQ,
+  BUSINESS_HEADER,
+  BUSINESS_ENGAGEMENTS,
+  BUSINESS_PRICING_NOTE,
+  BUSINESS_FAQ,
 } from "../lib/pricing";
 import { Aurora } from "./ui/Aurora";
 
@@ -32,7 +36,11 @@ function Check() {
   );
 }
 
-export function PricingPage() {
+export function PricingPage({ variant = "career" }: { variant?: "career" | "business" }) {
+  return variant === "business" ? <BusinessPricing /> : <CareerPricing />;
+}
+
+function CareerPricing() {
   return (
     <div style={{ backgroundColor: "transparent" }}>
       <style>{styles}</style>
@@ -157,6 +165,107 @@ export function PricingPage() {
 
           <div style={{ marginTop: "48px" }}>
             <PrimaryLink href="/book">Schedule Consultation<ArrowRight /></PrimaryLink>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function BusinessPricing() {
+  return (
+    <div style={{ backgroundColor: "transparent" }}>
+      <style>{styles}</style>
+
+      {/* Header */}
+      <section style={{ padding: "80px 0 56px", borderBottom: `1px solid ${C.border}`, position: "relative", overflow: "hidden" }}>
+        <Aurora variant="pricing" />
+        <div className="sx-container" style={{ position: "relative", zIndex: 1 }}>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
+          <p style={eyebrow}>Pricing</p>
+          <h1 style={{ ...pageH1, maxWidth: "560px", marginBottom: "18px" }}>{BUSINESS_HEADER.h1}</h1>
+          <p style={{ fontSize: "16px", color: C.textMuted, lineHeight: 1.7, maxWidth: "620px" }}>{BUSINESS_HEADER.blurb}</p>
+        </div>
+      </section>
+
+      {/* Engagement models */}
+      <section style={{ padding: "56px 0 72px" }}>
+        <div className="sx-container">
+          <div className="sx-tier-grid">
+            {BUSINESS_ENGAGEMENTS.map((model) => (
+              <div key={model.slug} style={{ display: "flex", flexDirection: "column", padding: "28px 24px", borderRadius: "12px", background: model.highlighted ? C.bgSurface : "transparent" }}>
+                {model.highlighted && (
+                  <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.blueLight, marginBottom: "12px" }}>Most common</span>
+                )}
+                <h2 style={{ fontSize: "20px", fontWeight: 600, color: C.text, letterSpacing: "-0.015em", marginBottom: "8px" }}>{model.name}</h2>
+                <p style={{ fontSize: "14px", color: C.textMuted, lineHeight: 1.6, marginBottom: "20px" }}>{model.blurb}</p>
+
+                <div style={{ marginBottom: "22px" }}>
+                  <span style={{ fontSize: "18px", fontWeight: 600, color: C.text, letterSpacing: "-0.01em" }}>{model.billing}</span>
+                  <span style={{ fontSize: "13px", fontWeight: 400, color: C.textMuted }}> · custom quote</span>
+                </div>
+
+                <div style={{ flex: 1, marginBottom: "24px" }}>
+                  <BulletList items={model.features} />
+                </div>
+
+                <PrimaryLink href="/book" variant={model.highlighted ? "solid" : "outline"} style={{ width: "100%", justifyContent: "center" }}>
+                  Request a quote
+                  <ArrowRight />
+                </PrimaryLink>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: "13px", color: C.textSubtle, lineHeight: 1.6, marginTop: "28px", maxWidth: "640px" }}>{BUSINESS_PRICING_NOTE}</p>
+        </div>
+      </section>
+
+      {/* Secondary: Career Services tiers */}
+      <section style={{ padding: "56px 0", borderTop: `1px solid ${C.border}` }}>
+        <div className="sx-container">
+          <h2 style={{ ...sectionHeading, marginBottom: "10px" }}>Career Services</h2>
+          <p style={{ fontSize: "15px", color: C.textMuted, lineHeight: 1.7, maxWidth: "620px", marginBottom: "32px" }}>
+            We also run career services as a secondary offering — priced per application cycle.
+          </p>
+          <div className="sx-tier-grid">
+            {PRICING_TIERS.map((tier) => (
+              <div key={tier.slug} style={{ display: "flex", flexDirection: "column", padding: "24px 22px", borderRadius: "12px", background: "transparent" }}>
+                <h3 style={{ fontSize: "17px", fontWeight: 600, color: C.text, letterSpacing: "-0.015em", marginBottom: "6px" }}>{tier.name}</h3>
+                <p style={{ fontSize: "13.5px", color: C.textMuted, lineHeight: 1.6, marginBottom: "14px", flex: 1 }}>{tier.blurb}</p>
+                <div>
+                  {PRICING_IS_PLACEHOLDER ? (
+                    <span style={{ fontSize: "14px", color: C.textBody }}>Pricing shared on consultation</span>
+                  ) : (
+                    <span>
+                      <span style={{ fontSize: "22px", fontWeight: 600, color: C.text, letterSpacing: "-0.02em" }}>{tier.priceFrom}</span>
+                      <span style={{ fontSize: "13px", fontWeight: 400, color: C.textMuted }}> {tier.billing}</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: "28px" }}>
+            <PrimaryLink href="/book" variant="outline">Schedule consultation<ArrowRight /></PrimaryLink>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ padding: "56px 0 80px", borderTop: `1px solid ${C.border}` }}>
+        <div className="sx-container">
+          <h2 style={{ ...sectionHeading, marginBottom: "32px" }}>Frequently asked questions</h2>
+          <div className="sx-faq-grid">
+            {BUSINESS_FAQ.map((f) => (
+              <div key={f.q}>
+                <h3 style={{ fontSize: "15px", fontWeight: 600, color: C.text, marginBottom: "8px" }}>{f.q}</h3>
+                <p style={{ fontSize: "14.5px", color: C.textMuted, lineHeight: 1.65 }}>{f.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: "48px" }}>
+            <PrimaryLink href="/book">Request a quote<ArrowRight /></PrimaryLink>
           </div>
         </div>
       </section>
