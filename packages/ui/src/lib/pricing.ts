@@ -21,7 +21,7 @@ export const PRICING_TIERS: PricingTier[] = [
     slug: "quarterly",
     name: "Quarterly",
     blurb: "Managed applications and a tailored resume to get moving.",
-    priceFrom: "1000",
+    priceFrom: "999",
     billing: "quarterly",
     features: [
       "Managed applications (up to your cycle cap)",
@@ -48,7 +48,7 @@ export const PRICING_TIERS: PricingTier[] = [
     slug: "yearly",
     name: "Yearly",
     blurb: "Our most hands-on tier, with coaching and priority support.",
-    priceFrom: "1959",
+    priceFrom: "2199",
     billing: "yearly",
     features: [
       "Everything in Half Yearly",
