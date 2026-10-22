@@ -63,7 +63,7 @@ export function Home() {
       {/* ── 1. Hero ── */}
       <section style={{ padding: "104px 0 64px", position: "relative", overflow: "hidden", borderBottom: `1px solid ${C.border}` }}>
         <Aurora variant="homepage" />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(77,124,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(ellipse at 82% 10%, color-mix(in srgb, var(--sx-blue) 6%, transparent), transparent 58%), radial-gradient(rgba(77,124,255,0.06) 1px, transparent 1px)", backgroundSize: "auto, 28px 28px", pointerEvents: "none" }} />
         <div className="sx-container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: "760px" }}>
           <p style={eyebrow}>Career Services</p>

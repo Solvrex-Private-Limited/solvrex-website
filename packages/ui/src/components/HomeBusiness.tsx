@@ -80,7 +80,7 @@ export function HomeBusiness() {
       {/* Hero */}
       <section style={{ padding: "104px 0 96px", position: "relative", overflow: "hidden", borderBottom: `1px solid ${C.border}` }}>
         <Aurora variant="business" />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(77,124,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(ellipse at 12% 8%, color-mix(in srgb, var(--sx-blue) 5%, transparent), transparent 58%), radial-gradient(rgba(77,124,255,0.055) 1px, transparent 1px)", backgroundSize: "auto, 30px 30px", pointerEvents: "none" }} />
         <div className="sx-container" style={{ position: "relative", zIndex: 1, maxWidth: "820px" }}>
           <p style={eyebrow}>Business Enablement</p>
           <h1 style={{ fontSize: "clamp(38px, 5.6vw, 66px)", fontWeight: 300, color: C.text, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: "26px" }}>
