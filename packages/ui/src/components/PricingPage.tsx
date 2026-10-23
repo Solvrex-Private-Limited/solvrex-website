@@ -14,6 +14,7 @@ import {
   PRICING_FAQ,
 } from "../lib/pricing";
 import { Aurora } from "./ui/Aurora";
+import PointerAura from "./PointerAura";
 
 const styles = `
   .sx-tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
@@ -555,8 +556,9 @@ function ClayCheck() {
 
 export function PricingPage() {
   return (
-    <div style={{ backgroundColor: "transparent", overflowX: "clip" }}>
+    <div style={{ backgroundColor: "transparent", overflowX: "clip", position: "relative", minHeight: "100vh" }}>
       <style>{styles}</style>
+      <PointerAura />
 
       {/* Header */}
       <section style={{ padding: "80px 0 56px", borderBottom: `1px solid ${C.border}`, position: "relative", overflow: "hidden" }}>
