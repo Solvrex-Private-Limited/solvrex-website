@@ -3,7 +3,7 @@
   inset: 0;
   overflow: hidden;
   pointer-events: none; /* clicks pass through to the page content */
-  z-index: 2;
+  z-index: 0;
 }
 
 .bubble {

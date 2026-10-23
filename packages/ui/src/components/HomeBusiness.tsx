@@ -30,7 +30,7 @@ const styles = `
     padding: clamp(76px, 10vw, 128px) 0 clamp(66px, 8vw, 104px) !important;
     background:
       radial-gradient(ellipse at 84% 42%, rgba(77,124,255,0.09), transparent 38%),
-      linear-gradient(110deg, var(--sx-bg) 0%, var(--sx-bg) 65%, var(--sx-bg-surface) 100%);
+      linear-gradient(110deg, transparent 0%, transparent 65%, color-mix(in srgb, var(--sx-bg-surface) 65%, transparent) 100%);
   }
   .sx-home-business .hx-hero-decoration {
     position: absolute;
