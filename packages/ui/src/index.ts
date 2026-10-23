@@ -17,6 +17,7 @@ export * from "./data/careerServices";
 export { Navbar } from "./components/Navbar";
 export { Footer } from "./components/Footer";
 export { JsonLd } from "./components/JsonLd";
+export { default as BubbleBackground } from "./components/BubbleBackground";
 
 // homepages (app-specific entry points; both live here, each app imports one)
 export { Home } from "./components/Home";

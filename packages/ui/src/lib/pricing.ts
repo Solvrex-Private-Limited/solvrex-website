@@ -59,6 +59,54 @@ export const PRICING_TIERS: PricingTier[] = [
   },
 ];
 
+export const SUPER_PLAN_NOTE =
+  "Super Plans are built for accelerated placement, offering elevated application volume, direct recruiter outreach, and white-glove advisory.";
+
+export const SUPER_PLAN_TIERS: PricingTier[] = [
+  {
+    slug: "super-quarterly",
+    name: "Quarterly Super",
+    blurb: "Accelerated application velocity and tailored positioning.",
+    priceFrom: "1299",
+    billing: "quarterly",
+    features: [
+      "Managed applications (elevated cycle cap)",
+      "Tailored resume & cover letter strategy",
+      "Direct recruiter follow-ups",
+      "Weekly analytics & progress report",
+      "Dedicated senior operator + QA",
+    ],
+  },
+  {
+    slug: "super-half-yearly",
+    name: "Half Yearly Super",
+    blurb: "High-volume placement campaign with intensive interview coaching.",
+    priceFrom: "1799",
+    billing: "half yearly",
+    features: [
+      "Everything in Quarterly Super, at expanded volume",
+      "LinkedIn & executive profile optimization",
+      "4 1-on-1 mock interview sessions",
+      "Targeted outreach sequences",
+    ],
+    highlighted: true,
+  },
+  {
+    slug: "super-yearly",
+    name: "Yearly Super",
+    blurb: "Executive-grade career acceleration and complete placement advisory.",
+    priceFrom: "2599",
+    billing: "yearly",
+    features: [
+      "Everything in Half Yearly Super",
+      "AI-driven resume to JD matching",
+      "Unlimited interview prep & salary negotiation",
+      "White-glove priority support & leadership advisory",
+    ],
+  },
+];
+
+
 // Feature × tier matrix for the comparison table.
 // Cell value: true = included, false = not included, string = tier-specific detail.
 export interface ComparisonRow {
