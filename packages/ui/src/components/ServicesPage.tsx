@@ -1,14 +1,54 @@
 "use client";
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { C, eyebrow, pageH1 } from '../lib/theme';
 import { SERVICES } from '../data/services';
 import { ContactCallout } from './ui/ContactCallout';
 import { Breadcrumbs } from './ui/Breadcrumbs';
+import { FloatingBubbles } from './ui/FloatingBubbles';
 
 export function ServicesPage() {
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const stack = document.querySelector('.services-stack');
+    if (!stack) return;
+
+    const cards = Array.from(stack.querySelectorAll<HTMLElement>('.services-stack-card'));
+    let frame = 0;
+
+    const updateActiveCard = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        let nextActiveCard = 0;
+
+        cards.forEach((card, index) => {
+          const stickyTop = Number.parseFloat(window.getComputedStyle(card).top);
+          const cardTop = card.getBoundingClientRect().top;
+          if (Number.isFinite(stickyTop) && Math.abs(cardTop - stickyTop) <= 2) {
+            nextActiveCard = index + 1;
+          }
+        });
+
+        setActiveCard(nextActiveCard);
+      });
+    };
+
+    updateActiveCard();
+    window.addEventListener('scroll', updateActiveCard, { passive: true });
+    window.addEventListener('resize', updateActiveCard);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateActiveCard);
+      window.removeEventListener('resize', updateActiveCard);
+    };
+  }, []);
+
   return (
-    <div style={{ backgroundColor: "transparent" }}>
+    <div style={{ backgroundColor: "transparent", position: 'relative' }}>
+      <FloatingBubbles />
 
       {/* Page header */}
       <section style={{ padding: '80px 0 64px', borderBottom: `1px solid ${C.border}` }}>
@@ -20,64 +60,26 @@ export function ServicesPage() {
       </section>
 
       {/* Service tiles */}
-      <section style={{ padding: '72px 0' }}>
+      <section style={{ padding: '72px 0 48px' }}>
         <div className="sx-container">
-          <div
-            className="sx-grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '1px',
-              backgroundColor: C.border,
-            }}
-          >
+          <div className="services-stack" data-active-card={activeCard}>
             {SERVICES.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                style={{
-                  backgroundColor: C.bg,
-                  padding: '36px 32px 40px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'background-color 0.15s',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = C.bgSurface; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = C.bg; }}
+                className="services-stack-card"
+                aria-label={`${service.title}: ${service.cardDescription}`}
               >
-                <span
-                  style={{
-                    display: 'block',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    color: C.blue,
-                    fontVariantNumeric: 'tabular-nums',
-                    letterSpacing: '0.04em',
-                    marginBottom: '20px',
-                  }}
-                >
+                <span className="services-stack-number">
                   {service.number}
                 </span>
                 <h2
-                  style={{
-                    fontSize: '19px',
-                    fontWeight: 500,
-                    color: C.text,
-                    marginBottom: '14px',
-                    letterSpacing: '-0.01em',
-                    lineHeight: 1.3,
-                  }}
+                  className="services-stack-title"
                 >
                   {service.title}
                 </h2>
                 <p
-                  style={{
-                    fontSize: '14px',
-                    color: C.textMuted,
-                    lineHeight: 1.72,
-                    flex: 1,
-                  }}
+                  className="services-stack-description"
                 >
                   {service.cardDescription}
                 </p>
