@@ -30,6 +30,7 @@ export { CareersPage } from "./components/CareersPage";
 export { CategoryPage } from "./components/CategoryPage";
 export { RoleDetailPage } from "./components/RoleDetailPage";
 export { ResourcesIndex } from "./components/ResourcesIndex";
+export { default as ResourceGrid } from "./components/ResourceGrid/ResourceGrid";
 export { ArticlePage } from "./components/ArticlePage";
 export { PricingPage } from "./components/PricingPage";
 export { AboutPage } from "./components/AboutPage";

@@ -141,6 +141,7 @@ export function Navbar() {
         <Link
           href="/"
           aria-label={siteConfig.name}
+          className="sx-nav-link"
           style={{ display: "inline-flex", alignItems: "center", gap: "9px" }}
           onClick={() => { setOpenMenu(null); setMobileOpen(false); }}
         >
@@ -167,6 +168,7 @@ export function Navbar() {
               <Link
                 key={menu.key}
                 href={menu.basePath}
+                className="sx-nav-link"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "5px",
                   padding: "6px 12px",
@@ -191,6 +193,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              className="sx-nav-link"
               style={{
                 padding: "6px 12px", fontSize: "14px", fontWeight: 400,
                 color: pathname.startsWith(link.href) ? C.text : C.textMuted,
@@ -237,7 +240,7 @@ export function Navbar() {
             <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(activeMenu.columns.length, 3)}, 1fr)`, gap: "40px" }}>
               {activeMenu.columns.map((col) => (
                 <div key={col.title}>
-                  <Link href={col.href} style={{ display: "block", marginBottom: "8px" }} onClick={() => setOpenMenu(null)}>
+                  <Link href={col.href} className="sx-nav-link" style={{ display: "block", marginBottom: "8px" }} onClick={() => setOpenMenu(null)}>
                     <span style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em", color: C.text }}>{col.title}</span>
                   </Link>
                   {col.description && (
@@ -250,6 +253,7 @@ export function Navbar() {
                           <Link
                             key={item.label}
                             href={item.href}
+                            className="sx-nav-link"
                             onClick={() => setOpenMenu(null)}
                             style={{ display: "block", fontSize: "13.5px", color: C.textMuted, padding: "6px 0", lineHeight: 1.4, transition: "color 0.12s" }}
                             onMouseEnter={(e) => { e.currentTarget.style.color = C.text; }}
@@ -269,7 +273,7 @@ export function Navbar() {
 
             <div style={{ marginTop: "32px", paddingTop: "22px", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
               <p style={{ fontSize: "12px", color: C.textSubtle }}>{activeMenu.footerNote ?? ""}</p>
-              <Link href={activeMenu.footerCta.href} onClick={() => setOpenMenu(null)} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: C.blueLight, fontWeight: 500, whiteSpace: "nowrap" }}>
+              <Link href={activeMenu.footerCta.href} className="sx-nav-link" onClick={() => setOpenMenu(null)} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: C.blueLight, fontWeight: 500, whiteSpace: "nowrap" }}>
                 {activeMenu.footerCta.label}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
@@ -303,6 +307,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                className="sx-nav-link"
                 onClick={() => setMobileOpen(false)}
                 style={{
                   display: "block", padding: "15px 20px", fontSize: "16px",

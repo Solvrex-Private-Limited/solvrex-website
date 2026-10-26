@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { C, accent, eyebrow, pageH1, sectionHeading } from "../lib/theme";
 import { Breadcrumbs } from "./ui/Breadcrumbs";
 import { BulletList } from "./ui/BulletList";
@@ -292,6 +295,188 @@ const styles = `
   .sx-cmp tr:hover .sx-clay-pill {
     transform: translateY(-1px) scale(1.04);
   }
+  /* Responsive Comparison Table: Desktop table vs Mobile tabbed breakdown */
+  .sx-cmp-desktop {
+    display: block;
+    width: 100%;
+  }
+  .sx-cmp-mobile {
+    display: none;
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .sx-cmp-desktop {
+      display: none !important;
+    }
+    .sx-cmp-mobile {
+      display: block !important;
+    }
+    .sx-cmp-mobile-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid ${C.border};
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    :root[data-theme="dark"] .sx-cmp-mobile-tabs {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .sx-cmp-mobile-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 6px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: ${C.textMuted};
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .sx-cmp-tab-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .sx-cmp-mobile-tab.active {
+      background: #ffffff;
+      color: ${C.text};
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    :root[data-theme="dark"] .sx-cmp-mobile-tab.active {
+      background: #1e293b;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .sx-cmp-tab-badge {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #2563eb;
+      margin-top: 2px;
+    }
+    :root[data-theme="dark"] .sx-cmp-tab-badge {
+      color: #60a5fa;
+    }
+    .sx-cmp-mobile-card {
+      position: relative;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      padding: 22px 18px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    :root[data-theme="dark"] .sx-cmp-mobile-card {
+      background: rgba(14, 18, 30, 0.7);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+    .sx-cmp-mobile-head {
+      padding-bottom: 16px;
+      border-bottom: 1px solid ${C.border};
+      margin-bottom: 14px;
+    }
+    .sx-cmp-mobile-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: ${C.text};
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .sx-cmp-popular-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: ${C.blue};
+      background: ${accent.fill};
+      border: 1px solid ${accent.border};
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .sx-cmp-mobile-blurb {
+      font-size: 13px;
+      color: ${C.textMuted};
+      line-height: 1.45;
+      margin: 6px 0 0;
+    }
+    .sx-cmp-mobile-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: ${C.text};
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .sx-cmp-mobile-billing {
+      font-size: 12px;
+      color: ${C.textSubtle};
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .sx-cmp-mobile-list-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: ${C.textSubtle};
+      margin-bottom: 10px;
+      padding-top: 4px;
+    }
+    .sx-cmp-mobile-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid ${C.border};
+    }
+    .sx-cmp-mobile-item:last-child {
+      border-bottom: none;
+    }
+    .sx-cmp-mobile-feat {
+      font-size: 13.5px;
+      color: ${C.textBody};
+      font-weight: 500;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .sx-cmp-mobile-status {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .sx-cmp-included-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sx-cmp-included-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: ${C.blue};
+    }
+    .sx-cmp-excluded-dash {
+      color: ${C.textSubtle};
+      opacity: 0.45;
+      font-size: 16px;
+      padding-right: 6px;
+    }
+  }
+
   .sx-super-hand {
     display: grid;
     counter-set: card 0;
@@ -555,6 +740,7 @@ function ClayCheck() {
 }
 
 export function PricingPage() {
+  const [mobileTierIdx, setMobileTierIdx] = useState(1);
   return (
     <div style={{ backgroundColor: "transparent", overflowX: "clip", position: "relative", minHeight: "100vh" }}>
       <style>{styles}</style>
@@ -734,44 +920,122 @@ export function PricingPage() {
       <section className="sx-scroll-section" style={{ padding: "56px 0", borderTop: `1px solid ${C.border}` }}>
         <div className="sx-container sx-scroll-content">
           <h2 style={{ ...sectionHeading, marginBottom: "32px" }}>Compare plans</h2>
-          <div className="sx-cmp-card">
-            <table className="sx-cmp">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  {PRICING_TIERS.map((t) => (
-                    <th key={t.slug} className={t.highlighted ? "th-highlighted" : ""} style={{ textAlign: "center" }}>
-                      <div>{t.name}</div>
-                      {t.highlighted && (
-                        <div style={{ marginTop: "4px" }}>
-                          <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: C.blueLight }}>
-                            Most popular
-                          </span>
-                        </div>
-                      )}
-                    </th>
+
+          {/* Desktop comparison table (>= 768px) */}
+          <div className="sx-cmp-desktop">
+            <div className="sx-cmp-card">
+              <table className="sx-cmp">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    {PRICING_TIERS.map((t) => (
+                      <th key={t.slug} className={t.highlighted ? "th-highlighted" : ""} style={{ textAlign: "center" }}>
+                        <div>{t.name}</div>
+                        {t.highlighted && (
+                          <div style={{ marginTop: "4px" }}>
+                            <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: C.blueLight }}>
+                              Most popular
+                            </span>
+                          </div>
+                        )}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON.map((row) => (
+                    <tr key={row.feature}>
+                      <td className="feat">{row.feature}</td>
+                      {row.tiers.map((cell, i) => (
+                        <td key={i} className={`cell ${PRICING_TIERS[i]?.highlighted ? "cell-highlighted" : ""}`}>
+                          {cell === true ? (
+                            <ClayCheck />
+                          ) : cell === false ? (
+                            <span style={{ color: C.textSubtle, opacity: 0.45, fontSize: "15px" }}>—</span>
+                          ) : (
+                            <span className="sx-clay-pill">{cell}</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON.map((row) => (
-                  <tr key={row.feature}>
-                    <td className="feat">{row.feature}</td>
-                    {row.tiers.map((cell, i) => (
-                      <td key={i} className={`cell ${PRICING_TIERS[i]?.highlighted ? "cell-highlighted" : ""}`}>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Mobile responsive comparison view (< 768px) */}
+          <div className="sx-cmp-mobile">
+            <div className="sx-cmp-mobile-tabs" role="tablist" aria-label="Select pricing tier to compare">
+              {PRICING_TIERS.map((tier, idx) => (
+                <button
+                  key={tier.slug}
+                  type="button"
+                  role="tab"
+                  aria-selected={mobileTierIdx === idx}
+                  className={`sx-cmp-mobile-tab ${mobileTierIdx === idx ? "active" : ""}`}
+                  onClick={() => setMobileTierIdx(idx)}
+                >
+                  <span className="sx-cmp-tab-name">{tier.name}</span>
+                  {tier.highlighted && <span className="sx-cmp-tab-badge">Popular</span>}
+                </button>
+              ))}
+            </div>
+
+            <div className="sx-cmp-mobile-card">
+              <div className="sx-cmp-mobile-head">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                      <h3 className="sx-cmp-mobile-title">{PRICING_TIERS[mobileTierIdx].name}</h3>
+                      {PRICING_TIERS[mobileTierIdx].highlighted && (
+                        <span className="sx-cmp-popular-pill">Most popular</span>
+                      )}
+                    </div>
+                    <p className="sx-cmp-mobile-blurb">{PRICING_TIERS[mobileTierIdx].blurb}</p>
+                  </div>
+                  <div style={{ textAlign: "right", flexShrink: 0 }}>
+                    <div className="sx-cmp-mobile-price">${PRICING_TIERS[mobileTierIdx].priceFrom}</div>
+                    <div className="sx-cmp-mobile-billing">/ {PRICING_TIERS[mobileTierIdx].billing}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="sx-cmp-mobile-list">
+                <div className="sx-cmp-mobile-list-title">Included Features & Limits</div>
+                {COMPARISON.map((row) => {
+                  const cell = row.tiers[mobileTierIdx];
+                  return (
+                    <div key={row.feature} className="sx-cmp-mobile-item">
+                      <span className="sx-cmp-mobile-feat">{row.feature}</span>
+                      <span className="sx-cmp-mobile-status">
                         {cell === true ? (
-                          <ClayCheck />
+                          <span className="sx-cmp-included-badge">
+                            <ClayCheck />
+                            <span className="sx-cmp-included-text">Included</span>
+                          </span>
                         ) : cell === false ? (
-                          <span style={{ color: C.textSubtle, opacity: 0.45, fontSize: "15px" }}>—</span>
+                          <span className="sx-cmp-excluded-dash" aria-label="Not included">—</span>
                         ) : (
                           <span className="sx-clay-pill">{cell}</span>
                         )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div style={{ marginTop: "22px" }}>
+                <PrimaryLink
+                  href="/book"
+                  variant={PRICING_TIERS[mobileTierIdx].highlighted ? "solid" : "outline"}
+                  style={{ width: "100%", justifyContent: "center" }}
+                >
+                  Schedule Consultation
+                  <ArrowRight />
+                </PrimaryLink>
+              </div>
+            </div>
           </div>
         </div>
       </section>
