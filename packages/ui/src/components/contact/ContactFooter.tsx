@@ -56,7 +56,9 @@ export function ContactFooter() {
         }
         .sx-circ-link h4 {
           margin: 0 0 12px;
-          font: 400 clamp(30px, 5vw, 78px)/1 "Instrument Serif", "Times New Roman", serif;
+          font: 300 clamp(20px, 3.5vw, 50px)/1 "Inter", system-ui, sans-serif;
+          font-weight: 300;
+          letter-spacing: -0.02em;
         }
         .sx-circ-badge {
           display: inline-block;

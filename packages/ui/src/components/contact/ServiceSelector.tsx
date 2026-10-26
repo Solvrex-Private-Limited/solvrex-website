@@ -126,9 +126,10 @@ export function ServiceSelector({
         }
         .sx-srv-head h2 {
           margin: 0 0 10px;
-          font: 400 clamp(28px, 4vw, 44px)/1 "Instrument Serif", "Times New Roman", serif;
+          font: 300 clamp(28px, 4vw, 44px)/1 "Inter", system-ui, sans-serif;
           letter-spacing: -0.02em;
           color: ${C.text};
+          font-weight: 300;
         }
         .sx-srv-head p {
           margin: 0 auto;

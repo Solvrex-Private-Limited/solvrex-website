@@ -56,7 +56,7 @@ export function ContactForm({ selectedService }: ContactFormProps) {
         }
         .sx-ct-mail {
           display: inline-block;
-          font: 400 clamp(34px, 9vw, 150px)/1 "Anton", Impact, "Arial Narrow", sans-serif;
+          font: 300 clamp(24px, 6vw, 90px)/1 "Inter", system-ui, sans-serif;
           text-transform: uppercase;
           letter-spacing: 0.01em;
           background: linear-gradient(#2563eb, #2563eb) 0 100% / 100% 4px no-repeat;
@@ -94,8 +94,10 @@ export function ContactForm({ selectedService }: ContactFormProps) {
         }
         .sx-ct-info h3 {
           margin: 0 0 16px;
-          font: 400 clamp(38px, 5vw, 70px)/1 "Instrument Serif", "Times New Roman", serif;
+          font: 300 clamp(38px, 5vw, 70px)/1 "Inter", system-ui, sans-serif;
           color: ${C.text};
+          letter-spacing: -0.02em;
+          font-weight: 300;
         }
         .sx-ct-info > p {
           color: ${C.textMuted};

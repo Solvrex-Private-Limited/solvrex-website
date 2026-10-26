@@ -33,7 +33,9 @@ export function ContactMarquee() {
           display: inline-flex;
           gap: 44px;
           animation: sx-mq-scroll 30s linear infinite;
-          font: 400 clamp(28px, 4vw, 56px)/1.1 "Instrument Serif", "Times New Roman", serif;
+          font: 300 clamp(28px, 4vw, 56px)/1.1 "Inter", system-ui, sans-serif;
+          font-weight: 300;
+          letter-spacing: -0.02em;
         }
         .sx-mq:hover .sx-mq-track {
           animation-play-state: paused;

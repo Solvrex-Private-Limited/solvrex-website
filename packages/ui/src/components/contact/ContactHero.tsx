@@ -52,8 +52,6 @@ export function ContactHero() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&display=swap');
-
         .sx-hero-contact {
           position: relative;
           min-height: calc(100vh - 68px);
@@ -113,10 +111,12 @@ export function ContactHero() {
           margin: clamp(30px, 7vh, 80px) 0 0;
           display: flex;
           overflow: hidden;
-          font: 400 clamp(70px, 19vw, 330px)/0.95 "Anton", Impact, "Arial Narrow", sans-serif;
+          font: 400 clamp(50px, 14vw, 220px)/0.95 "Inter", system-ui, sans-serif;
           text-transform: uppercase;
           color: #2563eb;
           padding-bottom: 0.04em;
+          letter-spacing: -0.02em;
+          font-weight: 300;
         }
         .sx-hero-h1 span {
           display: inline-block;
