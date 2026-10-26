@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&display=swap");
 
 /* ── Theme palettes (light = default; dark via [data-theme="dark"]) ── */
 :root {
@@ -130,6 +131,33 @@
   background-color: var(--sx-nav-bg) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+/* ── Navbar link hover ripple effect ── */
+.sx-nav-link {
+  text-decoration: none;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.15s, background 0.15s, 0.4s;
+}
+.sx-nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(166, 166, 166, 0.2);
+  opacity: 0;
+  border-radius: 8px;
+  transform: scale(0);
+  transition: all 0.4s;
+  pointer-events: none;
+}
+.sx-nav-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* ── Responsive navbar visibility (media-query driven, deterministic) ── */
@@ -335,3 +363,123 @@ button {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 46 Soft-Blur — a modern bloom effect that breathes between crisp and hazy */
+.fx-softblur {
+  display: inline-block;
+  font: 600 36px/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: var(--ink);
+  transform-origin: left center;
+  text-shadow:
+    0 0 0 var(--ink),
+    0 0 18px color-mix(in srgb, var(--ink-2) 45%, transparent),
+    0 0 34px color-mix(in srgb, var(--ink-3) 35%, transparent);
+  animation: fx-softblur 3.2s ease-in-out infinite;
+}
+@keyframes fx-softblur {
+  0%, 100% { filter: blur(0); opacity: 1; transform: scale(1); }
+  50%      { filter: blur(2.4px); opacity: .72; transform: scale(1.045); }
+}
+
+@media (max-width: 480px) {
+  .fx-softblur {
+    font-size: clamp(24px, 7vw, 30px);
+    letter-spacing: .06em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-softblur {
+    animation: none;
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 69 Kilovolt — letters crackle with staggered electric discharge flashes */
+.fx-voltage {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--ink);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.fx-voltage b {
+  font-weight: inherit;
+  display: inline-block;
+  animation: fx-voltage 2.6s steps(1) infinite;
+  animation-delay: calc(var(--i) * .08s);
+}
+@keyframes fx-voltage {
+  0%, 100% {
+    transform: none;
+    color: var(--ink);
+    text-shadow: none;
+    filter: brightness(1);
+  }
+  7% {
+    transform: translate(1px, -1px) skewX(-10deg);
+    color: #fff;
+    text-shadow:
+      0 0 4px #fff,
+      0 0 14px var(--ink-3),
+      2px 0 0 var(--ink-2),
+     -2px 0 0 var(--ink-3);
+    filter: brightness(1.85);
+  }
+  9% {
+    transform: translate(-1px, 1px) skewX(8deg);
+    color: var(--ink-3);
+    text-shadow:
+      0 0 10px var(--ink-3),
+      0 0 22px color-mix(in srgb, var(--ink-3) 70%, transparent);
+  }
+  11%, 48% {
+    transform: none;
+    color: var(--ink);
+    text-shadow: none;
+    filter: brightness(1);
+  }
+  61% {
+    transform: translate(0, -1px) skewX(4deg);
+    color: #fff;
+    text-shadow:
+      0 0 6px var(--ink-2),
+      0 0 18px var(--ink-2),
+     -1px 0 0 var(--ink-3);
+    filter: brightness(1.6);
+  }
+  63% {
+    transform: none;
+    color: var(--ink);
+    text-shadow: none;
+    filter: brightness(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .fx-voltage {
+    font-size: clamp(24px, 6.5vw, 28px);
+    letter-spacing: .08em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-voltage b {
+    animation: none;
+    transform: none;
+    color: var(--ink);
+    text-shadow: none;
+    filter: none;
+  }
+}
+
+
