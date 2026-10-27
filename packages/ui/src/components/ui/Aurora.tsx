@@ -59,10 +59,10 @@ const VARIANTS: Record<AuroraVariant, VariantConfig> = {
   },
   // Broad, expansive, teal-blue balance.
   business: {
-    opacity: 0.8,
+    opacity: 0.4,
     blobs: [
-      { cx: 300, cy: 200, rx: 470, ry: 320, grad: "blue", cls: "aurora-b" },
-      { cx: 840, cy: 380, rx: 470, ry: 320, grad: "sky", cls: "aurora-a" },
+      { cx: 300, cy: 200, rx: 300, ry: 200, grad: "blue", cls: "aurora-b", opacity: 0.5 },
+      { cx: 840, cy: 380, rx: 300, ry: 200, grad: "sky", cls: "aurora-a", opacity: 0.5 },
     ],
   },
   // Content-first: smaller, lower opacity.
