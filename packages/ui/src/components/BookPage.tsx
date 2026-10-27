@@ -250,9 +250,7 @@ export function BookPage() {
           border-radius: 12px;
           font-size: 14px;
           font-family: inherit;
-          color: ${C.text};
-          background: ${C.bg === "#ffffff" ? "#f9fafb" : C.bg};
-          transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+          background: ${C.bgSurface};
         }
 
         .sx-book-form-input::placeholder,

@@ -482,4 +482,45 @@ button {
   }
 }
 
+/* 82 Ghostwrite — the AI shimmer: a soft luminance band sweeps muted letters */
+.fx-shimmer {
+  --ink: var(--sx-text, #111827);
+  font: 600 clamp(24px, 3.8vw, 32px)/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: transparent;
+  background: linear-gradient(90deg,
+      color-mix(in srgb, var(--ink) 20%, transparent) 0 40%,
+      color-mix(in srgb, var(--ink) 65%, transparent) 46%,
+      #fff 50%,
+      color-mix(in srgb, var(--ink) 65%, transparent) 54%,
+      color-mix(in srgb, var(--ink) 20%, transparent) 60% 100%
+    ) 0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  animation: fx-shimmer 2.8s linear infinite;
+}
+@keyframes fx-shimmer {
+  to { background-position: 300% 0; }
+}
+
+@media (max-width: 480px) {
+  .fx-shimmer {
+    font-size: clamp(20px, 5.5vw, 24px);
+    letter-spacing: .04em;
+    line-height: 1.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-shimmer {
+    animation: none;
+    color: var(--sx-text, #111);
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+  }
+}
+
+
 

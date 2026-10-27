@@ -23,11 +23,12 @@ const HREFS: Record<string, string> = {
   lateral: "/careers/lateral",
 };
 
-export function OpenRoles() {
+export function OpenRoles({ embedded = false }: { embedded?: boolean } = {}) {
   return (
     <section
       id="open-roles"
       className={styles.section}
+      style={embedded ? { padding: "32px 0", borderBottom: "none" } : undefined}
       aria-labelledby="open-roles-heading"
     >
       <div className="sx-container">
