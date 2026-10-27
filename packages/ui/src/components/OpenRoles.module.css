@@ -1,0 +1,152 @@
+/* ── OpenRoles section ─────────────────────────────────────── */
+
+/* Pulse animation for the "View roles" CTA button */
+@keyframes or-pulse {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.07); }
+  100% { transform: scale(1);    }
+}
+
+.section {
+  padding: 84px 0;
+  border-bottom: 1px solid var(--sx-border);
+  scroll-margin-top: 80px;
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--sx-bg-surface);
+  border: 1px solid var(--sx-border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  /* prevent any card from causing horizontal scroll */
+  min-width: 0;
+}
+
+.card:hover {
+  border-color: var(--sx-border-strong);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--sx-blue-light);
+  outline-offset: 2px;
+}
+
+/* ── Image wrapper — clips the tilted img ─────────────────── */
+.imageWrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Default: image is slightly tilted */
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: rotate(3deg) scale(1.08);
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* On card hover: straighten the image */
+.card:hover .photo {
+  transform: rotate(0deg) scale(1);
+}
+
+/* ── Text body ────────────────────────────────────────────── */
+.body {
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sx-text);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--sx-text-muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+/* ── CTA button ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 20px;
+  /* Always solid blue */
+  background-color: var(--sx-blue);
+  border: 1px solid var(--sx-blue);
+  border-radius: 4px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  /* Pulse animation */
+  animation: or-pulse 1.5s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Pause pulse on card hover so arrow-slide stays smooth */
+.card:hover .btn,
+.btn:focus-visible {
+  animation-play-state: paused;
+  background-color: var(--sx-blue-hover, #3b6fee);
+  border-color: var(--sx-blue-hover, #3b6fee);
+}
+
+/* Arrow icon slides right on hover */
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ── Role-count badge ─────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sx-blue-light);
+  margin-bottom: 12px;
+}

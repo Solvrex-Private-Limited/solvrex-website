@@ -28,6 +28,10 @@ export { HomeBusiness } from "./components/HomeBusiness";
 export { ServicesPage } from "./components/ServicesPage";
 export { ServiceDetailPage } from "./components/ServiceDetailPage";
 export { CareersPage } from "./components/CareersPage";
+export { OpenRoles } from "./components/OpenRoles";
+export { RoleCard } from "./components/RoleCard";
+export { StayConnected } from "./components/StayConnected";
+
 export { CategoryPage } from "./components/CategoryPage";
 export { RoleDetailPage } from "./components/RoleDetailPage";
 export { ResourcesIndex } from "./components/ResourcesIndex";
