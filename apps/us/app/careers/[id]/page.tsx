@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ROLES, getRole } from "@solvrex/ui";
+import { ROLES, getRole, roleMetadata } from "@solvrex/ui";
 import { RoleDetailPage } from "@solvrex/ui";
 
 export function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { id } = await params;
   const role = getRole(id);
   if (!role) return {};
-  return { title: role.title, description: role.tagline };
+  return roleMetadata(role);
 }
 
 export default async function Page({

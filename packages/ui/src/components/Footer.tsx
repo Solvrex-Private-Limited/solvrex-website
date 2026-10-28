@@ -5,7 +5,8 @@ import { C } from "../lib/theme";
 import { siteConfig } from "../lib/site";
 import { SERVICES } from "../data/services";
 
-const displayDomain = siteConfig.url.replace(/^https?:\/\//, "");
+// Display-only: show the bare domain (no protocol, no "www.") in the footer.
+const displayDomain = siteConfig.url.replace(/^https?:\/\/(www\.)?/, "");
 
 const columnLabel = {
   fontSize: "10.5px",

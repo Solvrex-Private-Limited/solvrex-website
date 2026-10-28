@@ -1,8 +1,9 @@
-import { CategoryPage } from "@solvrex/ui";
-import { getLevelBySlug } from "@solvrex/ui";
+import { CategoryPage, getLevelBySlug, levelMetadata } from "@solvrex/ui";
 
-export const metadata = { title: "Entry Level Roles" };
+const level = getLevelBySlug("entry-level")!;
+
+export const metadata = levelMetadata(level);
 
 export default function Page() {
-  return <CategoryPage level={getLevelBySlug("entry-level")!} />;
+  return <CategoryPage level={level} />;
 }

@@ -1,8 +1,9 @@
-import { CategoryPage } from "@solvrex/ui";
-import { getLevelBySlug } from "@solvrex/ui";
+import { CategoryPage, getLevelBySlug, levelMetadata } from "@solvrex/ui";
 
-export const metadata = { title: "Lateral Roles" };
+const level = getLevelBySlug("lateral")!;
+
+export const metadata = levelMetadata(level);
 
 export default function Page() {
-  return <CategoryPage level={getLevelBySlug("lateral")!} />;
+  return <CategoryPage level={level} />;
 }
