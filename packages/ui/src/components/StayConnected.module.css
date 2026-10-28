@@ -1,0 +1,134 @@
+/* ── StayConnected section ─────────────────────────────────── */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 64px 24px;
+  background: transparent;
+  font-family: inherit;
+}
+
+/* ── Bounce keyframe ──────────────────────────────────────── */
+@keyframes sc-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-28px);
+  }
+}
+
+/* ── Pulse keyframe for the button ────────────────────────── */
+@keyframes sc-pulse {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.07); }
+  100% { transform: scale(1);    }
+}
+
+/* Fully rounded stadium card with bounce */
+.card {
+  width: 100%;
+  max-width: 1280px;
+  box-sizing: border-box;
+  padding: 72px 96px;
+  border: 1px solid var(--sx-border, #e6e8ef);
+  border-radius: 200px;
+  background: var(--sx-bg-surface, #f4f5f8);
+  text-align: center;
+  box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.25);
+  animation: sc-bounce 1.1s ease-in-out infinite;
+}
+
+/* Bounce freezes while hovered */
+.card:hover {
+  animation-play-state: paused;
+}
+
+.title {
+  margin: 0;
+  color: var(--sx-text, #0f172a);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 14px 0 32px;
+  color: var(--sx-text-muted, #6b7280);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* Blue button with pulse animation */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 6px;
+  background: var(--sx-blue, #2563eb);
+  border: 1px solid var(--sx-blue, #2563eb);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  /* Pulse animation */
+  animation: sc-pulse 1.5s ease-in-out infinite;
+  transform-origin: center center;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.button:hover,
+.button:focus-visible {
+  animation-play-state: paused;
+  background-color: var(--sx-blue-hover, #1d4ed8);
+  border-color: var(--sx-blue-hover, #1d4ed8);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--sx-blue-light, #2563eb);
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.legal {
+  max-width: 560px;
+  margin: 36px auto 0;
+  color: var(--sx-text-muted, #6b7280);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 48px 16px;
+  }
+
+  .card {
+    padding: 56px 24px;
+    border-radius: 120px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+  .button {
+    animation: none;
+  }
+}

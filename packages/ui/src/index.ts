@@ -18,6 +18,7 @@ export { Navbar } from "./components/Navbar";
 export { Footer } from "./components/Footer";
 export { JsonLd } from "./components/JsonLd";
 export { default as BubbleBackground } from "./components/BubbleBackground";
+export { FloatingBubbles } from "./components/ui/FloatingBubbles";
 
 // homepages (app-specific entry points; both live here, each app imports one)
 export { Home } from "./components/Home";
@@ -27,9 +28,14 @@ export { HomeBusiness } from "./components/HomeBusiness";
 export { ServicesPage } from "./components/ServicesPage";
 export { ServiceDetailPage } from "./components/ServiceDetailPage";
 export { CareersPage } from "./components/CareersPage";
+export { OpenRoles } from "./components/OpenRoles";
+export { RoleCard } from "./components/RoleCard";
+export { StayConnected } from "./components/StayConnected";
+
 export { CategoryPage } from "./components/CategoryPage";
 export { RoleDetailPage } from "./components/RoleDetailPage";
 export { ResourcesIndex } from "./components/ResourcesIndex";
+export { default as ResourceGrid } from "./components/ResourceGrid/ResourceGrid";
 export { ArticlePage } from "./components/ArticlePage";
 export { PricingPage } from "./components/PricingPage";
 export { AboutPage } from "./components/AboutPage";

@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { C, eyebrow, sectionHeading } from "../lib/theme";
 import { PrimaryLink, ArrowRight } from "./ui/PrimaryLink";
 import { Reveal } from "./ui/Reveal";
 import { Aurora } from "./ui/Aurora";
+import "../styles/home-trust.css";
 
 const styles = `
   .sx-home-business .sx-home-hero-layout {
@@ -755,51 +756,34 @@ export function HomeBusiness() {
       <section className="sx-home-trust" style={sectionPad} aria-label="Why businesses work with Solvrex">
         <div className="sx-container">
           <Reveal>
-            <div className="hx-trust-editorial">
-              <div className="hx-trust-heading">
-                <div>
+            <div className="sx-home-trust-editorial">
+              <div className="sx-home-trust-grid">
+                <div className="sx-home-trust-header">
                   <p style={eyebrow}>Why businesses work with Solvrex</p>
-                  <h2 style={sectionHeading}>Good work starts with the right kind of support.</h2>
+                  <h2>Good work starts with the right kind of support.</h2>
                 </div>
-                <article className="hx-trust-featured-intro">
-                  <span className="hx-trust-index" aria-hidden="true">01</span>
-                  <div>
-                    <h3>{TRUST[0].title}</h3>
-                    <p>{TRUST[0].body}</p>
-                  </div>
-                </article>
-              </div>
-              <div className="hx-trust-editorial-grid">
-                <div className="hx-trust-feature" tabIndex={0} aria-label="Team working together to deliver practical business support">
+
+                <div className="sx-home-trust-visual">
                   <Image
                     src="/business/technology.jpg"
-                    alt=""
+                    alt="Solvrex team working"
                     fill
-                    sizes="(max-width: 768px) 100vw, 58vw"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                   />
-                  <div className="hx-trust-feature-caption" aria-hidden="true">
+                  <div className="sx-home-trust-caption">
+                    <span>Our Approach</span>
                     <strong>People who move work forward.</strong>
-                    <span>Solvrex / How we work</span>
                   </div>
                 </div>
-                <div className="hx-trust-list">
-                  {TRUST.slice(1).map((item, i) => (
-                    <article className="hx-trust-item" key={item.title} tabIndex={0}>
-                      <div className="hx-trust-item-image">
-                        <Image
-                          src={TRUST_IMAGES[i]}
-                          alt=""
-                          width={360}
-                          height={240}
-                          sizes="(max-width: 768px) 32vw, 15vw"
-                        />
-                      </div>
-                      <div className="hx-trust-item-copy">
-                        <span className="hx-trust-index" aria-hidden="true">{String(i + 2).padStart(2, "0")}</span>
-                        <h3>{item.title}</h3>
-                        <p>{item.body}</p>
-                      </div>
-                    </article>
+
+                <div className="sx-home-trust-principles">
+                  {TRUST.map((item, i) => (
+                    <div key={item.title} className="sx-home-trust-principle">
+                      <span className="sx-home-trust-number">{String(i + 1).padStart(2, "0")}</span>
+                      <h3>{item.title}</h3>
+                      <p>{item.body}</p>
+                    </div>
                   ))}
                 </div>
               </div>

@@ -13,12 +13,14 @@ const HOME_TITLE = "Solvrex | Business Enablement, Technology, Sales & Marketing
 const HOME_DESCRIPTION =
   "Solvrex helps businesses operate and grow — website & digital enablement, technology consulting, and sales, marketing, and operational support from a senior, independent team.";
 
+// NOTE: no `alternates.canonical` here on purpose. A canonical in the root layout is
+// inherited by every page that does not set its own, which would make them all point
+// at the homepage. Each page sets its own (pageMetadata in @solvrex/ui does this).
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: { default: HOME_TITLE, template: `%s | ${siteConfig.name}` },
   description: HOME_DESCRIPTION,
   applicationName: siteConfig.name,
-  alternates: { canonical: "/" },
   manifest: "/site.webmanifest",
   icons: {
     icon: "/mark.png",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/`,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
-    locale: "en_US",
+    locale: siteConfig.locale,
   },
   twitter: {
     card: "summary_large_image",
@@ -46,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={siteConfig.hreflang} suppressHydrationWarning>
       <body className={inter.className}>
         <script
           dangerouslySetInnerHTML={{
