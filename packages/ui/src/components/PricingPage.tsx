@@ -713,7 +713,180 @@ const styles = `
       opacity: 1 !important;
     }
   }
-`;
+  /* ── Billing & Refund Policy Card (CodePen Slide & Reveal Hover Effect) ── */
+  .sx-policy-card {
+    position: relative;
+    max-width: 920px;
+    margin: 0 auto;
+    height: 580px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid ${C.border};
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.5, 1.03),
+                box-shadow 0.4s cubic-bezier(0.17, 0.67, 0.5, 1.03),
+                border-color 0.3s ease;
+    cursor: pointer;
+  }
+  :root[data-theme="dark"] .sx-policy-card {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .sx-policy-card:hover {
+    transform: translateY(-4px);
+    border-color: ${C.blue};
+    /* Shadow effects to the base of the card */
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.16),
+                0 32px 64px -12px rgba(37, 99, 235, 0.26);
+  }
+  :root[data-theme="dark"] .sx-policy-card:hover {
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.55),
+                0 32px 64px -12px rgba(37, 99, 235, 0.35);
+  }
+
+  .sx-policy-thumb {
+    height: 230px;
+    position: relative;
+    padding: 36px 40px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: opacity 0.35s ease;
+  }
+  .sx-policy-card:hover .sx-policy-thumb {
+    opacity: 0.15;
+  }
+
+  .sx-policy-thumb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: ${C.blue};
+    background: ${accent.fill};
+    border: 1px solid ${accent.border};
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+
+  .sx-policy-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: ${C.textMuted};
+    letter-spacing: 0.02em;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px dashed ${C.borderStrong};
+    background: rgba(37, 99, 235, 0.03);
+    width: fit-content;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .sx-policy-card:hover .sx-policy-cue {
+    color: ${C.blue};
+    border-color: ${C.blue};
+    background: ${accent.fill};
+  }
+
+  .sx-policy-cue-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: ${C.blue};
+    color: #ffffff;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+  .sx-policy-card:hover .sx-policy-cue-arrow {
+    transform: translateY(3px);
+  }
+
+  .sx-policy-infos {
+    position: relative;
+    height: 580px;
+    padding: 32px 40px 40px;
+    background: #ffffff;
+    border-top: 1px solid ${C.border};
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: transform 0.4s 0.15s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+  }
+  :root[data-theme="dark"] .sx-policy-infos {
+    background: #0f1422;
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .sx-policy-card:hover .sx-policy-infos {
+    transform: translateY(-230px);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .sx-policy-infos-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid ${C.border};
+  }
+
+  .sx-policy-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: ${C.blue};
+    background: ${accent.fill};
+    border: 1px solid ${accent.border};
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .sx-policy-reveal-txt {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03),
+                transform 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+  }
+  .sx-policy-card:hover .sx-policy-reveal-txt {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .sx-policy-card {
+      height: auto !important;
+      overflow: visible !important;
+      cursor: default;
+    }
+    .sx-policy-thumb {
+      display: none !important;
+    }
+    .sx-policy-infos {
+      height: auto !important;
+      transform: none !important;
+      padding: 24px 20px !important;
+    }
+    .sx-policy-reveal-txt {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }`;
 
 const SUPER_PALETTES = [
   { c1: "#1e3a8a", c2: "#2563eb", c3: "#3b82f6", c4: "#93c5fd" },
@@ -778,6 +951,17 @@ export function PricingPage() {
                 <div style={{ marginBottom: "22px" }}>
                   {PRICING_IS_PLACEHOLDER ? (
                     <span style={{ fontSize: "14.5px", color: C.textBody }}>Pricing shared on consultation</span>
+                  ) : tier.pricingOptions ? (
+                    <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "2px" }}>
+                      <tbody>
+                        {tier.pricingOptions.map((opt) => (
+                          <tr key={opt.label} style={{ borderBottom: `1px solid ${C.border}` }}>
+                            <td style={{ fontSize: "13.5px", color: C.textMuted, fontStyle: "italic", padding: "9px 0" }}>{opt.label}</td>
+                            <td style={{ fontSize: "15px", fontWeight: 700, color: C.text, textAlign: "right", padding: "9px 0", letterSpacing: "-0.01em" }}>{opt.price}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   ) : (
                     <span>
                       <span style={{ fontSize: "30px", fontWeight: 600, color: C.text, letterSpacing: "-0.02em" }}>{tier.priceFrom}</span>
@@ -1092,6 +1276,135 @@ export function PricingPage() {
               <span>Schedule Consultation <ArrowRight /></span>
             </a>
           </div>
+        </div>
+      </section>
+      {/* Terms & Conditions (Hover Card with Slide & Reveal Effect) */}
+      <section style={{ padding: "56px 0 80px", borderTop: `1px solid ${C.border}` }}>
+        <div className="sx-container">
+          <article className="sx-policy-card">
+            {/* Thumb area: visible preview before hover (transparent background) */}
+            <div className="sx-policy-thumb">
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                  <div style={{
+                    flexShrink: 0,
+                    width: "38px", height: "38px",
+                    borderRadius: "10px",
+                    background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(99,102,241,0.1))",
+                    border: `1px solid ${C.blueLight}`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M9 11V7m0 8h.01M17 10A7 7 0 1 1 3 10a7 7 0 0 1 14 0Z"
+                        stroke={C.blue} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="sx-policy-thumb-badge">Before you proceed</span>
+                    <h2 style={{ fontSize: "22px", fontWeight: 700, color: C.text, letterSpacing: "-0.02em", margin: "4px 0 0" }}>
+                      Billing &amp; Refund Policy
+                    </h2>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: "14.5px", color: C.textMuted, lineHeight: 1.65, maxWidth: "680px", margin: 0 }}>
+                  Your 7-day free trial includes full access to your selected plan. Review the cancellation window, automatic renewal policies, and refund terms before completing your subscription.
+                </p>
+              </div>
+
+              <div>
+                <div className="sx-policy-cue">
+                  <span className="sx-policy-cue-arrow">↓</span>
+                  <span>Hover over this card to view full policy &amp; agreement</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Infos drawer: slides up on hover with solid white background */}
+            <div className="sx-policy-infos">
+              <div className="sx-policy-infos-header">
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <div style={{
+                    flexShrink: 0,
+                    width: "36px", height: "36px",
+                    borderRadius: "10px",
+                    background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(99,102,241,0.1))",
+                    border: `1px solid ${C.blueLight}`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M9 11V7m0 8h.01M17 10A7 7 0 1 1 3 10a7 7 0 0 1 14 0Z"
+                        stroke={C.blue} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: C.blue, margin: 0 }}>
+                      Before you proceed
+                    </p>
+                    <h3 style={{ fontSize: "19px", fontWeight: 700, color: C.text, letterSpacing: "-0.02em", margin: "2px 0 0" }}>
+                      Billing &amp; Refund Policy
+                    </h3>
+                  </div>
+                </div>
+                <span className="sx-policy-flag">7-Day Free Trial • 6 Clauses</span>
+              </div>
+
+              <div className="sx-policy-reveal-txt">
+                {/* Summary callout */}
+                <div style={{
+                  background: "rgba(37,99,235,0.06)",
+                  border: `1px solid ${C.blueLight}`,
+                  borderRadius: "12px",
+                  padding: "16px 20px",
+                  marginBottom: "24px",
+                }}>
+                  <p style={{ fontSize: "14px", color: C.textBody, lineHeight: 1.65, margin: 0 }}>
+                    Your 7-day free trial includes full access to your selected plan. If you don&apos;t cancel before
+                    Day&nbsp;8, billing begins automatically for the plan you chose. No refunds are issued after the
+                    trial period ends or once a subscription is active — to avoid the next charge, simply cancel
+                    before your renewal date.
+                  </p>
+                </div>
+
+                {/* Divider with label */}
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                  <div style={{ flex: 1, height: "1px", background: C.border }} />
+                  <span style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: C.textSubtle, whiteSpace: "nowrap" }}>
+                    Terms you&apos;re agreeing to
+                  </span>
+                  <div style={{ flex: 1, height: "1px", background: C.border }} />
+                </div>
+
+                {/* Numbered terms */}
+                <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "13px" }}>
+                  {[
+                    "The 7-day free trial begins on your signup date and includes full access to your selected plan\u2019s features. Cancel anytime in this window at no charge.",
+                    "If not cancelled, billing for your plan (at the discounted price, if a promo code was applied) begins automatically on Day\u00a08.",
+                    "Quarterly, Half-Yearly, and Yearly plans renew automatically at the end of each cycle at the full price, unless cancelled before the renewal date.",
+                    "Promo codes apply to your first billing cycle only, have no cash value, and cannot be exchanged for cash.",
+                    "No refunds are provided after the free trial period has ended or once a subscription is active. Cancel before your next renewal date to stop future billing.",
+                    "One free trial is permitted per customer (per email, phone number, or payment method).",
+                  ].map((term, i) => (
+                    <li key={i} style={{ display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                      <span style={{
+                        flexShrink: 0,
+                        width: "22px", height: "22px",
+                        borderRadius: "6px",
+                        background: "rgba(37,99,235,0.1)",
+                        border: `1px solid ${C.blueLight}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "11px", fontWeight: 700, color: C.blue, lineHeight: 1,
+                        marginTop: "1px",
+                      }}>
+                        {i + 1}
+                      </span>
+                      <p style={{ fontSize: "13.5px", color: C.textMuted, lineHeight: 1.65, margin: 0 }}>{term}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>

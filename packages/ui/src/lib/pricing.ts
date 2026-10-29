@@ -6,23 +6,35 @@ export const PRICING_IS_PLACEHOLDER = false;
 export const PRICING_NOTE =
   "Career Services is priced per application cycle. We confirm the exact application cap for your tier before we start.";
 
+export interface PricingOption {
+  label: string;
+  price: string;
+}
+
 export interface PricingTier {
   slug: string;
   name: string;
   blurb: string;
-  priceFrom: string; // e.g. "$199"
+  priceFrom: string; // lowest price label, used as fallback
   billing: string; // e.g. "per cycle"
+  pricingOptions?: PricingOption[]; // tier-level pricing breakdown table
   features: string[];
   highlighted?: boolean;
 }
 
 export const PRICING_TIERS: PricingTier[] = [
   {
-    slug: "quarterly",
-    name: "Quarterly",
+    slug: "silver",
+    name: "Silver",
     blurb: "Managed applications and a tailored resume to get moving.",
-    priceFrom: "999",
-    billing: "quarterly",
+    priceFrom: "$249",
+    billing: "from",
+    pricingOptions: [
+      { label: "Basic",       price: "$249"   },
+      { label: "Quarterly",   price: "$649"   },
+      { label: "Half-Yearly", price: "$1,099" },
+      { label: "Yearly",      price: "$1,699" },
+    ],
     features: [
       "Managed applications (up to your cycle cap)",
       "Resume tailoring",
@@ -32,28 +44,40 @@ export const PRICING_TIERS: PricingTier[] = [
     ],
   },
   {
-    slug: "half-yearly",
-    name: "Half Yearly",
+    slug: "gold",
+    name: "Gold",
     blurb: "Higher volume, plus profile and interview prep.",
-    priceFrom: "1499",
-    billing: "half yearly",
+    priceFrom: "$349",
+    billing: "from",
+    pricingOptions: [
+      { label: "Basic",       price: "$349"   },
+      { label: "Quarterly",   price: "$899"   },
+      { label: "Half-Yearly", price: "$1,499" },
+      { label: "Yearly",      price: "$2,399" },
+    ],
     features: [
-      "Everything in Quarterly, at higher volume",
+      "Everything in Silver, at higher volume",
       "LinkedIn optimization",
-      "2 mock interviews",
+      "Human-assisted resume / JD matching",
     ],
     highlighted: true,
   },
   {
-    slug: "yearly",
-    name: "Yearly",
+    slug: "platinum",
+    name: "Platinum",
     blurb: "Our most hands-on tier, with coaching and priority support.",
-    priceFrom: "2199",
-    billing: "yearly",
+    priceFrom: "$449",
+    billing: "from",
+    pricingOptions: [
+      { label: "Basic",       price: "$449"   },
+      { label: "Quarterly",   price: "$1,099" },
+      { label: "Half-Yearly", price: "$1,899" },
+      { label: "Yearly",      price: "$2,999" },
+    ],
     features: [
-      "Everything in Half Yearly",
-      "AI-assisted resume / JD matching",
-      "Interview coaching",
+      "Everything in Gold",
+      "Interview prep materials",
+      "Interview assistance",
       "Priority handling",
     ],
   },
@@ -121,9 +145,9 @@ export const COMPARISON: ComparisonRow[] = [
   { feature: "Weekly report", tiers: [true, true, true] },
   { feature: "Dedicated operator + QA", tiers: [true, true, true] },
   { feature: "LinkedIn optimization", tiers: [false, true, true] },
-  { feature: "Mock interviews", tiers: [false, "2 sessions", "Included"] },
-  { feature: "AI-assisted resume / JD matching", tiers: [false, false, true] },
-  { feature: "Interview coaching", tiers: [false, false, true] },
+  { feature: "Human-assisted resume / JD matching", tiers: [false, true, true] },
+  { feature: "Interview prep materials", tiers: [false, false, true] },
+  { feature: "Interview assistance", tiers: [false, false, true] },
   { feature: "Priority handling", tiers: [false, false, true] },
 ];
 
@@ -205,6 +229,11 @@ export const BUSINESS_ENGAGEMENTS: EngagementModel[] = [
 export const BUSINESS_PRICING_NOTE =
   "Every business engagement is quoted after a short consultation, so the scope and price match what you actually need.";
 
+export interface PricingFaq {
+  q: string;
+  a: string;
+}
+
 export const BUSINESS_FAQ: PricingFaq[] = [
   {
     q: "How is business work priced?",
@@ -227,11 +256,6 @@ export const BUSINESS_FAQ: PricingFaq[] = [
     a: "Book a free consultation. We'll discuss your needs, recommend project or retainer, and send a tailored quote.",
   },
 ];
-
-export interface PricingFaq {
-  q: string;
-  a: string;
-}
 
 export const PRICING_FAQ: PricingFaq[] = [
   {
