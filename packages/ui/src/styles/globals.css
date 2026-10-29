@@ -23,27 +23,135 @@
   --sx-nav-bg: rgba(255, 255, 255, 0.72);
   --sx-selection: rgba(37, 99, 235, 0.18);
 }
-:root[data-theme="dark"] {
+/* Solvrex dark theme: "Restrained" (based on the LeetCode-style background) */
+:root[data-theme="dark"],
+.dark {
   color-scheme: dark;
-  --sx-base: #0a0a0a;
-  --sx-bg: #0d0e14;
-  --sx-bg-surface: #13151e;
-  --sx-bg-raised: #171a26;
-  --sx-bg-footer: #0a0b11;
-  --sx-border: #1e2235;
-  --sx-border-strong: #2a2f4a;
-  --sx-text: #f5f5f7;
-  --sx-text-body: #c4c7d6;
-  --sx-text-muted: #a0a3b8;
-  --sx-text-subtle: #8a8da5;
-  --sx-blue: #4d7cff;
-  --sx-blue-hover: #3b6aff;
-  --sx-blue-light: #7a9dff;
-  --sx-glow: 0.4;
-  --sx-aurora-mult: 0.2;
-  --sx-nav-bg: rgba(13, 14, 20, 0.72);
-  --sx-selection: rgba(77, 124, 255, 0.25);
+
+  /* Surfaces */
+  --bg: #151518;              /* page background, neutral graphite */
+  --surface: #1a1a1e;         /* cards and panels */
+  --line: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --text: #f3f3f5;
+  --text-muted: #a3a4ad;
+  --text-subtle: #8e8f99;
+
+  /* Brand accent (blue, kept from the existing site) */
+  --accent: #3366ff;          /* primary button */
+  --accent-text-a: #9db8ff;   /* gradient start for highlighted text */
+  --accent-text-b: #5b84ff;   /* gradient end, eyebrow labels, ghost button */
+  --accent-glow: rgba(51, 102, 255, 0.6);
+
+  /* Plum, used only as a restrained accent (card edge), never as a background glow */
+  --plum: #7a30a0;
+
+  /* Solvrex theme system mappings */
+  --sx-base: var(--bg);
+  --sx-bg: var(--bg);
+  --sx-bg-surface: var(--surface);
+  --sx-bg-raised: #1f1f25;
+  --sx-bg-footer: #121215;
+  --sx-border: var(--line);
+  --sx-border-strong: rgba(255, 255, 255, 0.14);
+  --sx-text: var(--text);
+  --sx-text-body: #d8d8de;
+  --sx-text-muted: var(--text-muted);
+  --sx-text-subtle: var(--text-subtle);
+  --sx-blue: var(--accent);
+  --sx-blue-hover: #254edb;
+  --sx-blue-light: var(--accent-text-b);
+  --sx-glow: 0.15;
+  --sx-aurora-mult: 0.15;
+  --sx-nav-bg: rgba(21, 21, 24, 0.78);
+  --sx-selection: rgba(51, 102, 255, 0.28);
 }
+
+/* Background: faint checker texture with an edge vignette */
+:root[data-theme="dark"] body,
+.dark body,
+:root[data-theme="dark"] .sx-bg,
+.dark .sx-bg {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+    repeating-conic-gradient(rgba(255, 255, 255, 0.018) 0 25%, transparent 0 50%);
+  background-size: 100% 100%, 48px 48px;
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .sx-bg::before,
+:root[data-theme="dark"] .sx-bg::after {
+  opacity: 0.2;
+}
+
+/* Highlighted headline text: blue gradient */
+.dark .hero h1 em,
+:root[data-theme="dark"] .hero h1 em,
+.dark h1 em,
+:root[data-theme="dark"] h1 em,
+.dark .fx-softblur,
+:root[data-theme="dark"] .fx-softblur {
+  background: linear-gradient(92deg, var(--accent-text-a) 0%, var(--accent-text-b) 60%, #6a7cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+/* Primary button */
+.dark .btn-primary,
+:root[data-theme="dark"] .btn-primary,
+.dark .cx-btn[style*="background-color: var(--sx-blue)"],
+:root[data-theme="dark"] .cx-btn[style*="background-color: var(--sx-blue)"] {
+  background: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 30px -8px var(--accent-glow) !important;
+}
+
+/* Secondary button */
+.dark .btn-ghost,
+:root[data-theme="dark"] .btn-ghost {
+  background: transparent;
+  color: var(--accent-text-b);
+  border: 1px solid rgba(91, 132, 255, 0.55);
+}
+
+/* Card: gradient edge, no halo */
+.dark .card,
+:root[data-theme="dark"] .card {
+  position: relative;
+  background: var(--surface);
+  border-radius: 16px;
+}
+.dark .card::before,
+:root[data-theme="dark"] .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(91, 132, 255, 0.55), rgba(122, 48, 160, 0.28) 60%, rgba(255, 255, 255, 0.06));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Typography and dividers */
+.dark .eyebrow,
+:root[data-theme="dark"] .eyebrow,
+.dark .card-label,
+:root[data-theme="dark"] .card-label { color: var(--accent-text-b) !important; }
+
+.dark .lede,
+:root[data-theme="dark"] .lede,
+.dark nav,
+:root[data-theme="dark"] nav { color: var(--text-muted); }
+
+.dark header,
+:root[data-theme="dark"] header { border-bottom: 1px solid var(--line); }
 
 /* Logo: black-on-white art shows as-is on light; invert + screen on dark. */
 .sx-logo { filter: none; mix-blend-mode: normal; }

@@ -51,7 +51,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(localStorage.getItem('solvrex-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}",
+              "try{if(localStorage.getItem('solvrex-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.add('dark')}}catch(e){}",
           }}
         />
         <div className="sx-bg" aria-hidden="true" />
