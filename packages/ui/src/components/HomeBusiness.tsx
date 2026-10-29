@@ -732,7 +732,7 @@ export function HomeBusiness() {
                 <div className="hx-area-art">
                   <Image
                     className="hx-area-photo"
-                    src={`/business/${area.image}.jpg`}
+                    src={`/business/${area.image}.jpg?v=20261029`}
                     alt=""
                     width={640}
                     height={420}
