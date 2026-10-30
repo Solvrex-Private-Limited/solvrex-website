@@ -6,6 +6,14 @@
     "apps/*",
     "packages/*"
   ],
+  "scripts": {
+    "dev": "npm run dev -w apps/us",
+    "dev:us": "npm run dev -w apps/us",
+    "dev:in": "npm run dev -w apps/in",
+    "build": "npm run build --workspaces",
+    "build:us": "npm run build -w apps/us",
+    "build:in": "npm run build -w apps/in"
+  },
   "dependencies": {
     "three": "^0.186.1"
   },

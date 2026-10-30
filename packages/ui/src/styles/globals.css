@@ -118,12 +118,22 @@
   border: 1px solid rgba(91, 132, 255, 0.55);
 }
 
-/* Card: gradient edge, no halo */
+/* Card: gradient edge & subtle luminous glow (dark mode only) */
 .dark .card,
 :root[data-theme="dark"] .card {
   position: relative;
   background: var(--surface);
   border-radius: 16px;
+  box-shadow:
+    0 0 24px -4px rgba(51, 102, 255, 0.16),
+    0 12px 32px -8px rgba(0, 0, 0, 0.65);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+}
+.dark .card:hover,
+:root[data-theme="dark"] .card:hover {
+  box-shadow:
+    0 0 32px 0px rgba(91, 132, 255, 0.28),
+    0 16px 40px -8px rgba(0, 0, 0, 0.75);
 }
 .dark .card::before,
 :root[data-theme="dark"] .card::before {
@@ -137,6 +147,103 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* Subtle dark-mode glow on UI cards across the site */
+.dark .sx-normal-card,
+:root[data-theme="dark"] .sx-normal-card,
+.dark .sx-cmp-card,
+:root[data-theme="dark"] .sx-cmp-card,
+.dark .sx-cmp-mobile-card,
+:root[data-theme="dark"] .sx-cmp-mobile-card,
+.dark .sx-faq-card,
+:root[data-theme="dark"] .sx-faq-card,
+.dark .sx-policy-card,
+:root[data-theme="dark"] .sx-policy-card,
+.dark .hx-cardlink,
+:root[data-theme="dark"] .hx-cardlink,
+.dark .hx-area-card,
+:root[data-theme="dark"] .hx-area-card,
+.dark .sx-rolecard,
+:root[data-theme="dark"] .sx-rolecard,
+.dark .services-stack-card,
+:root[data-theme="dark"] .services-stack-card,
+.dark .sx-service-feature-card,
+:root[data-theme="dark"] .sx-service-feature-card,
+.dark .sx-service-outcome-card,
+:root[data-theme="dark"] .sx-service-outcome-card,
+.dark .sx-capability-card,
+:root[data-theme="dark"] .sx-capability-card,
+.dark .sx-book-form-card,
+:root[data-theme="dark"] .sx-book-form-card,
+.dark .holo-card,
+:root[data-theme="dark"] .holo-card,
+.dark [class*="RoleCard_card"],
+:root[data-theme="dark"] [class*="RoleCard_card"],
+.dark [class*="StayConnected_card"],
+:root[data-theme="dark"] [class*="StayConnected_card"] {
+  box-shadow:
+    0 0 20px -3px rgba(51, 102, 255, 0.14),
+    0 8px 24px -6px rgba(0, 0, 0, 0.6) !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.dark .sx-normal-card:hover,
+:root[data-theme="dark"] .sx-normal-card:hover,
+.dark .sx-cmp-card:hover,
+:root[data-theme="dark"] .sx-cmp-card:hover,
+.dark .sx-faq-card:hover,
+:root[data-theme="dark"] .sx-faq-card:hover,
+.dark .sx-policy-card:hover,
+:root[data-theme="dark"] .sx-policy-card:hover,
+.dark .hx-cardlink:hover,
+:root[data-theme="dark"] .hx-cardlink:hover,
+.dark .hx-area-card:hover,
+:root[data-theme="dark"] .hx-area-card:hover,
+.dark .sx-rolecard:hover,
+:root[data-theme="dark"] .sx-rolecard:hover,
+.dark .services-stack-card:hover,
+:root[data-theme="dark"] .services-stack-card:hover,
+.dark .sx-service-feature-card:hover,
+:root[data-theme="dark"] .sx-service-feature-card:hover,
+.dark .sx-capability-card:hover,
+:root[data-theme="dark"] .sx-capability-card:hover,
+.dark [class*="RoleCard_card"]:hover,
+:root[data-theme="dark"] [class*="RoleCard_card"]:hover {
+  box-shadow:
+    0 0 32px -1px rgba(91, 132, 255, 0.3),
+    0 16px 40px -8px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Highlighted Gold pricing tier extra prestige glow in dark mode */
+.dark .sx-normal-card-highlighted,
+:root[data-theme="dark"] .sx-normal-card-highlighted {
+  box-shadow:
+    0 0 28px -1px rgba(51, 102, 255, 0.28),
+    0 0 10px 0px rgba(122, 48, 160, 0.22),
+    0 12px 36px -6px rgba(0, 0, 0, 0.7) !important;
+}
+.dark .sx-normal-card-highlighted:hover,
+:root[data-theme="dark"] .sx-normal-card-highlighted:hover {
+  box-shadow:
+    0 0 42px 2px rgba(51, 102, 255, 0.42),
+    0 0 16px 1px rgba(122, 48, 160, 0.32),
+    0 20px 48px -6px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Ambient bubbles: Light mode ONLY (hide completely in dark mode) */
+:root[data-theme="dark"] .sx-floating-bubbles,
+.dark .sx-floating-bubbles,
+:root[data-theme="dark"] .sx-floating-bubble,
+.dark .sx-floating-bubble,
+:root[data-theme="dark"] [class*="BubbleBackground_container"],
+.dark [class*="BubbleBackground_container"],
+:root[data-theme="dark"] [class*="BubbleBackground_bubble"],
+.dark [class*="BubbleBackground_bubble"],
+:root[data-theme="dark"] .sx-book-bubble,
+.dark .sx-book-bubble {
+  display: none !important;
+  animation: none !important;
 }
 
 /* Typography and dividers */
