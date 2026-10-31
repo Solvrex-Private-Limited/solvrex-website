@@ -364,92 +364,76 @@ button {
   }
 }
 
-/* Sticky service cards stay within this section; it intentionally has no
-   overflow clipping so the cards use the page scrollport. */
-.services-stack {
-  padding-bottom: 0;
+/* Service cards stack section */
+.services-stack-section {
+  position: relative;
+  padding: 56px 0 72px;
 }
 
-.services-stack::after {
-  content: "";
-  display: block;
-  height: max(24px, calc(100vh - 472px - 330px));
+.services-stack {
+  position: relative;
+  min-height: 350px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .services-stack-card {
-  position: sticky;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 330px;
-  margin-bottom: 28px;
   padding: 40px 48px;
   border: 1px solid rgb(255 255 255 / 22%);
   border-radius: 16px;
-  background: var(--sx-blue-hover);
+  background: var(--sx-blue);
   box-shadow: 0 18px 48px rgb(7 21 47 / 20%);
   color: #f5f6f8;
   text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  opacity: var(--card-opacity, 0);
+  pointer-events: none;
+  transform: translate3d(0, var(--card-y, 22px), 0) scale(var(--card-scale, 0.96));
+  transform-origin: center center;
+  transition:
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 250ms ease,
+    color 180ms ease;
+  will-change: transform, opacity;
+  user-select: none;
 }
 
 :root[data-theme="dark"] .services-stack-card {
   background: color-mix(in srgb, var(--sx-blue-hover) 80%, #07152f);
 }
 
-.services-stack-card:nth-child(1) {
-  top: 88px;
-  z-index: 2;
+/* Stacking order preserves physical deck order so earlier cards lift up over subsequent cards */
+.services-stack-card:nth-child(1) { z-index: 30; }
+.services-stack-card:nth-child(2) { z-index: 20; }
+.services-stack-card:nth-child(3) { z-index: 10; }
+
+.services-stack-card[data-card-state="active"] {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.services-stack-card:nth-child(2) {
-  top: 280px;
-  z-index: 3;
+.services-stack-card[data-card-state="upcoming"] {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.services-stack-card:nth-child(3) {
-  top: 472px;
-  z-index: 4;
-  margin-bottom: 0;
-}
-
-.services-stack[data-active-card="2"] .services-stack-card:nth-child(1),
-.services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) {
-  border-color: #93c5fd;
-  background: #bfdbfe;
-  box-shadow: 0 18px 48px rgb(37 99 235 / 14%);
-  color: #17346b;
-}
-
-.services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-title,
-.services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-title,
-.services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-description,
-.services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-description,
-.services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-number,
-.services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-number {
-  color: #17346b;
-}
-
-:root[data-theme="dark"] .services-stack[data-active-card="2"] .services-stack-card:nth-child(1),
-:root[data-theme="dark"] .services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) {
-  border-color: color-mix(in srgb, var(--sx-blue) 55%, transparent);
-  background: color-mix(in srgb, var(--sx-blue) 32%, var(--sx-bg));
-  box-shadow: 0 18px 48px rgb(0 0 0 / 24%);
-  color: #f5f8ff;
-}
-
-:root[data-theme="dark"] .services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-title,
-:root[data-theme="dark"] .services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-title,
-:root[data-theme="dark"] .services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-description,
-:root[data-theme="dark"] .services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-description,
-:root[data-theme="dark"] .services-stack[data-active-card="2"] .services-stack-card:nth-child(1) .services-stack-number,
-:root[data-theme="dark"] .services-stack[data-active-card="3"] .services-stack-card:nth-child(-n + 2) .services-stack-number {
-  color: #f5f8ff;
+.services-stack-card[data-card-state="past"] {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .services-stack-card:hover {
   border-color: rgb(255 255 255 / 38%);
-  background: var(--sx-blue);
+  background: var(--sx-blue-hover);
   box-shadow: 0 22px 56px rgb(7 21 47 / 30%);
 }
 
@@ -495,54 +479,38 @@ button {
 }
 
 @media (min-width: 769px) and (max-height: 850px) {
-  .services-stack::after {
-    height: max(24px, calc(100vh - 352px - 330px));
-  }
-
-  .services-stack-card:nth-child(2) { top: 220px; }
-  .services-stack-card:nth-child(3) { top: 352px; }
+  .services-stack-card,
+  .services-stack { min-height: 320px; }
 }
 
 @media (max-width: 768px) {
-  .services-stack::after {
-    height: max(24px, calc(100vh - 424px - 280px));
+  .services-stack {
+    min-height: 290px;
   }
 
   .services-stack-card {
     justify-content: flex-start;
-    min-height: 280px;
-    margin-bottom: 20px;
+    min-height: 290px;
     padding: 32px;
     border-radius: 14px;
-  }
-
-  .services-stack-card:nth-child(1) { top: 76px; }
-  .services-stack-card:nth-child(2) { top: 250px; }
-  .services-stack-card:nth-child(3) {
-    top: 424px;
-    margin-bottom: 0;
   }
 }
 
 @media (max-width: 480px) {
-  .services-stack::after {
-    height: max(24px, calc(100vh - 512px - 260px));
+  .services-stack {
+    min-height: 270px;
   }
 
   .services-stack-card {
-    min-height: 260px;
+    min-height: 270px;
     padding: 28px 24px;
   }
-
-  .services-stack-card:nth-child(1) { top: 72px; }
-  .services-stack-card:nth-child(2) { top: 292px; }
-  .services-stack-card:nth-child(3) { top: 512px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .services-stack-card {
-    position: static;
     transition: none;
+    will-change: auto;
   }
 }
 
