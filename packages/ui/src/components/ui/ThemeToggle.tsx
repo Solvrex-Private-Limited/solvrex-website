@@ -14,8 +14,13 @@ export function ThemeToggle() {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     const root = document.documentElement;
-    if (next === "dark") root.setAttribute("data-theme", "dark");
-    else root.removeAttribute("data-theme");
+    if (next === "dark") {
+      root.setAttribute("data-theme", "dark");
+      root.classList.add("dark");
+    } else {
+      root.removeAttribute("data-theme");
+      root.classList.remove("dark");
+    }
     try {
       localStorage.setItem("solvrex-theme", next);
     } catch {
