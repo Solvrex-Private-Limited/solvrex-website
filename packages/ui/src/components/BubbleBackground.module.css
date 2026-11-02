@@ -6,6 +6,11 @@
   z-index: 0;
 }
 
+:global(:root[data-theme="dark"]) .container,
+:global(.dark) .container {
+  display: none !important;
+}
+
 .bubble {
   position: absolute;
   bottom: -150px; /* start off-screen at the bottom */
