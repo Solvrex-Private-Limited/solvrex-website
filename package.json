@@ -12,7 +12,8 @@
     "dev:in": "npm run dev -w apps/in",
     "build": "npm run build --workspaces",
     "build:us": "npm run build -w apps/us",
-    "build:in": "npm run build -w apps/in"
+    "build:in": "npm run build -w apps/in",
+    "clean": "node -e \"const fs = require('fs'); ['apps/us/.next', 'apps/in/.next'].forEach(p => fs.rmSync(p, { recursive: true, force: true })); console.log('Cleaned .next caches');\""
   },
   "dependencies": {
     "three": "^0.186.1"
