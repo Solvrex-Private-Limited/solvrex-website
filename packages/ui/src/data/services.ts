@@ -74,18 +74,18 @@ export const SERVICES: Service[] = [
     ],
     h1: "Independent guidance on technology decisions.",
     overview:
-      "We advise organizations on technology decisions — platform evaluation, architecture guidance, and implementation planning. We have no vendor affiliations.",
+      "Independent guidance on technology decisions — technology assessment, architecture guidance, platform evaluation, and implementation planning. We have no vendor affiliations.",
     typicalEngagements: [
-      "Technology assessment and evaluation",
-      "Platform selection guidance",
-      "Architecture review",
-      "Implementation planning",
-      "Automation opportunities",
+      "Technology & Architecture Assessment",
+      "Platform & Vendor Evaluation",
+      "Cloud & Infrastructure Strategy",
+      "Technical Roadmap & Planning",
+      "Implementation & Migration Advisory",
     ],
     expectedOutcomes: [
-      "Informed technology decisions",
-      "Reduced implementation risk",
-      "Clearer technical direction",
+      "Informed Technology Decisions",
+      "Reduced Implementation Risk",
+      "Clearer Technical Direction",
     ],
   },
   {

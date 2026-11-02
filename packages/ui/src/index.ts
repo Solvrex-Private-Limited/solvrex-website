@@ -27,6 +27,13 @@ export { HomeBusiness } from "./components/HomeBusiness";
 // page bodies (shared across both apps)
 export { ServicesPage } from "./components/ServicesPage";
 export { ServiceDetailPage } from "./components/ServiceDetailPage";
+export { BusinessEngagementCards } from "./components/BusinessEngagementCards";
+export { ConnectedTechnologyNetwork } from "./components/ConnectedTechnologyNetwork";
+export { ConnectedCareerNetwork } from "./components/ConnectedCareerNetwork";
+export { DigitalWaveCanvas } from "./components/DigitalWaveCanvas";
+export { BusinessOutcomeFlipCards } from "./components/BusinessOutcomeFlipCards";
+export { BusinessEngagementPillars } from "./components/BusinessEngagementPillars";
+export { HeroLivingDashboard } from "./components/HeroLivingDashboard";
 export { CareersPage } from "./components/CareersPage";
 export { OpenRoles } from "./components/OpenRoles";
 export { RoleCard } from "./components/RoleCard";
