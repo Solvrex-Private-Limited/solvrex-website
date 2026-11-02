@@ -8,6 +8,10 @@ import { Reveal } from "./ui/Reveal";
 import { Aurora, type AuroraVariant } from "./ui/Aurora";
 import { PrimaryLink, ArrowRight } from "./ui/PrimaryLink";
 import { FloatingBubbles } from "./ui/FloatingBubbles";
+import { BusinessEngagementCards } from "./BusinessEngagementCards";
+import { BusinessOutcomeFlipCards } from "./BusinessOutcomeFlipCards";
+import { BusinessEngagementPillars } from "./BusinessEngagementPillars";
+import { HeroLivingDashboard } from "./HeroLivingDashboard";
 
 const AURORA_BY_SLUG: Record<string, AuroraVariant> = {
   "business-enablement": "business",
@@ -19,6 +23,19 @@ const RESOURCE_LINK_BY_SLUG: Record<string, string> = {
   "business-enablement": "Business resources",
   "technology-consulting": "Technology resources",
   "career-services": "Career resources",
+};
+
+const ENGAGEMENTS_SUBTITLE_BY_SLUG: Record<string, string> = {
+  "business-enablement": "Focused, practical projects configured to your business stage and operational needs.",
+  "technology-consulting": "Focused, practical engagements configured to your architecture, platform, and operational needs.",
+  "career-services":
+    "Personalized career support to strengthen your professional profile, navigate job opportunities, and move confidently toward your next career goal.",
+};
+
+const OUTCOMES_SUBTITLE_BY_SLUG: Record<string, string> = {
+  "business-enablement": "Clear, measurable shifts in your digital footprint and day-to-day workflow.",
+  "technology-consulting": "Clearer technology decisions, reduced implementation risks, and a stronger technical foundation for growth.",
+  "career-services": "Clear, measurable shifts in your career positioning and application trajectory.",
 };
 
 // Approved capability highlights for Service 01 (Business Enablement)
@@ -44,7 +61,7 @@ const CAPABILITY_PILLARS = [
 ];
 
 // Curated icons for Typical Engagements
-function EngagementIcon({ index }: { index: number }) {
+export function EngagementIcon({ index }: { index: number }) {
   if (index === 0) {
     // Website Development & Maintenance (Browser / Code window)
     return (
@@ -93,8 +110,6 @@ function EngagementIcon({ index }: { index: number }) {
 }
 
 export function ServiceDetailPage({ service }: { service: Service }) {
-  const isBusiness = service.slug === "business-enablement";
-
   return (
     <main className="sx-service-detail" data-service={service.slug}>
       <FloatingBubbles />
@@ -181,93 +196,10 @@ export function ServiceDetailPage({ service }: { service: Service }) {
               </Reveal>
             </div>
 
-            {/* Right Column: Premium Interactive Website / Dashboard Mockup Visual */}
+            {/* Right Column: Premium Interactive Website / Living Dashboard Visual */}
             <Reveal delay={250}>
               <div className="sx-service-detail-visual" aria-hidden="true">
-                <div className="sx-mockup-frame">
-                  {/* Browser chrome header */}
-                  <div className="sx-mockup-browser-bar">
-                    <div className="sx-mockup-traffic-lights">
-                      <span className="sx-tl-dot sx-tl-red" />
-                      <span className="sx-tl-dot sx-tl-amber" />
-                      <span className="sx-tl-dot sx-tl-green" />
-                    </div>
-                    <div className="sx-mockup-address-bar">
-                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <rect x="3" y="7" width="10" height="7" rx="1.5" />
-                        <path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7" />
-                      </svg>
-                      <span>client-platform.solvrex.com</span>
-                    </div>
-                    <div className="sx-mockup-chip">Mockup Preview</div>
-                  </div>
-
-                  {/* Browser preview body: Modern web platform interface */}
-                  <div className="sx-mockup-body">
-                    {/* Mockup sub-navbar */}
-                    <div className="sx-mockup-nav">
-                      <div className="sx-mockup-logo-mark" />
-                      <div className="sx-mockup-nav-links">
-                        <span className="sx-mockup-nav-line active" />
-                        <span className="sx-mockup-nav-line" />
-                        <span className="sx-mockup-nav-line" />
-                      </div>
-                      <div className="sx-mockup-pill-btn">Launch</div>
-                    </div>
-
-                    {/* Mockup hero card inside website */}
-                    <div className="sx-mockup-hero-card">
-                      <div className="sx-mockup-tag">Digital Enablement</div>
-                      <div className="sx-mockup-hero-title" />
-                      <div className="sx-mockup-hero-sub" />
-                      <div className="sx-mockup-hero-actions">
-                        <div className="sx-mockup-btn-primary" />
-                        <div className="sx-mockup-btn-secondary" />
-                      </div>
-                    </div>
-
-                    {/* Mockup metrics / analytics grid */}
-                    <div className="sx-mockup-dashboard-grid">
-                      <div className="sx-mockup-metric-card">
-                        <div className="sx-mockup-metric-header">
-                          <span className="sx-mockup-metric-label">Benchmark Target</span>
-                          <span className="sx-mockup-trend-up">90+</span>
-                        </div>
-                        <div className="sx-mockup-sparkline">
-                          <svg viewBox="0 0 100 24" className="sx-spark-svg">
-                            <path d="M0 18 Q20 16 35 12 T70 8 T100 2" fill="none" stroke="var(--sx-blue)" strokeWidth="2.5" />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="sx-mockup-metric-card">
-                        <div className="sx-mockup-metric-header">
-                          <span className="sx-mockup-metric-label">SEO Visibility</span>
-                          <span className="sx-mockup-trend-badge">Indexed</span>
-                        </div>
-                        <div className="sx-mockup-progress-bar">
-                          <div className="sx-mockup-progress-fill" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Floating highlight badge */}
-                    <div className="sx-mockup-floating-pill">
-                      <div className="sx-floating-avatar-check">✓</div>
-                      <div className="sx-floating-pill-text">
-                        <strong>Web Platform & SEO</strong>
-                        <span>Engineered for Reliability</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="sx-mockup-caption">
-                  Illustrative concept demo &mdash; sample interface architecture, not real-time analytics.
-                </p>
-
-                {/* Soft ambient back-glow behind the mockup */}
-                <div className="sx-service-visual-glow" aria-hidden="true" />
+                <HeroLivingDashboard service={service} />
               </div>
             </Reveal>
           </div>
@@ -277,7 +209,12 @@ export function ServiceDetailPage({ service }: { service: Service }) {
       {/* ============================================================
           TYPICAL ENGAGEMENTS: Refined Cards with Icons & Smooth Hover
           ============================================================ */}
-      <section className="sx-service-detail-content" aria-label="Service engagements">
+      <section
+        className="sx-service-detail-content"
+        id="typical-engagements"
+        style={{ scrollMarginTop: "100px" }}
+        aria-label="Service engagements"
+      >
         <div className="sx-container">
           <div className="sx-service-detail-section">
             <div className="sx-section-intro">
@@ -285,27 +222,16 @@ export function ServiceDetailPage({ service }: { service: Service }) {
                 <p className="sx-section-kicker" style={eyebrow}>What We Deliver</p>
                 <h2 className="sx-service-section-title">Typical Engagements</h2>
                 <p className="sx-section-sub">
-                  Focused, practical projects configured to your business stage and operational needs.
+                  {ENGAGEMENTS_SUBTITLE_BY_SLUG[service.slug] ?? "Focused, practical projects configured to your business stage and operational needs."}
                 </p>
               </Reveal>
             </div>
-
-            <div className="sx-service-feature-grid">
-              {service.typicalEngagements.map((item, index) => (
-                <Reveal key={item} delay={index * 75}>
-                  <div className="sx-service-feature-card">
-                    <div className="sx-service-feature-icon-wrap" aria-hidden="true">
-                      <EngagementIcon index={index} />
-                    </div>
-                    <div className="sx-service-feature-body">
-                      <span className="sx-service-feature-index">Engagement 0{index + 1}</span>
-                      <h3 className="sx-service-feature-title">{item}</h3>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
           </div>
+        </div>
+
+        <BusinessEngagementCards service={service} />
+
+        <div className="sx-container">
 
           {/* ============================================================
               EXPECTED OUTCOMES: Distinct, Premium Visual Treatment
@@ -316,74 +242,16 @@ export function ServiceDetailPage({ service }: { service: Service }) {
                 <p className="sx-section-kicker" style={eyebrow}>Real-World Impact</p>
                 <h2 className="sx-service-section-title">Expected Outcomes</h2>
                 <p className="sx-section-sub">
-                  Clear, measurable shifts in your digital footprint and day-to-day workflow.
+                  {OUTCOMES_SUBTITLE_BY_SLUG[service.slug] ?? "Clear, measurable shifts in your digital footprint and day-to-day workflow."}
                 </p>
               </Reveal>
             </div>
 
-            <div className="sx-service-outcomes-grid">
-              {service.expectedOutcomes.map((item, index) => (
-                <Reveal key={item} delay={index * 120}>
-                  <div className="sx-service-outcome-card">
-                    <div className="sx-outcome-card-bg-glow" aria-hidden="true" />
-                    <div className="sx-outcome-card-top">
-                      <div className="sx-outcome-badge">
-                        <span className="sx-outcome-badge-icon" aria-hidden="true">✓</span>
-                        <span>Key Deliverable</span>
-                      </div>
-                      <div className="sx-outcome-number">0{index + 1}</div>
-                    </div>
-                    <div className="sx-outcome-content">
-                      <h3 className="sx-outcome-title">{item}</h3>
-                      <p className="sx-outcome-desc">
-                        {index === 0 && "Custom-crafted, accessible web architecture with search presence that represents your brand at its best."}
-                        {index === 1 && "Fewer manual handoffs and clearer inquiry flow, saving team hours each week."}
-                        {index === 2 && "Maximized return on current software, email services, and analytics without unnecessary platform churn."}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <BusinessOutcomeFlipCards service={service} />
           </div>
-
-          {/* ============================================================
-              SELECTED WORK & CAPABILITIES: Only approved assets used
-              ============================================================ */}
-          {isBusiness && (
-            <div className="sx-service-detail-section sx-service-selected-work">
-              <div className="sx-section-intro">
-                <Reveal>
-                  <p className="sx-section-kicker" style={eyebrow}>Practice Architecture</p>
-                  <h2 className="sx-service-section-title">Core Engagement Pillars</h2>
-                  <p className="sx-section-sub">
-                    Structured modular delivery designed for small organizations and local enterprises.
-                  </p>
-                </Reveal>
-              </div>
-
-              <div className="sx-capability-grid">
-                {CAPABILITY_PILLARS.map((pillar, i) => (
-                  <Reveal key={pillar.headline} delay={i * 100}>
-                    <div className="sx-capability-card">
-                      <div className="sx-capability-badge">{pillar.category}</div>
-                      <h3 className="sx-capability-title">{pillar.headline}</h3>
-                      <p className="sx-capability-desc">{pillar.detail}</p>
-                      <ul className="sx-capability-list" aria-label={`${pillar.headline} deliverables`}>
-                        {pillar.deliverables.map((del) => (
-                          <li key={del}>
-                            <span className="sx-check-bullet" aria-hidden="true">→</span>
-                            <span>{del}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
+
+        <BusinessEngagementPillars service={service} />
       </section>
 
       {/* ============================================================
