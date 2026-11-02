@@ -731,54 +731,95 @@ const styles = `
       opacity: 1 !important;
     }
   }
-  /* ── Billing & Refund Policy Card (CodePen Slide & Reveal Hover Effect) ── */
-  .sx-policy-card {
+  /* ── Billing & Refund Policy (CodeFronts 3D Book Cover Open Card) ── */
+  .sx-book-container {
     position: relative;
-    max-width: 920px;
+    max-width: 960px;
     margin: 0 auto;
-    height: 580px;
+    min-height: 580px;
+    perspective: 2000px;
+  }
+  .sx-book {
+    position: relative;
+    width: 100%;
+    min-height: 580px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  /* Inside Page (Revealed upon opening the cover) */
+  .sx-book-inside {
+    position: relative;
+    width: 100%;
+    min-height: 580px;
+    background: var(--sx-bg-surface, #ffffff);
+    border: 2px solid ${C.border};
     border-radius: 20px;
-    overflow: hidden;
-    background: transparent;
-    border: 1px solid ${C.border};
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.5, 1.03),
-                box-shadow 0.4s cubic-bezier(0.17, 0.67, 0.5, 1.03),
-                border-color 0.3s ease;
-    cursor: pointer;
+    padding: 36px 44px 40px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    overflow-y: auto;
   }
-  :root[data-theme="dark"] .sx-policy-card,
-  .dark .sx-policy-card {
+  :root[data-theme="dark"] .sx-book-inside,
+  .dark .sx-book-inside {
+    background: #141720;
     border-color: rgba(91, 132, 255, 0.25);
-    box-shadow: 0 0 22px -3px rgba(51, 102, 255, 0.16), 0 8px 24px rgba(0, 0, 0, 0.5);
-  }
-  .sx-policy-card:hover {
-    transform: translateY(-4px);
-    border-color: ${C.blue};
-    /* Shadow effects to the base of the card */
-    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.16),
-                0 32px 64px -12px rgba(37, 99, 235, 0.26);
-  }
-  :root[data-theme="dark"] .sx-policy-card:hover,
-  .dark .sx-policy-card:hover {
-    border-color: rgba(91, 132, 255, 0.6);
-    box-shadow: 0 0 36px -2px rgba(51, 102, 255, 0.35),
-                0 20px 48px -10px rgba(0, 0, 0, 0.65),
-                0 32px 64px -12px rgba(37, 99, 235, 0.45);
+    box-shadow: 0 0 25px rgba(51, 102, 255, 0.12), 0 12px 32px rgba(0, 0, 0, 0.6);
   }
 
-  .sx-policy-thumb {
-    height: 230px;
-    position: relative;
-    padding: 36px 40px;
-    background: transparent;
+  /* Front Book Cover (Hinged 3D Rotation on the left spine) */
+  .sx-book-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--sx-bg-surface, #ffffff) 0%, var(--sx-bg-raised, #f8fafc) 100%);
+    border: 2px solid ${C.borderStrong};
+    border-left: 8px solid ${C.blue};
+    border-radius: 20px;
+    padding: 44px 48px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: opacity 0.35s ease;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.75s ease,
+                border-color 0.4s ease;
+    backface-visibility: hidden;
+    z-index: 5;
+    cursor: pointer;
   }
-  .sx-policy-card:hover .sx-policy-thumb {
-    opacity: 0.15;
+  :root[data-theme="dark"] .sx-book-cover,
+  .dark .sx-book-cover {
+    background: linear-gradient(135deg, #181d2a 0%, #0f1422 100%);
+    border-color: rgba(91, 132, 255, 0.35);
+    border-left-color: ${C.blue};
+    box-shadow: 0 0 30px rgba(51, 102, 255, 0.2), 0 16px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Hinged opening on hover */
+  .sx-book-container:hover .sx-book-cover {
+    transform: rotateY(-125deg);
+    box-shadow: 30px 20px 50px rgba(0, 0, 0, 0.28);
+    pointer-events: none;
+    border-color: ${C.blue};
+  }
+  :root[data-theme="dark"] .sx-book-container:hover .sx-book-cover {
+    box-shadow: 30px 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(37, 99, 235, 0.35);
+  }
+
+  .sx-book-spine-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(37, 99, 235, 0.2);
+    pointer-events: none;
   }
 
   .sx-policy-thumb-badge {
@@ -796,62 +837,23 @@ const styles = `
     border-radius: 999px;
   }
 
-  .sx-policy-cue {
+  .sx-book-cue {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
+    gap: 12px;
+    font-size: 13.5px;
     font-weight: 600;
-    color: ${C.textMuted};
-    letter-spacing: 0.02em;
-    padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px dashed ${C.borderStrong};
-    background: rgba(37, 99, 235, 0.03);
-    width: fit-content;
-    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-  }
-  .sx-policy-card:hover .sx-policy-cue {
     color: ${C.blue};
-    border-color: ${C.blue};
     background: ${accent.fill};
+    border: 1px solid ${accent.border};
+    padding: 12px 24px;
+    border-radius: 999px;
+    width: fit-content;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
-
-  .sx-policy-cue-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: ${C.blue};
-    color: #ffffff;
-    font-size: 12px;
-    transition: transform 0.3s ease;
-  }
-  .sx-policy-card:hover .sx-policy-cue-arrow {
-    transform: translateY(3px);
-  }
-
-  .sx-policy-infos {
-    position: relative;
-    height: 580px;
-    padding: 32px 40px 40px;
-    background: #ffffff;
-    border-top: 1px solid ${C.border};
-    border-radius: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    transition: transform 0.4s 0.15s cubic-bezier(0.17, 0.67, 0.5, 1.03);
-  }
-  :root[data-theme="dark"] .sx-policy-infos {
-    background: #0f1422;
-    border-top-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .sx-policy-card:hover .sx-policy-infos {
-    transform: translateY(-230px);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.06);
+  .sx-book-container:hover .sx-book-cue {
+    transform: translateX(4px);
   }
 
   .sx-policy-infos-header {
@@ -880,34 +882,32 @@ const styles = `
     white-space: nowrap;
   }
 
-  .sx-policy-reveal-txt {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03),
-                transform 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03);
-  }
-  .sx-policy-card:hover .sx-policy-reveal-txt {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   @media (max-width: 768px) {
-    .sx-policy-card {
-      height: auto !important;
-      overflow: visible !important;
+    .sx-book-container {
+      min-height: auto;
+      perspective: none;
+    }
+    .sx-book {
+      min-height: auto;
+      transform-style: flat;
+    }
+    .sx-book-cover {
+      position: relative;
+      height: auto;
+      transform: none !important;
+      border-radius: 20px 20px 0 0;
+      border-bottom: none;
+      padding: 28px 24px;
       cursor: default;
+      pointer-events: auto !important;
     }
-    .sx-policy-thumb {
-      display: none !important;
+    .sx-book-cover .sx-book-cue {
+      display: none;
     }
-    .sx-policy-infos {
-      height: auto !important;
-      transform: none !important;
-      padding: 24px 20px !important;
-    }
-    .sx-policy-reveal-txt {
-      opacity: 1 !important;
-      transform: none !important;
+    .sx-book-inside {
+      border-radius: 0 0 20px 20px;
+      padding: 24px 20px;
+      min-height: auto;
     }
   }`;
 
@@ -997,8 +997,8 @@ export function PricingPage() {
                   <BulletList items={tier.features} />
                 </div>
 
-                <PrimaryLink href="/book" variant={tier.highlighted ? "solid" : "outline"} style={{ width: "100%", justifyContent: "center" }}>
-                  Schedule Consultation
+                <PrimaryLink href={`/checkout?plan=${tier.slug}&period=Basic`} variant={tier.highlighted ? "solid" : "outline"} style={{ width: "100%", justifyContent: "center" }}>
+                  Checkout
                   <ArrowRight />
                 </PrimaryLink>
               </div>
@@ -1108,8 +1108,8 @@ export function PricingPage() {
                       </ul>
                     </div>
 
-                    <a href="/book" className="sx-super-plan-btn">
-                      <span>Schedule Consultation</span>
+                    <a href={`/checkout?plan=${tier.slug}`} className="sx-super-plan-btn">
+                      <span>Checkout</span>
                       <ArrowRight />
                     </a>
                   </div>
@@ -1234,11 +1234,11 @@ export function PricingPage() {
 
               <div style={{ marginTop: "22px" }}>
                 <PrimaryLink
-                  href="/book"
+                  href={`/checkout?plan=${PRICING_TIERS[mobileTierIdx].slug}&period=Basic`}
                   variant={PRICING_TIERS[mobileTierIdx].highlighted ? "solid" : "outline"}
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Schedule Consultation
+                  Checkout
                   <ArrowRight />
                 </PrimaryLink>
               </div>
@@ -1301,78 +1301,40 @@ export function PricingPage() {
           </div>
         </div>
       </section>
-      {/* Terms & Conditions (Hover Card with Slide & Reveal Effect) */}
+      {/* Terms & Conditions (Tailwind Book Cover Open Card - CodeFronts 3D Hinged Effect) */}
       <section style={{ padding: "56px 0 80px", borderTop: `1px solid ${C.border}` }}>
         <div className="sx-container">
-          <article className="sx-policy-card">
-            {/* Thumb area: visible preview before hover (transparent background) */}
-            <div className="sx-policy-thumb">
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                  <div style={{
-                    flexShrink: 0,
-                    width: "38px", height: "38px",
-                    borderRadius: "10px",
-                    background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(99,102,241,0.1))",
-                    border: `1px solid ${C.blueLight}`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <path d="M9 11V7m0 8h.01M17 10A7 7 0 1 1 3 10a7 7 0 0 1 14 0Z"
-                        stroke={C.blue} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+          <div className="sx-book-container">
+            <div className="sx-book">
+              {/* Inside Page (Revealed upon opening the book cover) */}
+              <div className="sx-book-inside">
+                <div className="sx-policy-infos-header">
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div style={{
+                      flexShrink: 0,
+                      width: "36px", height: "36px",
+                      borderRadius: "10px",
+                      background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(99,102,241,0.1))",
+                      border: `1px solid ${C.blueLight}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M9 11V7m0 8h.01M17 10A7 7 0 1 1 3 10a7 7 0 0 1 14 0Z"
+                          stroke={C.blue} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: C.blue, margin: 0 }}>
+                        Agreement Clauses
+                      </p>
+                      <h3 style={{ fontSize: "19px", fontWeight: 700, color: C.text, letterSpacing: "-0.02em", margin: "2px 0 0" }}>
+                        Billing &amp; Refund Policy
+                      </h3>
+                    </div>
                   </div>
-                  <div>
-                    <span className="sx-policy-thumb-badge">Before you proceed</span>
-                    <h2 style={{ fontSize: "22px", fontWeight: 700, color: C.text, letterSpacing: "-0.02em", margin: "4px 0 0" }}>
-                      Billing &amp; Refund Policy
-                    </h2>
-                  </div>
+                  <span className="sx-policy-flag">7-Day Free Trial • 6 Clauses</span>
                 </div>
 
-                <p style={{ fontSize: "14.5px", color: C.textMuted, lineHeight: 1.65, maxWidth: "680px", margin: 0 }}>
-                  Your 7-day free trial includes full access to your selected plan. Review the cancellation window, automatic renewal policies, and refund terms before completing your subscription.
-                </p>
-              </div>
-
-              <div>
-                <div className="sx-policy-cue">
-                  <span className="sx-policy-cue-arrow">↓</span>
-                  <span>Hover over this card to view full policy &amp; agreement</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Infos drawer: slides up on hover with solid white background */}
-            <div className="sx-policy-infos">
-              <div className="sx-policy-infos-header">
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <div style={{
-                    flexShrink: 0,
-                    width: "36px", height: "36px",
-                    borderRadius: "10px",
-                    background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(99,102,241,0.1))",
-                    border: `1px solid ${C.blueLight}`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <path d="M9 11V7m0 8h.01M17 10A7 7 0 1 1 3 10a7 7 0 0 1 14 0Z"
-                        stroke={C.blue} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: C.blue, margin: 0 }}>
-                      Before you proceed
-                    </p>
-                    <h3 style={{ fontSize: "19px", fontWeight: 700, color: C.text, letterSpacing: "-0.02em", margin: "2px 0 0" }}>
-                      Billing &amp; Refund Policy
-                    </h3>
-                  </div>
-                </div>
-                <span className="sx-policy-flag">7-Day Free Trial • 6 Clauses</span>
-              </div>
-
-              <div className="sx-policy-reveal-txt">
                 {/* Summary callout */}
                 <div style={{
                   background: "rgba(37,99,235,0.06)",
@@ -1426,8 +1388,94 @@ export function PricingPage() {
                   ))}
                 </ol>
               </div>
+
+              {/* Front Book Cover (Hinged 3D Cover that opens on hover) */}
+              <div className="sx-book-cover">
+                <div className="sx-book-spine-line" />
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "20px" }}>
+                    <div style={{
+                      width: "46px", height: "46px",
+                      borderRadius: "12px",
+                      background: "rgba(37,99,235,0.1)",
+                      border: `1.5px solid ${C.blue}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: C.blue,
+                    }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                        <path d="M6 6h10" />
+                        <path d="M6 10h10" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="sx-policy-thumb-badge">Legal &amp; Client Protection</span>
+                      <h2 style={{ fontSize: "28px", fontWeight: 800, color: C.text, letterSpacing: "-0.02em", margin: "6px 0 0" }}>
+                        Billing &amp; Refund Policy
+                      </h2>
+                    </div>
+                  </div>
+
+                  <p style={{ fontSize: "15.5px", color: C.textMuted, lineHeight: 1.7, maxWidth: "720px", margin: "0 0 24px" }}>
+                    Your 7-day free trial includes full access to your selected plan. Review the cancellation window, automatic renewal policies, and refund terms before completing your subscription.
+                  </p>
+
+                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "12.5px",
+                      fontWeight: 600,
+                      color: C.text,
+                      backgroundColor: C.bgRaised,
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      border: `1px solid ${C.border}`,
+                    }}>
+                      <span>✓</span> 7-Day Free Trial
+                    </span>
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "12.5px",
+                      fontWeight: 600,
+                      color: C.text,
+                      backgroundColor: C.bgRaised,
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      border: `1px solid ${C.border}`,
+                    }}>
+                      <span>✓</span> Cancel Anytime
+                    </span>
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "12.5px",
+                      fontWeight: 600,
+                      color: C.text,
+                      backgroundColor: C.bgRaised,
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      border: `1px solid ${C.border}`,
+                    }}>
+                      <span>✓</span> 6 Formal Clauses
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="sx-book-cue">
+                    <span style={{ fontSize: "18px" }}>📖</span>
+                    <span>Hover over this book cover to open agreement</span>
+                    <ArrowRight />
+                  </div>
+                </div>
+              </div>
             </div>
-          </article>
+          </div>
         </div>
       </section>
     </div>

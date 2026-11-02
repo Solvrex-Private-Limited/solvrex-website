@@ -41,3 +41,4 @@ export { PricingPage } from "./components/PricingPage";
 export { AboutPage } from "./components/AboutPage";
 export { ContactPage } from "./components/ContactPage";
 export { BookPage } from "./components/BookPage";
+export { CheckoutFlow } from "./components/CheckoutFlow";
